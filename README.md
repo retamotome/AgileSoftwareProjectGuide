@@ -1,4 +1,4 @@
-# Agile Software Project Guide｜敏捷軟體專案指南  
+# Reta's Agile Software Project Guide｜Reta 的敏捷軟體專案指南  
 
 ![Agile Software Project Guide](./img/AgileSoftwareProjectGuide.png)
 
@@ -16,17 +16,18 @@ A concise, phase-based guide for planning and executing Agile software projects.
 * Strengthen team collaboration and Agile processes.  
   強化團隊協作與敏捷流程運作。
 
-Tutorial videos are available in the [Self-Directed Learning Guide](https://github.com/retamotome/SelfDirectedTraining).  
-教學影片可參考 [自主學習指南](https://github.com/retamotome/SelfDirectedTraining)。  
+## Video｜教學影片  
+Videos are available in the [Self-Directed Learning Guide](https://github.com/retamotome/SelfDirectedTraining).  
+教學影片請參考 [自主學習指南](https://github.com/retamotome/SelfDirectedTraining) 。  
 
 ## Tutorial Overview｜指南總覽
 
-This tutorial describes software engineering activities across development, testing, and maintenance.  
-本指南涵蓋軟體工程在開發、測試與維護各階段的實務活動。
+This guide covers practical activities in software projects and software engineering across initiation, development, testing, and maintenance.  
+本指南涵蓋軟體專案以及軟體工程在啟動、開發、測試與維護各階段的實務活動。
 
 For an introductory presentation, see:  
 入門介紹請參考：  
-[Lesson 01: Agile and Software Engineering 敏捷與軟體工程全覽](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-11-09_AgileProjectMgt/README.md)  
+[Lesson 01: Agile and Software Engineering｜敏捷與軟體工程全覽](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-11-09_AgileProjectMgt/README.md)  
 
 
 ## Key Project Phases｜專案主要階段
@@ -39,8 +40,8 @@ For an introductory presentation, see:
 * Objective: define the project vision, roles, and a high-level roadmap.  
   目標：定義專案願景、角色分工及高階發展藍圖。
 
-* Please refer to the [Project Initiation Phase 專案啟動階段](./ProjectInitiationPhase/README.md) for details.  
-  詳細內容請參考 [Project Initiation Phase 專案啟動階段](./ProjectInitiationPhase/README.md) 文件。
+* Please refer to the [Project Initiation Phase](./ProjectInitiationPhase/README.md) for details.  
+  詳細內容請參考 [專案啟動階段](./ProjectInitiationPhase/README.md) 文件。
 
 
 ### Business Development｜商業需求發展階段  
@@ -48,8 +49,8 @@ For an introductory presentation, see:
 * Market research, business case development, and stakeholder engagement.  
   市場調查、商業案例建立與利害關係人溝通。
 
-* Building on [Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md) to **capture and validate stakeholder needs**.  
-  依照 [Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md) 之流程，**蒐集與驗證利害關係人需求**。
+* Building on [Lesson 02: Business Requirement Definition](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md) to **capture and validate stakeholder needs**.  
+  依照 [Lesson 02: 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md) 之流程，**蒐集與驗證利害關係人需求**。
 
   * Systematically elicit, document, and confirm stakeholder requirements to ensure alignment with business objectives and stakeholder expectations.  
     以系統化方式蒐集、記錄並確認需求，確保與商業目標及利害關係人期望一致。
@@ -57,8 +58,8 @@ For an introductory presentation, see:
 * This phase intentionally **excludes implementation-level technical details**.  
   此階段刻意**不包含實作層級的技術細節**。
 
-* Please refer to the [Business Development Phase 商業需求發展階段](./BusinessDevelopmentPhase/README.md) for detailed guidance and context.  
-  詳細說明請參考 [Business Development Phase 商業需求發展階段](./BusinessDevelopmentPhase/README.md) 文件。
+* Please refer to the [Business Development Phase](./BusinessDevelopmentPhase/README.md) for detailed guidance and context.  
+  詳細說明請參考 [商業需求發展階段](./BusinessDevelopmentPhase/README.md) 。
 
 
 ### Software Development｜軟體開發階段
@@ -93,9 +94,9 @@ For an introductory presentation, see:
 
 ## License｜授權條款
 
-![BY NC ND](../img/Cc-by-nc-sa.png)     
+![BY NC ND](./img/Cc-by-nc-sa.png)     
 This work © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-本作品 © 2026 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+本作品 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 ---
 

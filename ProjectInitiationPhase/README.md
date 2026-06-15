@@ -111,7 +111,7 @@ Therefore, ARCI should be applied **adaptively**:
 
 ![BY NC ND](../img/Cc-by-nc-sa.png)     
 Project Initiation Phase © 2023 by Jen Yuan Pan is licensed under Attribution-NonCommercial-ShareAlike 4.0 International.  
-專案啟動階段 © 2023 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+專案啟動階段 © 2023 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 ---
 

@@ -5,8 +5,8 @@
 This section provides a concise overview of key reliability strategies and general considerations essential during the Requirement Analysis phase of software engineering and project management, along with practical tips based on my real-world experience.   
 本章節提供在軟體工程與專案管理的需求分析階段中，關鍵可靠性策略與一般考量的簡要概述，並附上我在實務經驗中的一些實用建議。
 
-Companion video: [Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).    
-參考影片： [Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)。  
+Companion video: [Lesson 02: Business Requirement Definition](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).    
+參考影片： [Lesson 02: 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)。  
 
 For guidance on writing requirements, see [Writing Requirements Effectively](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
 關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。 
@@ -31,17 +31,43 @@ Troubleshooting is never easy, often because "ease of troubleshooting" is rarely
 
 ### Audit Log | 稽核日誌  
 
-It is a common misconception that logs are only for developer debugging. In reality, **the primary purpose of an audit log is to help users quickly troubleshoot when errors occur**—yes, users, not just developers.   
-很多人誤以為紀錄只用於開發者除錯。事實上，**稽核日誌的主要目的是在錯誤發生時協助使用者快速排障**——是的，協助的是使用者，而不僅僅是開發者。  
+It is a common misconception that logs are only for developer debugging. In reality,  
+**the primary purpose of an audit log is to ensure traceability, accountability, and to help users quickly troubleshoot issues when errors occur**—yes, users, not just developers.  
+很多人誤以為紀錄只用於開發者除錯。事實上，  
+**稽核日誌的核心目的在於確保可追溯性（traceability）、責任歸屬（accountability），並在錯誤發生時協助使用者快速排障**——是的，協助的是使用者，而不僅僅是開發者。  
 
-When logs are clear and user-friendly, they also make it much easier for developers to debug issues. As a result, end users are less likely to complain or require developer intervention every time a error occurs.   
-當日誌清晰且易懂時，也會大幅降低開發者的除錯成本，最終減少使用者在每次錯誤時就要求開發者介入或提出抱怨的情況。  
+When logs are clear and user-friendly, developers can also debug more efficiently, reducing unnecessary escalation and improving overall system usability.  
+當日誌清晰且易於理解時，開發者也能更有效率地進行除錯，降低使用者頻繁求助並提升整體系統可用性。  
+
+
+#### Event Content | 日誌事件內容
+
+An audit log must clearly describe **who did what, when, where, and the result**.  
+稽核日誌必須清楚描述「誰在何時於何處進行了什麼操作，以及結果為何」。  
+Each log entry should include:  
+每一筆日誌應包含以下欄位：  
+
+- **User / Actor ID（使用者或系統行為者）**
+- **Action / Event Type（操作或事件類型）**
+- **Target / Resource（操作目標或資源）**
+- **Result / Status（成功 / 失敗 / 錯誤碼）**
+- **Timestamp（時間戳記）**
+- **Source（來源，例如 IP / Device ID）**
+- **Correlation ID（關聯識別碼，用於跨事件追蹤）**
+
+This structure ensures effective root cause analysis and traceability.
+
+此結構可確保問題追蹤與根因分析能力。
 
 
 #### Timestamp | 時間戳記  
 
-Accurate timestamps are essential for reliable audit logs. At release, synchronize the system clock using **NTP (Network Time Protocol)** or a **local NTP server** to establish a trusted baseline. However, for systems that remain offline after deployment, a one‑time sync is only a partial solution. The main challenge is maintaining **absolute time accuracy** throughout the device’s lifetime without further internet access. Stronger alternatives and complementary strategies include:  
-精確的時間戳記對於可靠的稽核日誌至關重要。發布時應使用 **NTP（網路時間協定）** 或 **本地 NTP 伺服器** 同步系統時鐘以建立可信的基準。不過，若設備部署後長期離線，單次的同步只是部分解法。主要挑戰是如何在沒有持續網路的情況下，於整個設備生命週期內維持**絕對時間的準確性**。較穩健或互補的策略包含：
+
+Accurate timestamps are essential for reliable audit logs. At release, synchronize the system clock using **NTP (Network Time Protocol)** or a **local NTP server** to establish a trusted baseline.  
+精確的時間戳記對於可靠的稽核日誌至關重要。發布時應使用 **NTP（網路時間協定）** 或 **本地 NTP 伺服器** 建立可信時間基準。  
+
+For offline systems, maintaining long-term accuracy is challenging. Recommended strategies:  
+對於離線系統，長期維持時間準確性是一大挑戰。建議採用以下策略：  
 
 - **Real‑Time Clock (RTC) with battery backup | 具電池備援的實時時鐘（RTC）**  
   - Integrate a hardware RTC chip powered by a coin‑cell battery or supercapacitor.  
@@ -70,6 +96,111 @@ Accurate timestamps are essential for reliable audit logs. At release, synchroni
 	同時記錄絕對時間戳（來自 RTC 或初始化同步）與相對的單調啟動時間計數器。  
   - This dual approach preserves event order and intervals even if the absolute clock drifts, ensuring audit logs remain reconstructable and trustworthy.  
 	此二合一方法能在絕對時鐘出現漂移時仍保留事件順序與時間間隔，確保稽核日誌可重建且具信賴性。 
+
+##### Timestamp Policy｜時間戳記政策
+The system time must not be modified, as doing so would lead to inconsistencies in log timestamps and potentially confuse users. This would undermine the primary purpose of maintaining a reliable and trustworthy audit log.  
+系統時間不可被修改，因為這將導致日誌時間戳記不一致，並可能使使用者產生混淆，進而違背稽核日誌提供可靠且可追溯紀錄的核心目的。  
+
+If customers require the use of their own timestamps, a separate **“custom timestamp”** field should be introduced rather than overwriting the system time. Customers are permitted to set and update only this custom timestamp.  
+若客戶有使用自訂時間的需求，應新增獨立的 **「自訂時間（custom timestamp）」欄位** ，而非覆寫系統時間。客戶僅能設定與更新此自訂時間欄位。  
+
+When the custom timestamp is modified:  
+當自訂時間被修改時：  
+
+* The system should calculate and record the **time difference (time delta)** between the system timestamp and the custom timestamp.  
+系統應計算並記錄**系統時間與自訂時間之差（time delta）**。  
+* Subsequent log entries will continue to use the **system timestamp** as the authoritative reference.  
+後續日誌仍以**系統時間**作為唯一且具權威性的基準。  
+* The **custom timestamp** will be derived by applying the recorded time difference to the system timestamp.  
+**自訂時間**則透過將該時間差套用至系統時間來推導產生。
+
+This approach ensures:  
+此設計可確保：  
+
+* The integrity and consistency of system-generated timestamps  
+系統時間戳記的完整性與一致性  
+* Traceability of any customer-defined time adjustments  
+客戶自訂時間調整具備可追溯性  
+* Clarity for users when interpreting audit logs  
+使用者在解讀稽核日誌時具備清晰性與可理解性   
+
+
+#### Log Integrity | 日誌完整性
+
+Audit logs must be protected from tampering.  
+稽核日誌必須防止竄改。  
+
+Recommended mechanisms:  
+建議機制：  
+
+- **Append-only logs（僅允許新增）**
+- **Hash chaining（雜湊鏈結）**
+- **Digital signatures（數位簽章）**
+- **WORM storage（不可修改儲存）**
+
+These ensure logs remain trustworthy for audit and forensic purposes.  
+確保日誌在稽核與鑑識分析中具有可信度。  
+
+#### Access Control | 存取控制
+
+Access to audit logs must be strictly controlled.  
+日誌存取必須嚴格控管。  
+
+- Only authorized roles can:  
+ 只有授權的角色才能：   
+  - View logs（讀取）
+  - Export logs（匯出）  
+- No direct modification allowed  
+  禁止直接修改  
+- Log all access activities  
+  存取行為本身也需記錄  
+
+#### Log Retention Policy | 保存政策
+
+Audit logs must define lifecycle management.  
+需明確定義日誌生命週期：  
+
+- Retention duration（保存期限，例如 90 天 / 1 年）
+- Log rotation（輪替機制）
+- Archiving（歸檔策略）
+- Deletion policy（刪除需可追蹤）
+
+#### Severity & Readability | 嚴重性與可讀性
+
+To improve usability:  
+為提升可用性：  
+
+- Define severity levels:  
+  定義嚴重等級：
+  - INFO / WARNING / ERROR / CRITICAL  
+    訊息 / 警告 / 錯誤 / 嚴重  
+- Use human-readable messages  
+  使用易懂文字  
+- Avoid unnecessary technical jargon  
+  避免過度技術術語  
+- Provide actionable hints when possible  
+  盡可能提供解決建議  
+
+#### Log Export & Integration | 匯出與整合
+
+Support integration with external systems:  
+支援與外部系統整合：  
+
+- Export formats（檔案 / USB / API / Syslog）
+- Optional:
+  - Central log server（集中式日誌伺服器）
+  - SIEM integration（資安事件管理系統）
+
+#### Design Principles | 設計原則
+
+A well-designed audit log should be:  
+良好的稽核日誌應具備：  
+
+- **Reliable（可靠）**
+- **Tamper-resistant（防竄改）**
+- **Traceable（可追溯）**
+- **User-friendly（易於理解）**
+- **Consistent（一致性）**
 
 
 ### Resource Usage | 資源使用  
