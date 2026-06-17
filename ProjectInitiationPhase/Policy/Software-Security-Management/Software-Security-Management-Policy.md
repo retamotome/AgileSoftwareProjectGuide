@@ -253,7 +253,7 @@ This policy primarily addresses the following information security risks:
 
 ---
 
-## License｜授權條款
+# License｜授權條款
 
 ![BY NC ND](../../../img/Cc-by-nc-sa.png)     
 Software Security Management Policy © 2026 by Jen Yuan Pan is licensed under Attribution-NonCommercial-ShareAlike 4.0 International.  

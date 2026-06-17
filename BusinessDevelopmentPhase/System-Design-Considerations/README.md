@@ -22,6 +22,15 @@ When designing in **User Space**, factors like **variability** and **scalability
 There is **no** universal system architecture that fits all scenarios. In reality, **system architecture is influenced by user behavior, hardware constraints, physical environment, contractual limitations, compliance policies, and more**.  
 一套放諸四海皆準的系統架構並不存在；實務上系統架構會受到使用者行為、硬體限制、實體環境、合約限制、合規政策等多種因素影響。 
 
+<details>
+<summary>News and Reference｜參考資訊</summary>
+
++ [Fundamentals of Software Architecture: An Engineering Approach](https://www.amazon.com/Fundamentals-Software-Architecture-Comprehensive-Characteristics/dp/1492043451)  
+  + [軟體架構原理｜工程方法](https://www.tenlong.com.tw/products/9789865026615)  
++ [Software Architecture Metrics: Case Studies to Improve the Quality of Your Architecture](https://www.amazon.com/Software-Architecture-Metrics-Studies-Improve/dp/1098112237)  
+  + [軟體架構指標｜改善架構品質的案例研究](https://www.tenlong.com.tw/products/9786263243583)  
+
+</details>
 
 ## Build a Trouble-Shootable System | 建置可排障的系統  
 
@@ -105,29 +114,10 @@ To ensure safe updates and prevent system corruption, the A/B Update strategy us
 * If booting from volume B succeeds, volume A is erased and synchronized with the contents of volume B.  
   若從磁碟區 B 開機成功，磁碟區 A 會被清除並與 B 的內容同步。  
 
-### Power Failure Handling | 電力故障處理  
+### Power Failure Handling | 電力故障處理
 
-To reduce data loss and system risks during power failures, implement a layered protection strategy.  
-為了減少斷電期間的資料遺失與系統風險，應實作分層保護策略。  
-
-- **Power Protection**: Use UPS and redundant power supplies to provide buffer time.  
-  **電力保護**: 使用 UPS 與冗餘電源供應器以提供緩衝時間。  
-
-- **Graceful Shutdown**: Detect power loss and trigger controlled shutdown (flush data, stop services, move hardware to safe state).  
-  **優雅關機**: 偵測電力中斷並觸發受控關機（刷新資料、停止服務、將硬體移至安全狀態）。  
-
-- **Data Protection**: Use journaling file systems and ensure critical data is written (fsync/checkpoints).  
-  **資料保護**: 使用日誌檔檔案系統並確保關鍵資料已寫入（fsync/檢查點）。  
-
-- **Checkpoint & Recovery**: Periodically save system state and support safe restart from last checkpoint.  
-  **檢查點與復原**: 定期保存系統狀態並支援從最後檢查點安全重啟。  
-
-- **Transaction Safety**: Use atomic operations and retry mechanisms to prevent partial updates.  
-  **交易安全**: 使用原子操作與重試機制以避免部分更新。  
-
-- **Startup Recovery**: Detect abnormal shutdown and resume or roll back safely.  
-  **啟動復原**: 偵測異常關機並安全地恢復或回復先前狀態。  
-
+Please refer to the [Power Failure Handling](./Power-Failure-Handling.md) for details.    
+詳細內容請參考 [電力故障處理](./Power-Failure-Handling.md)。
 
 ## Load Balancing Strategy | 負載平衡策略  
 
@@ -184,7 +174,7 @@ Please refer to the [Security Consideration](./Security-Consideration.md) for de
 
 ---
 
-## License｜授權條款
+# License｜授權條款
 
 ![BY NC ND](../../img/Cc-by-nc-sa.png)  
 Practical System Design Considerations © 2018 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  

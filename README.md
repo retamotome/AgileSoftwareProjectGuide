@@ -29,7 +29,6 @@ For an introductory presentation, see:
 入門介紹請參考：  
 [Lesson 01: Agile and Software Engineering｜敏捷與軟體工程全覽](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-11-09_AgileProjectMgt/README.md)  
 
-
 ## Key Project Phases｜專案主要階段
 
 ### Project Initiation｜專案啟動階段
@@ -92,7 +91,7 @@ For an introductory presentation, see:
 
 ---
 
-## License｜授權條款
+# License｜授權條款
 
 ![BY NC ND](./img/Cc-by-nc-sa.png)     
 This work © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  

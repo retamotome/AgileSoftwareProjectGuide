@@ -58,7 +58,7 @@ A structured log format ensures consistency, traceability, and integration with 
 **Field Description | 欄位說明**
 
 - **timestamp**：System-generated authoritative time（系統權威時間）  
-- **level**：Severity level（嚴重等級）  
+- **level**：[Severity level（嚴重等級）](./Priority.md)  
 - **service**：Originating module/service（來源模組）  
 - **actor**：User or system identity（操作主體）  
 - **action**：What happened（操作行為）  
@@ -166,13 +166,15 @@ System logs are high-volume and typically use short-term rotation.
 ### Severity & Debug Levels | 嚴重性與除錯等級
 System logs include detailed levels such as DEBUG and TRACE for troubleshooting.  
 系統日誌包含 DEBUG、TRACE 等細粒度等級以支援除錯。  
+Please refer to the [Priority](./Priority.md) for details.  
+詳細內容請參考 [重要性權重](./Priority.md)。  
 
 
 
 ## Load Separation Principle | 負載分流原則  
 
-Audit logs and system logs must be handled by separate services to avoid performance bottlenecks and improve scalability. Decoupling logging from core operations ensures stability under heavy load.  
-稽核日誌與系統日誌應由不同服務處理，以避免資源競爭，並提升可擴展性。將日誌與核心系統解耦可在高負載下維持穩定性。  
+**Audit logs** and **system logs** must be handled by separate services to avoid performance bottlenecks and improve scalability. Decoupling logging from core operations ensures stability under heavy load.  
+**稽核日誌** 與 **系統日誌** 應由不同服務處理，以避免資源競爭，並提升可擴展性。將日誌與核心系統解耦可在高負載下維持穩定性。  
 
 Logging should use asynchronous processing, buffering, and rate control to prevent overload. Mechanisms like queues, backpressure, and sampling ensure logs do not block or degrade system performance.  
 日誌應採用非同步處理、緩衝與流量控制，以避免過載。透過佇列、回壓與取樣等機制，確保日誌不會阻塞或影響系統效能。  
@@ -202,11 +204,11 @@ Similar to Linux logging (e.g., syslog/journald), logs are collected through a u
 
 ---
 
-## License｜授權條款
+# License｜授權條款
 
 ![BY NC ND](../../img/Cc-by-nc-sa.png)  
-System Mode and State © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-系統模式與狀態 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+Logging Architecture © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
+日誌架構設計 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 
 ---

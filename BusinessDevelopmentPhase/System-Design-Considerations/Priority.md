@@ -2,42 +2,14 @@
 
 ## Evaluation | 評估
 
-Priority of **Bug** and **Customer Issue** types will be auto-calculated according to Damage Potential and Probability fields.  
-「缺失」、「客戶問題」類型的重要性權重，將會依據「損害對系統或商業影響能力」（Damage Potential）與「發生機率」（Probability）欄位自動計算。  
+Priority should be calculated according to Damage Potential and Probability fields.  
+重要性權重，應依據「損害影響」（Damage Potential）與「發生機率」（Probability）欄位計算。  
 
+### Bug and Customer Issue types | 「缺失」、「客戶問題」類型  
+![Bug](../img/PriorityEvaluation-Bug.drawio.svg)   
 
-<table>
-<tr>
-<td style="color: black; background-color: lightgrey;">Frequent</td>
-<td>Medium</td>
-<td>High</td>
-<td>Highest</td>
-</tr>
-<tr>
-<td style="color: black; background-color: lightgrey;">Possible</td>
-<td>Low</td>
-<td>Medium</td>
-<td>High</td>
-</tr>
-<tr>
-<td style="color: black; background-color: lightgrey;">Rare</td>
-<td>Lowest</td>
-<td>Low</td>
-<td>Medium</td>
-</tr>
-<tr style="color: black; background-color: lightgrey;">
-<td>
-Probability<br>發生機率
-</td>
-<td>Low</td>
-<td>Medium</td>
-<td>High</td>
-</tr>
-<tr style="color: black; background-color: lightgrey;">
-<td> </td>
-<td colspan="3">Damage Potential 損害影響</td>
-</tr>
-</table>
+### Log type | 日誌類型  
+![Bug](../img/PriorityEvaluation-Log.drawio.svg)   
 
 ## Damage Potential | 損害影響
 
@@ -60,7 +32,7 @@ Probability<br>發生機率
 <figure></figure></th>
 <th>
 
-**Robot Device　設備例列**
+**Robot Device　設備例**
 
 <figure></figure></th>
 </tr>
@@ -181,7 +153,7 @@ Minor inconvenience with little to no impact on core functionality.<br>對核心
 
 ---
 
-## License｜授權條款
+# License｜授權條款
 
 ![BY NC ND](../../img/Cc-by-nc-sa.png)  
 Priority © 2025 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  

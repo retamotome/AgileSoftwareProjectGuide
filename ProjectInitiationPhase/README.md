@@ -107,7 +107,7 @@ Therefore, ARCI should be applied **adaptively**:
 
 ---
 
-## License｜授權條款
+# License｜授權條款
 
 ![BY NC ND](../img/Cc-by-nc-sa.png)     
 Project Initiation Phase © 2023 by Jen Yuan Pan is licensed under Attribution-NonCommercial-ShareAlike 4.0 International.  
