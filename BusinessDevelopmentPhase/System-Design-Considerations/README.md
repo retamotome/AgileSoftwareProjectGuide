@@ -57,6 +57,8 @@ Always ensure that **at least 30% of system resources** (CPU, memory, disk, etc.
 > [!note]  
 > Data sync operations do **not** guarantee that information is permanently written to disk. Many enterprise‑grade high‑performance drives employ **volatile DRAM in write‑back caching** to accelerate transfers. While this improves throughput, it also introduces risk: if a power failure occurs before cached data is flushed to non‑volatile storage, the data in DRAM is lost, resulting in potential corruption or incomplete writes.  
 > 資料同步（Data sync）操作並 **不** 保證資訊會永久寫入磁碟。許多企業級高效能硬碟採用 **具揮發性的 DRAM 寫回快取（write‑back caching）** 來加速傳輸。雖然這能提升效能，但也帶來風險：若在快取資料尚未刷新到非揮發性儲存之前發生斷電，DRAM 中的資料將會遺失，導致潛在的資料毀損或寫入不完整。  
+> Please refer to the [Data Processing Strategy](./Data-Processing-Strategy.md) for details.    
+> 詳細內容請參考 [資料處理策略](./Data-Processing-Strategy.md)。  
 
 
 ### Memory Dump Strategy | 記憶體傾印策略
