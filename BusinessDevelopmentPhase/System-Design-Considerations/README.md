@@ -1,5 +1,7 @@
 # Practical System Design Considerations | 系統設計實務考量  
 
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+
 ## Overview | 概要  
 
 This section provides a concise overview of key reliability strategies and general considerations essential during the Requirement Analysis phase of software engineering and project management, along with practical tips based on my real-world experience.   

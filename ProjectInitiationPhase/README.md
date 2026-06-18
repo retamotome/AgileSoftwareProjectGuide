@@ -1,5 +1,7 @@
 # Project Initiation Phase｜專案啟動階段
 
+![Project Initiation Phase](../img/ProjectInitiationPhase.png)  
+
 ## Overview｜概述
 
 The initiation phase establishes the foundation for a successful Agile software project. Key activities include defining the project vision, assembling the team, and setting up initial plans and practices.  
