@@ -1,5 +1,7 @@
 # Logging Architecture | 日誌架構設計
 
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+
 ## Overview ｜ 概述  
 
 **Audit logs** and **system logs** should serve different purposes: audit logs track user/business activities, while system logs focus on system health and critical errors. This separation prevents interference between high-volume logs and critical operations.  

@@ -1,5 +1,7 @@
 # Security Consideration | 安全性考量
 
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+
 ## Connections ｜ 連線安全  
 
 All external connections **must be protected using strong encryption mechanisms** to ensure confidentiality, integrity, and authenticity of data in transit.  

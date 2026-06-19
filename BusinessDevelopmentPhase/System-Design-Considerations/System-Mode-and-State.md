@@ -1,5 +1,7 @@
 # System Mode and State ｜ 系統模式與狀態  
 
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+
 ## Overview ｜ 概述
 
 Understanding and clearly defining **System Modes** and **System States** is essential for robust requirement analysis.  

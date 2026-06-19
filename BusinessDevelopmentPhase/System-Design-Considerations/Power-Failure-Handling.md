@@ -1,5 +1,8 @@
 # Power Failure Handling | 電力故障處理  
 
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+
+
 To reduce data loss and system risks during power failures, implement a layered protection strategy.  
 為了減少斷電期間的資料遺失與系統風險，應實作分層保護策略。  
 

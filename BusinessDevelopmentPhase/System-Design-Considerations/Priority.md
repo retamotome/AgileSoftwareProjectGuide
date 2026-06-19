@@ -1,5 +1,7 @@
 # Priority | 重要性權重
 
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+
 ## Evaluation | 評估
 
 Priority should be calculated according to Damage Potential and Probability fields.  

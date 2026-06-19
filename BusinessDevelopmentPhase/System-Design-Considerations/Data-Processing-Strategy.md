@@ -1,4 +1,7 @@
-# Data Processing Strategy | 資料處理策略
+# Data Processing Strategy | 資料處理策略  
+
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+
 
 ## Data Format ｜ 資料格式
 

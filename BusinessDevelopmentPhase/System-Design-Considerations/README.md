@@ -1,6 +1,6 @@
 # Practical System Design Considerations | 系統設計實務考量  
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 
 ## Overview | 概要  
 
