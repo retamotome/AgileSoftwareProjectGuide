@@ -56,9 +56,9 @@ Common modes include:
     * May expose features not available in production (e.g., breakpoints, verbose logs).  
     可能包含正式環境沒有的功能（如 breakpoint、詳細 log）
     * Typical differences between development and production environments:  
-    開發與正式（Troubleshooting）環境差異：  
+    開發與產品環境差異：  
 
-        | Feature / Item  功能/項目         | Development  開發       | Production (Troubleshooting) 產品（故障排除） | 
+        | Feature / Item  功能/項目         | Development  開發       | Production 產品 | 
         |-------------------------|---------------------|------------------------------| 
         | Mode Name 模式名稱              | Debug Mode 偵錯模式         | Troubleshooting Mode 故障排除模式        | 
         | Bug Reproduction 缺陷重現       | Off-site 異地           | On-site 現場                     | 
@@ -77,7 +77,7 @@ Common modes include:
 
 - **Maintenance Mode ｜ 維護模式**
     * Used for updates, patches, and configuration changes.  
-    用於更新、修補與設定變更
+    用於更新、修補與變更設定
     * Restricts normal user access; only administrators can interact.  
     限制一般使用者存取，僅管理員可操作
     * System may be partially or fully unavailable.  
@@ -209,6 +209,203 @@ Furthermore:
 模式轉換期間子系統之間的互動應設計為防止**故障傳播**，並確保**故障安全或故障運行行為**，以滿足目標 **安全完整性等級 (SIL)** 或 **效能等級 (PL)** 的要求。  
 * Diagnostic coverage and monitoring mechanisms shall confirm that all required State transitions have been successfully executed.  
 診斷覆蓋範圍和監控機制應確認所有必要的狀態轉換均已成功執行。  
+
+
+## Mode–State Mapping | 模式與狀態對應  
+### Core Concept | 核心概念  
+
+- **Mode** = Defines what the system *is allowed to do* (policy / constraint)  
+**模式**＝定義系統「允許做什麼」（行為邊界）  
+- **State** = Represents what the system *is currently doing*  
+**狀態**＝描述系統「目前正在做什麼」  
+- One Mode contains multiple States  
+一個 Mode 會包含多個 State  
+- Mode transitions must trigger **deterministic State transitions across all subsystems**  
+模式轉換必須觸發**可預測且一致的狀態轉換**
+
+
+### Running Mode | 運行模式
+
+| State | English Description | 中文說明 |
+|------|-------------------|---------|
+| Startup | System initialization | 系統啟動初始化 |
+| Standby | Waiting for command | 待機 |
+| Running | Normal operation | 正常運行 |
+| Degraded | Reduced capability | 降級運行 |
+| Emergency | Fault response<br>Must transition to Safe Mode | 緊急處理<br>必須轉換至安全模式 |
+| Shutdown | Graceful stop | 正常關機 |
+
+Focus: **performance, availability**
+
+### Manual Mode | 手動模式
+
+| State | English Description | 中文說明 |
+|------|-------------------|---------|
+| Startup | Diagnostic setup<br>May include debug configs | 診斷初始化<br>可能需要引入除錯設定 |
+| Standby | Wait operator<br>Interactive | 等待操作<br>互動模式 |
+| Running (Manual) | Step execution | 手動逐步執行 |
+| Degraded | Fault reproduction | 故障分析 |
+| Emergency | Safety response | 安全反應 |
+| Shutdown | Exit | 結束 |
+
+Focus: **visibility, debugging**
+
+### Maintenance Mode | 維護模式
+
+| State | English Description | 中文說明 |
+|------|-------------------|---------|
+| Startup | Maintenance init | 維護初始化 |
+| Standby | Idle | 待機 |
+| Running | Upgrade / patch / config change | 更新、修補與變更設定 |
+| Degraded | Partial service | 部分功能 |
+| Shutdown | Planned stop | 計劃停機 |
+
+Focus: **admin operations**
+
+### Simulation Mode | 模擬模式
+
+| State | English Description | 中文說明 |
+|------|-------------------|---------|
+| Startup | Load simulation | 模擬初始化 |
+| Standby | Await simulation input | 等待模擬輸入 |
+| Running | Simulated run | 模擬運行 |
+| Degraded | Fault simulation | 故障模擬 |
+| Shutdown | End simulation | 結束模擬 |
+
+Focus: **testing / training**
+
+
+### Safe Mode | 安全模式
+
+| State | English Description | 中文說明 |
+|------|-------------------|---------|
+| Emergency | Immediate stop | 緊急停止 |
+| Degraded | Safe operation with reduced capability | 降級安全運行 |
+| Fallback | Alternate safe strategy | 回退策略 |
+| Standby | Safe idle<br>Minimal safe state | 安全待機 |
+| Shutdown | Power off | 安全關機 |
+
+Focus: **risk reduction**
+
+### Mapping Matrix | 對應表
+
+| Mode \ State | Startup | Standby       | Running       | Degraded | Emergency     | Shutdown |
+| ------------ | ------- | ------------- | ------------- | -------- | ------------- | -------- |
+| Running Mode | ✅       | ✅             | ✅             | ✅        | ✅             | ✅        |
+| Manual Mode  | ✅       | ✅             | ✅ (manual)    | ✅        | ✅             | ✅        |
+| Maintenance  | ✅       | ✅             | ✅ (service)   | ✅        | ❌ (rare)      | ✅        |
+| Simulation   | ✅       | ✅             | ✅ (simulated) | ✅        | ✅ (simulated) | ✅        |
+| Safe Mode    | ❌       | ✅ (safe idle) | ❌             | ✅ (Fallback)     | ✅             | ✅        |
+
+
+## Mode Transition Flows | 模式轉換流程
+### General Example | 一般範例
+
+![Mode and State](../img/Mode_State.svg)
+
+
+### Running → Maintenance (Planned Service) | 運行 → 維護（計劃性服務）
+
+**Mode Flow | 模式流程**
+
+```
+Running Mode → Maintenance Mode
+運行模式 → 維護模式
+```
+
+**State Flow | 狀態流程**
+
+```
+Running 
+  → Standby 
+  → Shutdown 
+  → Startup (Maintenance) 
+  → Running (Maintenance Task)
+
+運行
+  → 待命
+  → 關機
+  → 啟動（維護）
+  → 運行（維護任務）
+```
+
+**Explanation | 說明**
+
+* Requires **graceful stop**  
+  需要進行**平滑停止（優雅停機）**
+* System may reboot into maintenance environment  
+  系統可能會重新啟動進入維護環境
+* Controlled downtime is expected  
+  預期會有可控制的停機時間
+
+
+### Maintenance → Running (Service Complete) | 維護 → 運行（服務完成）
+
+**Mode Flow | 模式流程**
+
+```
+Maintenance Mode → Running Mode
+維護模式 → 運行模式
+```
+
+**State Flow | 狀態流程**
+
+```
+Running (Maintenance Task)
+  → Shutdown / Restart
+  → Startup / Initialization
+  → Standby
+  → Running
+
+運行（維護任務）
+  → 關機 / 重新啟動
+  → 啟動 / 初始化
+  → 待命
+  → 運行
+```
+
+**Explanation | 說明**
+
+* Common after upgrade or patch  
+  常見於升級或修補之後
+* Full reinitialization is recommended  
+  建議進行完整重新初始化
+
+### State Propagation Logic (Generic Template) | 狀態傳播邏輯（通用範本）
+
+When Mode changes:  
+當模式發生變更時：
+
+```
+[Mode Change Trigger]
+【模式變更觸發】
+        ↓
+Stop or stabilize current activity
+停止或穩定目前運作
+        ↓
+Transition to intermediate safe/idle state
+轉換至中間的安全／空閒狀態
+        ↓
+Enter target mode initialization state
+進入目標模式的初始化狀態
+        ↓
+Move to operational state of that mode
+進入該模式的運行狀態
+```
+
+### Key Design Insight | 關鍵設計重點
+
+You should explicitly define for each transition:  
+對於每一個轉換，應明確定義：
+
+| Element                              | Must Define                                               |
+| ------------------------------------ | --------------------------------------------------------- |
+| Mode transition trigger<br>模式轉換觸發條件  | Fault / operator / schedule<br>故障／操作員／排程                  |
+| Allowed state transitions<br>允許的狀態轉換 | Per mode<br>依模式定義                                         |
+| Forbidden states<br>禁止的狀態            | e.g., Running not allowed in Safe Mode<br>例如：安全模式不可進入運行狀態 |
+| Transition order<br>轉換順序             | No ambiguity<br>不可有歧義                                     |
+| Timeout / watchdog<br>逾時／監控機制        | Safety requirement<br>安全需求                                |
+
 
 ---
 
