@@ -1,4 +1,4 @@
-# Business Development Phase ｜ 商業開發階段
+# Business Development Phase ｜ 商業(需求)發展階段
 
 ## Overview ｜ 概述
 
@@ -26,7 +26,8 @@ Teams should establish acceptance criteria early and use Behavior-Driven Develop
 For more background, see:  
 更多背景知識請參考：
 - [Lesson 01: Agile and Software Engineering 敏捷與軟體工程全覽](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-11-09_AgileProjectMgt/README.md)
-- [Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)
+- [Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)  
+- [How To Run a Design Thinking Workshop](https://facilitator.com/blog/how-to-run-a-design-thinking-workshop)  
 
 
 ## Guidance ｜ 指引

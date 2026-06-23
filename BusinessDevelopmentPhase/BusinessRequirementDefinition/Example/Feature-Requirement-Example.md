@@ -7,9 +7,9 @@
 | Field (欄位) | Value (值) |
 | ----------- | ------------------------------------------ |
 | Source (來源) | [BR-001: Secure User Login(BR-001：強化使用者登入安全)](./Business-Requirement-Example.md) |
-| Description (描述) | The system shall validate user credentials (系統必須驗證使用者憑證) | 
-| Actor (角色| End User (最終使用者) | 
-| Priority (優先度| High (高) |
+| Description (描述) | The system shall validate user credentials<br>系統必須驗證使用者憑證 | 
+| Actor (角色)| End User<br>最終使用者 | 
+| Priority (優先度)| High (高) |
 
 
 ### Requirements | 系統需求
@@ -38,7 +38,7 @@
 
 | Risk (風險) | Solution (應對措施) |   
 | --- | --- |  
-| Network issue during login (登入過程中網路問題) | Erase the login session (清除登入工作階段) | 
+| Network issue during login<br>登入過程中網路問題 | Erase the login session<br>清除登入工作階段 | 
 
 
 ### Behavior Definition | 行為定義
@@ -47,22 +47,22 @@
 
 | Steps | Expected Result |
 | --- | --- |
-| User input `Username` (使用者輸入 `Username`) | Input fields available (輸入欄位可用) |
-| User input `Password` (使用者輸入 `Password`) | Input fields available (輸入欄位可用) |
-| User click `login` button (使用者點擊 `login` 按鈕) | Input fields locked (輸入欄位鎖定) |
-| Check user exists (系統檢查使用者是否存在) | |  
-| Verify password hash (系統驗證密碼雜湊值) | | 
-| Create session (建立工作階段) | Redirect to dashboard (導向至主控台) |
+| User input `Username`<br>使用者輸入 `Username` | Input fields available<br>輸入欄位可用 |
+| User input `Password`<br>使用者輸入 `Password` | Input fields available<br>輸入欄位可用 |
+| User click `login` button<br>使用者點選 `login` 按鈕 | Input fields locked<br>輸入欄位鎖定 |
+| Check user exists<br>系統檢查使用者是否存在 | |  
+| Verify password hash<br>系統驗證密碼雜湊值 | | 
+| Create session<br>建立工作階段 | Redirect to dashboard<br>導向至主控台 |
 
 
 #### Error Handling | 錯誤處理
 
 | Steps | Error | Handling |   
 | --- | --- | --- |  
-| User input `Username` (使用者輸入 `Username`) | Empty username (使用者名稱空白) | Show "Username is required" (顯示「必須輸入使用者名稱」) | 
-| User input `Password` (使用者輸入 `Password`) | Empty password (密碼空白) | Show "Password is required" (顯示「必須輸入密碼」) |  
-| Check user exists (系統檢查使用者是否存在) | User not exist (使用者不存在) | Show "Invalid username or password" (顯示「使用者名稱或密碼錯誤」) | 
-| Verify password hash (系統驗證密碼雜湊值) | Wrong password (密碼錯誤) | Show "Invalid username or password" (顯示「使用者名稱或密碼錯誤」) |
+| User input `Username`<br>使用者輸入 `Username` | Empty username<br>使用者名稱空白 | Show "Username is required"<br>顯示「必須輸入使用者名稱」 | 
+| User input `Password`<br>使用者輸入 `Password` | Empty password<br>密碼空白 | Show "Password is required"<br>顯示「必須輸入密碼」 |  
+| Check user exists<br>系統檢查使用者是否存在 | User not exist<br>使用者不存在 | Show "Invalid username or password"<br>顯示「使用者名稱或密碼錯誤」 | 
+| Verify password hash<br>系統驗證密碼雜湊值 | Wrong password<br>密碼錯誤 | Show "Invalid username or password"<br>顯示「使用者名稱或密碼錯誤」 |
 
 ---
 

@@ -19,29 +19,29 @@ Priority should be calculated according to Damage Potential and Probability fiel
 <tr>
 <th>
 
-**Level　程度**
+**Level<br>程度**
 
 <figure></figure></th>
 <th>
 
-**Description　說明**
+**Description<br>說明**
 
 <figure></figure></th>
 <th>
 
-**Example Cases　舉例**
+**Example Cases<br>舉例**
 
 <figure></figure></th>
 <th>
 
-**Robot Device　設備例**
+**Robot Device<br>設備例**
 
 <figure></figure></th>
 </tr>
-<tr style="vertical-align: top;">
+<tr>
 <th>
 
-**High　高**
+**High<br>高**
 </th>
 <td>
 
@@ -76,10 +76,10 @@ Severe impact on system stability or data integrity. Causes major disruption.<br
   AGV／AMR 路徑規劃失敗，導致傳輸死結或系統崩潰
 </td>
 </tr>
-<tr style="vertical-align: top;">
+<tr>
 <th>
 
-**Medium　中**
+**Medium<br>中**
 </th>
 <td>
 
@@ -113,10 +113,10 @@ Noticeable degradation of functionality but system remains partially usable.<br>
 
 </td>
 </tr>
-<tr style="vertical-align: top;">
+<tr>
 <th>
 
-**Low　低**
+**Low<br>低**
 </th>
 <td>
 

@@ -45,7 +45,7 @@ For an introductory presentation, see:
   詳細內容請參考 [專案啟動階段](./ProjectInitiationPhase/README.md) 文件。
 
 
-### Business Development｜商業需求發展階段  
+### Business Development｜商業(需求)發展階段  
 
 * Market research, business case development, and stakeholder engagement.  
   市場調查、商業案例建立與利害關係人溝通。
@@ -60,10 +60,10 @@ For an introductory presentation, see:
   此階段刻意**不包含實作層級的技術細節**。
 
 * Please refer to the [Business Development Phase](./BusinessDevelopmentPhase/README.md) for detailed guidance and context.  
-  詳細說明請參考 [商業需求發展階段](./BusinessDevelopmentPhase/README.md) 。
+  詳細說明請參考 [商業(需求)發展階段](./BusinessDevelopmentPhase/README.md) 。
 
 
-### Software Development｜軟體開發階段
+### Software Development｜軟體發展階段
 
 * Iterative design, implementation, testing, and integration to deliver working software.  
   透過反覆迭代進行設計、實作、測試與整合，交付可運作的軟體。
@@ -80,13 +80,13 @@ For an introductory presentation, see:
 
 > [!note]  
 > Both the **Business Development** and **Software Development** phases include practices on:  
-> **商業需求發展**與**軟體開發**階段皆包含以下實務：  
+> **商業需求發展**與**軟體發展**階段皆包含以下實務：  
 > * Software engineering practices 軟體工程實務。  
 > * Test engineering practices 測試工程實務。  
 
 > [!important]   
 > Test engineering in **Business Development** focuses on validating **business requirements** using **behavior-driven techniques (BDD)**.   
-> 在**商業需求發展階段**，測試工程重點為使用**行為驅動開發（BDD）**來驗證**商業需求**。  
+> 在**商業(需求)發展階段**，測試工程重點為使用**行為驅動開發（BDD）**來驗證**商業需求**。  
 >  
 > Test engineering in **Software Development** focuses on verifying **implementation correctness** using **test-driven approaches (TDD)**.  
 > 在**軟體開發階段**，測試工程重點為使用**測試驅動開發（TDD）**來驗證**實作正確性**。  

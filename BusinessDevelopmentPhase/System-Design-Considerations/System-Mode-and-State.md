@@ -299,7 +299,7 @@ Focus: **risk reduction**
 
 
 ## Mode Transition Flows | 模式轉換流程
-### General Example | 一般範例
+### Simplified Example | 簡化範例
 
 ![Mode and State](../img/Mode_State.svg)
 
@@ -405,6 +405,11 @@ You should explicitly define for each transition:
 | Forbidden states<br>禁止的狀態            | e.g., Running not allowed in Safe Mode<br>例如：安全模式不可進入運行狀態 |
 | Transition order<br>轉換順序             | No ambiguity<br>不可有歧義                                     |
 | Timeout / watchdog<br>逾時／監控機制        | Safety requirement<br>安全需求                                |
+
+
+## Log & System Mode Mapping | 日誌與系統模式對應表  
+Please refer to the [Log & System Mode Mapping](./Logging-Architecture.md#log--system-mode-mapping--日誌與系統模式對應表) for details.  
+詳細內容請參考 [日誌與系統模式對應表](./Logging-Architecture.md#log--system-mode-mapping--日誌與系統模式對應表)。  
 
 
 ---

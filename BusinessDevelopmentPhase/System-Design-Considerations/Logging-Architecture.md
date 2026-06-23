@@ -169,22 +169,7 @@ System logs are high-volume and typically use short-term rotation.
 System logs include detailed levels such as DEBUG and TRACE for troubleshooting.  
 系統日誌包含 DEBUG、TRACE 等細粒度等級以支援除錯。  
 Please refer to the [Priority](./Priority.md) for details.  
-詳細內容請參考 [重要性權重](./Priority.md)。  
-
-
-
-## Load Separation Principle | 負載分流原則  
-
-**Audit logs** and **system logs** must be handled by separate services to avoid performance bottlenecks and improve scalability. Decoupling logging from core operations ensures stability under heavy load.  
-**稽核日誌** 與 **系統日誌** 應由不同服務處理，以避免資源競爭，並提升可擴展性。將日誌與核心系統解耦可在高負載下維持穩定性。  
-
-Logging should use asynchronous processing, buffering, and rate control to prevent overload. Mechanisms like queues, backpressure, and sampling ensure logs do not block or degrade system performance.  
-日誌應採用非同步處理、緩衝與流量控制，以避免過載。透過佇列、回壓與取樣等機制，確保日誌不會阻塞或影響系統效能。  
-
-### Architecture Patterns (Reference: Linux) | 架構模式（參考 Linux）
-Similar to Linux logging (e.g., syslog/journald), logs are collected through a unified interface and routed to different backends. Logging services operate independently, and critical logs are prioritized.   
-類似 Linux（如 syslog/journald）的設計，日誌透過統一介面收集並分流至不同後端，且日誌服務獨立運作，並優先處理關鍵訊息。  
-
+詳細內容請參考 [重要性權重](./Priority.md)。   
 
 ## Comparison Table | 比較表
 
@@ -203,6 +188,54 @@ Similar to Linux logging (e.g., syslog/journald), logs are collected through a u
 | **Modification** | Not allowed | Allowed (rotation) | 不可 vs 可清理 |
 | **Architecture** | Dedicated service | Logging pipeline | 專用服務 vs 管線 |
 
+## Load Separation Principle | 負載分流原則  
+
+**Audit logs** and **system logs** must be handled by separate services to avoid performance bottlenecks and improve scalability. Decoupling logging from core operations ensures stability under heavy load.  
+**稽核日誌** 與 **系統日誌** 應由不同服務處理，以避免資源競爭，並提升可擴展性。將日誌與核心系統解耦可在高負載下維持穩定性。  
+
+Logging should use asynchronous processing, buffering, and rate control to prevent overload. Mechanisms like queues, backpressure, and sampling ensure logs do not block or degrade system performance.  
+日誌應採用非同步處理、緩衝與流量控制，以避免過載。透過佇列、回壓與取樣等機制，確保日誌不會阻塞或影響系統效能。  
+
+### Architecture Patterns (Reference: Linux) | 架構模式（參考 Linux）
+Similar to Linux logging (e.g., syslog/journald), logs are collected through a unified interface and routed to different backends. Logging services operate independently, and critical logs are prioritized.   
+類似 Linux（如 syslog/journald）的設計，日誌透過統一介面收集並分流至不同後端，且日誌服務獨立運作，並優先處理關鍵訊息。  
+
+
+
+## Log & System Mode Mapping | 日誌與系統模式對應表
+
+
+| [System Mode<br>系統模式](./System-Mode-and-State.md)          | Goal / Intent<br>目標 / 意圖                                               | System Log Behavior<br>系統日誌行為                                                                       | Audit Log Behavior<br>稽核日誌行為                                                                           | Logging Level<br>日誌等級     | Rationale / Why<br>原因說明                                                                       |
+| ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------ |
+| **Running Mode<br>運行模式**     | Performance-first<br>效能優先<br>Stability, performance, high availability<br>穩定性、效能、高可用性            | - Log only critical errors<br>- Basic health monitoring<br>- Avoid high-frequency/internal logs<br>僅記錄關鍵錯誤、基本健康監控，避免高頻或內部細節記錄               | - Record user actions<br>- Track business operations<br>- Maintain accountability<br>記錄使用者行為與業務操作，確保可追溯性          | ERROR / WARN           | Minimize performance impact and logging overhead<br>降低記錄對效能的影響，符合正式運行效率需求                  |
+| **Manual Mode<br>手動模式**      | Visibility-first<br>可視性優先<br>Debugging, diagnostics, troubleshooting<br>除錯、診斷、故障排除               | - Full internal logs (state, flow, function calls)<br>- Enable diagnostics<br>- Support step execution info<br>完整內部行為記錄（狀態/流程/函式），支援診斷與逐步執行 | - Detailed operator actions<br>- Trace troubleshooting steps<br>- Capture debugging scenarios<br>詳細記錄操作員行為與故障排除過程 | DEBUG（開發）<br>TRACE（現場） | Maximize visibility for root cause analysis; performance is secondary<br>提升可視性以利根因分析，效能非優先 |
+| **Maintenance Mode<br>維護模式** | Traceability-first<br>可追溯性優先<br>System updates, configuration, controlled changes<br>系統更新、設定變更、受控操作 | - Log upgrade steps, migration status<br>- Record system transitions<br>- Capture service start/stop<br>記錄升級流程、資料移轉、服務啟停                    | - Track admin operations<br>- Record config changes & patches<br>- Maintain audit trail<br>記錄管理員操作、設定變更與修補歷程      | INFO / WARN / TRACE    | Ensure traceability, compliance, and rollback capability<br>確保可追溯性、合規性與回復能力                |
+| **Simulation Mode<br>模擬模式**  | Flexibility-first<br>彈性優先<br>Testing, validation, training without hardware<br>無實體硬體的測試、驗證與訓練    | - Log simulated events<br>- Capture virtual hardware interactions<br>- Record test scenarios<br>記錄模擬事件與虛擬設備互動                               | - Optional logging<br>- Record training/test user actions<br>視需求記錄訓練或測試行為                                         | DEBUG / INFO           | High verbosity supports validation and development<br>高詳細度有助於測試與開發驗證                       |
+| **Safe Mode<br>安全模式**        | Safety-first<br>安全優先<br>Safety protection under faults or hazards<br>發生故障時的安全保護             | - Log fault triggers<br>- Record safety actions (shutdown, stop)<br>- Capture recovery attempts<br>記錄故障觸發、安全動作與復原過程                         | - Minimal but critical logs<br>- Record acknowledgements or overrides<br>僅記錄重要操作（如確認或人工介入）                        | ERROR / CRITICAL       | Focus on safety and fault tracking; avoid overload during failure<br>以安全與故障追蹤為核心，避免系統過載    |
+
+### Practical Implementation Tip | 實用技巧
+You can implement this with a **mode-aware logging configuration**:  
+您可以使用**模式感知日誌設定**來實現此功能：  
+
+```
+if (mode == RUNNING):
+    system_log.level = ERROR
+elif (mode == MANUAL):
+    system_log.level = DEBUG
+elif (mode == SAFE):
+    system_log.level = CRITICAL
+...
+```
+
+Or use:  
+或使用：  
+
+- Runtime config switch   
+運轉時設定開關  
+- Feature flags  
+功能標誌  
+- Central logging controller  
+中央日誌控制器    
 
 ---
 

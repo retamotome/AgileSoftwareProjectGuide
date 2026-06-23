@@ -2,6 +2,7 @@
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 
+## Strategy | 策略
 
 To reduce data loss and system risks during power failures, implement a layered protection strategy.  
 為了減少斷電期間的資料遺失與系統風險，應實作分層保護策略。  
@@ -44,7 +45,7 @@ In industrial systems, power failure handling is typically achieved through a co
 在工業系統中，電力故障處理通常不是依賴單一方案，而是透過多種技術的組合來實現。不同於個人電腦主要依靠 UPS 來維持斷電時的運作，工業設備會將短期保護與長時間備援分開設計。  
 
 Supercapacitors are commonly used as the first line of defense because they can respond instantly and provide a very short burst of energy, typically lasting from milliseconds to a few seconds. This brief energy supply is sufficient to bridge voltage dips, prevent controller resets, and allow the system to execute a controlled and safe shutdown sequence. In practical design, the required hold-up time must be carefully engineered based on system load (controller, storage, actuators), and the supercapacitor capacity must be sized accordingly.  
-超級電容通常作為第一層防護，因為它能夠快速反應並提供極短時間的能量（從毫秒到數秒）。這段時間足以跨越電壓瞬降、防止控制器重啟，並讓系統完成安全關機程序。在實務設計中，需根據系統負載（控制器、儲存裝置、致動器）計算所需撐持時間，並據此進行電容量配置。  
+超級電容通常作為第一層防護，因為它能夠快速反應並提供極短時間的能量（從毫秒到數秒）。這段時間足以跨越電壓瞬降、防止控制器重啟，並讓系統完成安全關機程序。在實務設計中，需根據系統負載（控制器、儲存裝置、致動器）計算所需撐持時間，並據此進行電容量設定。  
 
 On the other hand, UPS systems are used when a longer backup duration is required. They can supply power for several minutes, enabling systems to continue operating or allowing operators sufficient time to perform manual intervention or orderly shutdown procedures.  
 另一方面，當系統需要較長時間的電力支援時，才會使用 UPS。UPS 可提供數分鐘的備援時間，使系統能持續運作或讓操作人員有足夠時間進行人工處理或有序關機。  
