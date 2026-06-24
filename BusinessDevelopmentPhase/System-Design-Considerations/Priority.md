@@ -5,13 +5,32 @@
 ## Evaluation | 評估
 
 Priority should be calculated according to Damage Potential and Probability fields.  
-重要性權重，應依據「損害影響」（Damage Potential）與「發生機率」（Probability）欄位計算。  
+重要性權重，應依據「損害影響」與「發生機率」欄位計算。  
+
+Damage Potential and Probability shall be defined based on objective and measurable criteria to ensure consistency and traceability of the assessment results.  
+「損害影響」與「發生機率」應依客觀且可量化之指標進行層級定義，以確保評估結果具一致性與可追溯性。　　
 
 ### Bug and Customer Issue types | 「缺失」、「客戶問題」類型  
-![Bug](../img/PriorityEvaluation-Bug.drawio.svg)   
+![Bug](../img/PriorityEvaluation-Bug.svg)   
 
 ### Log type | 日誌類型  
-![Bug](../img/PriorityEvaluation-Log.drawio.svg)   
+![Bug](../img/PriorityEvaluation-Log.svg)   
+
+## Probability | 發生機率
+
+In particular, the classification of Probability should be established according to system characteristics and reliability requirements. It is recommended to adopt a unified measurement basis—such as event frequency (e.g., occurrences per hour) or failure rate—to avoid inconsistencies caused by mixing different scales.  
+「發生機率」之分級應依系統特性與可靠度需求訂定，並建議採用統一量測單位 -- 如事件發生頻率（例如以每小時計） 或 故障率 -- 進行定義，以避免不同尺度混用所造成之誤差。　　
+
+For example:   
+例如：　　 
+
+- In high-reliability systems such as banking transaction platforms, even extremely low-frequency anomalies (e.g., occurring within seconds or after a small number of transactions) may be classified as Frequent.  
+對於高可靠度需求之銀行交易系統，即使極低頻率之異常（如每數秒或少量交易即發生）亦可歸類為 Frequent。  
+- In contrast, for fault-tolerant systems such as data centers, a lower frequency of anomalies (e.g., once per day) may still be classified as Frequent.  
+相較之下，對於具備容錯設計之資料中心系統，則可接受較低頻率之異常（如每日一次）歸類為 Frequent。  
+
+Therefore, the classification of Probability should be adapted to the application context, while maintaining a consistent measurement basis and grading logic within the same system.  
+因此，「發生機率」之分類標準應依應用情境調整，並於同一系統內維持一致之量測基準與分級邏輯。
 
 ## Damage Potential | 損害影響
 

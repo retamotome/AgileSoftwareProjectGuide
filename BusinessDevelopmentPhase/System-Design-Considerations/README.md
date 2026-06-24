@@ -82,6 +82,10 @@ Always ensure that **at least 30% of system resources** (CPU, memory, disk, etc.
 Please refer to the [System Mode and State](./System-Mode-and-State.md) for details.  
 詳細內容請參考 [系統模式與狀態](./System-Mode-and-State.md)。
 
+### System Health Monitoring｜系統健康監控
+Please refer to the [System Health Monitoring](./Healthy-Monitoring.md) for details.  
+詳細內容請參考 [系統健康監控](./Healthy-Monitoring.md)。
+
 ## Failure Tolerance Strategy | 故障容忍策略  
 
 ### Redundancy and Failover | 冗餘與故障切換  
