@@ -28,7 +28,7 @@ The initiation phase establishes the foundation for a successful Agile software 
 + [Agile Product Management with Scrum: Creating Products that Customers Love](https://www.amazon.com/Agile-Product-Management-Scrum-Addison-Wesley/dp/0321605780)  
     + Chinese version 中文版: [Scrum 敏捷產品管理：打造客戶喜愛的產品](https://www.tenlong.com.tw/products/9789864345601)  
 
-+ 2026-06-10 [前台積電主管親選！讀完這 6 本書，你也能帶出高績效團隊](https://www.managertoday.com.tw/columns/view/72320)  
++ 2026-06-10 [前台積電主管親選！讀完這 6 本書，您也能帶出高績效團隊](https://www.managertoday.com.tw/columns/view/72320)  
 + 2026-05-29 [「我們確實落後！」皮蔡的誠實告白：Google 在 AI 賽道上做了哪些取捨？](https://www.managertoday.com.tw/articles/view/72229)  
 
 </details>
@@ -67,7 +67,7 @@ This video introduces:
 ### Agile Team Maturity｜敏捷團隊成熟度
 
 Only teams with a **high level of maturity** can truly operate as Agile teams. Maturity is reflected not only in technical competence but also in the **attitudes and behaviors** expected of the right people for Agile work. Respect, accountability, openness to feedback, and a commitment to continuous improvement are essential.  
-只有具備**高度成熟度**的團隊，才能真正以敏捷方式運作。成熟度不僅體現在技術能力上，也包含適合敏捷工作的**態度與行為**，例如尊重、負責任、樂於接受回饋，以及持續改善的承諾。
+只有具備**高度成熟度**的團隊，才能真正以敏捷方式運作。成熟度不僅體現在技術能力上，也包含適合敏捷工作的**態度與行為**，例如尊重、負責任、樂於接受意見，以及持續改善的承諾。
 
 For detailed expectations regarding team conduct and professional standards, please refer to the [Agile Code of Conduct](./Policy/Agile-Code-of-Conduct.md).  
 有關團隊行為與專業標準的詳細規範，請參考 [敏捷準則](./Policy/Agile-Code-of-Conduct.md)。

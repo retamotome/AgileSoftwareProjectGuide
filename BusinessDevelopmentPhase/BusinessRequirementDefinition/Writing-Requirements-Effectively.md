@@ -29,9 +29,9 @@ Recommended books:
 推薦書籍：
 
 - [Specification by Example](https://www.amazon.com/Specification-Example-Successful-Deliver-Software/dp/1617290084)  
-[Specification by Example 中文版：團隊如何交付正確的軟體](https://www.tenlong.com.tw/products/9789862019481)
+  - [Specification by Example 中文版：團隊如何交付正確的軟體](https://www.tenlong.com.tw/products/9789862019481)
 - [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)  
-[領域驅動設計：軟體核心複雜度的解決方法](https://www.books.com.tw/products/0010821330)
+  - [領域驅動設計：軟體核心複雜度的解決方法](https://www.books.com.tw/products/0010821330)
 
 
 ## Example ｜ 範例
@@ -107,7 +107,7 @@ These acceptance test cases can be executed:
 ---
 
 **Learn More:**
-- [如何寫出好的語法展示你的 Specification By Examples](https://ithelp.ithome.com.tw/articles/10226615)
+- [如何寫出好的語法呈現您的 Specification By Examples](https://ithelp.ithome.com.tw/articles/10226615)
 - [Behat Gherkin Execution Example](https://docs.behat.org/en/v2.5/guides/1.gherkin.html)
 
 ---

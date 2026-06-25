@@ -11,10 +11,10 @@ Damage Potential and Probability shall be defined based on objective and measura
 「損害影響」與「發生機率」應依客觀且可量化之指標進行層級定義，以確保評估結果具一致性與可追溯性。　　
 
 ### Bug and Customer Issue types | 「缺失」、「客戶問題」類型  
-![Bug](../img/PriorityEvaluation-Bug.svg)   
+![Bug](./img/PriorityEvaluation-Bug.svg)   
 
 ### Log type | 日誌類型  
-![Bug](../img/PriorityEvaluation-Log.svg)   
+![Bug](./img/PriorityEvaluation-Log.svg)   
 
 ## Probability | 發生機率
 

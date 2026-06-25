@@ -301,7 +301,7 @@ Focus: **risk reduction**
 ## Mode Transition Flows | 模式轉換流程
 ### Simplified Example | 簡化範例
 
-![Mode and State](../img/Mode_State.svg)
+![Mode and State](./img/Mode_State.svg)
 
 
 ### Running → Maintenance (Planned Service) | 運行 → 維護（計劃性服務）

@@ -1,4 +1,4 @@
-# Normal System Health Monitoring Design Guide｜傳統系統健康監控設計指南
+# Normal System Health Monitoring Design Guide｜一般系統健康監控設計指南
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 
@@ -31,6 +31,19 @@ This guide defines a **multi-layer health monitoring architecture** for non-cont
 * Uses **layered defense (defense-in-depth)**  
   採用**分層防禦（縱深防禦）**
 
+**Architecture｜架構**
+
+```
++-----------------------------+
+| Multi-Layer Monitoring      |
+|-----------------------------|
+| Layer 5: Central Watchdog   |
+| Layer 4: Resource Monitor   |
+| Layer 3: Functional Health  |
+| Layer 2: Heartbeat          |
+| Layer 1: Process Supervision|
++-----------------------------+
+```
 
 
 **Example｜範例**
@@ -46,23 +59,6 @@ A robot controller process：
   感測器逾時 → 第3層偵測
 * Memory leak → detected by Layer 4  
   記憶體洩漏 → 第4層偵測
-
-
-
-**Architecture｜架構**
-
-```
-+-----------------------------+
-| Multi-Layer Monitoring      |
-|-----------------------------|
-| Layer 5: Central Watchdog   |
-| Layer 4: Resource Monitor   |
-| Layer 3: Functional Health  |
-| Layer 2: Heartbeat          |
-| Layer 1: Process Supervision|
-+-----------------------------+
-```
-
 
 
 ## Recommended Monitoring Layers｜建議監控層級
@@ -117,24 +113,9 @@ IF watchdog timeout → force restart
 Watchdog 逾時 → 強制重啟
 ```
 
-**Architecture｜架構**
-
-```
-+-----------------------+
-| systemd Supervisor    |
-|-----------------------|
-| - Process lifecycle   |
-| - Restart policy      |
-| - Watchdog timer      |
-+-----------+-----------+
-            |
-            ▼
-     [Service Process]
-```
 
 
-
-**Design Insight｜設計觀察**
+**Design Insight｜設計重點**
 
 * This is the **first line of defense**  
   這是**第一道防線**
@@ -190,23 +171,8 @@ IF heartbeat stops → mark unhealthy
 ```
 
 
-**Architecture｜架構**
 
-```
-Service Process
- ├─ Worker Thread
- └─ Heartbeat Thread
-        │
-        ▼
-   IPC / Shared Memory / File
-        │
-        ▼
-   Supervisor / Watchdog
-```
-
-
-
-**Design Insight｜設計觀察**
+**Design Insight｜設計重點**
 
 * Complements systemd｜補足 systemd
 * Critical for **real-time control systems (robot/EFEM)**  
@@ -270,26 +236,8 @@ IF functional failure → restart OR isolate dependency
 功能異常 → 重啟或隔離依賴
 ```
 
-**Architecture｜架構**
 
-```
-      +------------------+
-      | Service          |
-      |------------------|
-      | Business Logic   |
-      | Health Checker   |
-      +--------+---------+
-               |
-               ▼
-       Health API / IPC
-               |
-               ▼
-       Central Watchdog
-```
-
-
-
-**Design Insight｜設計觀察**
+**Design Insight｜設計重點**
 
 * Most important layer｜最重要層
 * Detects critical hidden failures｜偵測隱性錯誤
@@ -340,7 +288,7 @@ System Metrics → Monitoring Agent → Central Watchdog
 
 
 
-**Design Insight｜設計觀察**
+**Design Insight｜設計重點**
 
 * Prevents cascading failures｜預防連鎖故障
 * Suitable for industrial long-running systems｜適用長時間運行系統
@@ -386,137 +334,19 @@ IF repeated_failures → raise_alarm
 IF overload → degrade_service
 ```
 
-
-
-**Architecture｜架構**
-
-Inputs
-
-* Process state (Layer 1)
-* Heartbeat (Layer 2)
-* Functional checks (Layer 3)
-* System metrics (Layer 4)
-
-```
-+----------------------------+
-| Central Watchdog           |
-|----------------------------|
-| Health Collector           |
-| Decision Engine            |
-| Recovery Executor          |
-| Alarm / Notification       |
-+-------------+--------------+
-              |
-   +----------+----------+
-   |          |          |
-   ▼          ▼          ▼
-Restart   Raise Alarm   Degrade Mode
-```
-
 ## Data Flow Architecture｜資料流架構
 
-```
-+-------------------------------------------------------------+
-|                        Service Layer                        |
-|-------------------------------------------------------------|
-|                                                             |
-|  +-------------------+   +-------------------+              |
-|  | Service A         |   | Service B         |              |
-|  |-------------------|   |-------------------|              |
-|  | Worker Threads    |   | Worker Threads    |              |
-|  | Heartbeat Thread  |   | Heartbeat Thread  |              |
-|  | Health Check API  |   | Health Check API  |              |
-|  +--------+----------+   +--------+----------+              |
-|           |                       |                         |
-|           |                       |                         |
-|           |                       |                         |
-|  ┌────────▼────────┐    ┌────────▼────────┐                |
-|  | Heartbeat Signal |    | Health API/IPC  |                |
-|  └────────┬────────┘    └────────┬────────┘                |
-|           |                       |                         |
-+-----------|-----------------------|-------------------------+
-            |                       |
-            ▼                       ▼
-
-+-------------------------------------------------------------+
-|                   OS / System Layer                         |
-|-------------------------------------------------------------|
-|                                                             |
-|  +---------------------+   +-----------------------------+  |
-|  | systemd Supervisor  |   | Resource Monitoring Agent   |  |
-|  |---------------------|   | (netdata / collectd)        |  |
-|  | Process state       |   | CPU / Memory / Disk         |  |
-|  | Restart policy      |   |                             |  |
-|  +----------+----------+   +------------+----------------+  |
-|             |                           |                   |
-|             ▼                           ▼                   |
-|     Process Status              System Metrics              |
-|     (running/crashed)           (usage/trends)              |
-+-------------+-----------------------------+-----------------+
-              |                             |
-              ▼                             ▼
-
-+-------------------------------------------------------------+
-|                   Central Watchdog Layer                    |
-|-------------------------------------------------------------|
-|                                                             |
-|  +-----------------------------------------------------+   |
-|  | Central Watchdog                                    |   |
-|  |-----------------------------------------------------|   |
-|  | 1. Health Collector                                 |   |
-|  |    - Process state (systemd)                         |
-|  |    - Heartbeat                                      |
-|  |    - Health API                                     |
-|  |    - Metrics                                        |
-|  |                                                     |
-|  | 2. Correlation Engine                               |
-|  |    - Combine multi-source signals                   |
-|  |                                                     |
-|  | 3. Decision Engine                                  |
-|  |    - Rule-based logic                               |
-|  |                                                     |
-|  | 4. Recovery Executor                                |
-|  |    - Restart / isolate / degrade                    |
-|  |                                                     |
-|  | 5. Alarm / Logging                                  |
-|  |    - SCADA / UI / logs                              |
-|  +----------------------+------------------------------+   |
-|                         |                                  |
-+-------------------------|----------------------------------+
-                          |
-                          ▼
-
-+-------------------------------------------------------------+
-|                     Action Layer                            |
-|-------------------------------------------------------------|
-|                                                             |
-|      +----------------------+   +----------------------+    |
-|      | Service Recovery     |   | System Control       |    |
-|      |----------------------|   |----------------------|    |
-|      | Restart process      |   | Throttle workload    |    |
-|      | Restart subsystem    |   | Enter fail-safe      |    |
-|      +----------------------+   +----------------------+    |
-|                                                             |
-|      +-----------------------------------------------+      |
-|      | Alarm / Notification                          |      |
-|      |-----------------------------------------------|      |
-|      | SCADA / HMI / Logs / Alerts                   |      |
-|      +-----------------------------------------------+      |
-+-------------------------------------------------------------+
-
-```
-
-
+![Data Flow Architecture](./img/Healthy-Monitoring_Normal.svg)
 
 
 ## Recommended Stack｜建議技術組合
 
-| Layer        | 層級   | Tool             | 工具             |
-| ------------ | ---- | ---------------- | -------------- |
-| Supervisor   | 程序監控 | systemd          | systemd        |
-| Monitoring   | 資源監控 | netdata          | netdata        |
-| Health check | 健康檢查 | custom API / IPC | 自訂 API / IPC   |
-| Watchdog     | 中央監控 | systemd / daemon | systemd / 自訂服務 |
+| Layer<br>層級   | Tool<br>工具             |
+| ------------ |  -------------- |
+| Supervisor<br>程序監控 | systemd|
+| Monitoring<br>資源監控 | netdata  |
+| Health check<br>健康檢查 | custom API / IPC<br>自訂 API / IPC   |
+| Watchdog<br>中央監控 | systemd / daemon<br>systemd / 自訂服務 |
 
 
 
@@ -530,24 +360,16 @@ Each layer is responsible for a specific failure class, ensuring **no blind spot
 * Coverage ensures both **fast detection** and **correct diagnosis**  
 覆蓋範圍確保**快速偵測**和**正確診斷**。  
 
-```
-Process crash        → L1 → Restart
-程序崩潰        → L1 → 重啟
+| Failure<br>故障 | Layer<br>層級   | Action<br>動作   |
+| --- | --- | ---|
+| Process crash<br>程序崩潰        | → L1 | → Restart<br>重啟 |  
+| Deadlock<br>死鎖            | → L2 | → Restart<br>重啟 |
+| Functional failure<br>功能異常 |  → L3 | → Restart / isolate<br>重啟 / 隔離 |
+| Resource exhaustion<br>資源耗盡 |  → L4 | → Throttle / restart<br>降載 / 重啟 |
+| System-wide issues<br>系統級問題 | → L5 | → Escalation / fail-safe<br>升級處理 / 保護模式 |
 
-Deadlock             → L2 → Restart
-死鎖            → L2 → 重啟
 
-Functional failure   → L3 → Restart / isolate
-功能異常        → L3 → 重啟 / 隔離
-
-Resource exhaustion  → L4 → Throttle / restart
-資源耗盡        → L4 → 降載 / 重啟
-
-System-wide issues   → L5 → Escalation / fail-safe
-系統級問題      → L5 → 升級處理 / 保護模式
-```
-
-## Final Design Insight｜最終設計重點
+## Design Insight｜設計重點
 
 This architecture provides **industrial-grade reliability** through：  
 此架構透過以下方式達到**工業級可靠性**：
@@ -562,7 +384,7 @@ This architecture provides **industrial-grade reliability** through：
 
 ![BY NC ND](../../img/Cc-by-nc-sa.png)  
 Normal System Health Monitoring Design Guide © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-傳統系統健康監控設計指南 © 2026 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+一般系統健康監控設計指南 © 2026 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 ---
 

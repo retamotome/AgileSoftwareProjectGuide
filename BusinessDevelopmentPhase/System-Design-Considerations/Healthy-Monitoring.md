@@ -36,9 +36,9 @@
 * Lower overhead  
   更低的系統負載
 
-## Normal System Health Monitoring｜傳統系統健康監控
+## Normal System Health Monitoring｜一般系統健康監控
 Please refer to the [Normal System Health Monitoring Design Guide](./Normal-Healthy-Monitoring.md) for details.    
-詳細內容請參考 [傳統系統健康監控設計指南](./Normal-Healthy-Monitoring.md)。  
+詳細內容請參考 [一般系統健康監控設計指南](./Normal-Healthy-Monitoring.md)。  
 
 ## Containerized System Health Monitoring｜容器化系統健康監控
 Please refer to the [Containerized System Health Monitoring Design Guide](./Containerized-Healthy-Monitoring.md) for details.    
@@ -47,14 +47,14 @@ Please refer to the [Containerized System Health Monitoring Design Guide](./Cont
 
 ## Comparison｜比較
 
-| Aspect           | 面向   | Traditional System  | 傳統系統         | Container System                | 容器化系統                 |
-| ---------------- | ---- | ------------------- | ------------ | ------------------------------- | --------------------- |
-| Process control  | 程序控制 | systemd             | systemd      | runtime / orchestrator          | 執行環境 / 編排器            |
-| Health detection | 健康偵測 | internal + watchdog | 內部監測 + 看門狗   | probe + API                     | 探針 + API              |
-| Restart          | 重啟機制 | systemd             | systemd      | restart policy                  | 重啟策略                  |
-| Monitoring       | 監控方式 | netdata / custom    | netdata / 自訂 | cAdvisor / Prometheus           | cAdvisor / Prometheus |
-| Recovery         | 復原方式 | local restart       | 本地重啟         | distributed / self-healing      | 分散式 / 自我修復            |
-| Visibility       | 可視性  | centralized         | 集中式          | distributed → needs aggregation | 分散式 → 需集中彙整           |
+| Aspect<br>面向   | Normal System<br>一般系統         | Container System<br>容器化系統                 |
+| ---------------- | --------------------- | ------------------- |
+| Process control<br>程序控制 | systemd| runtime / orchestrator<br>執行環境 / 編排器            |
+| Health detection<br>健康偵測 | internal + watchdog<br>內部監測 + 看門狗   | probe + API<br>探針 + API              |
+| Restart<br>重啟機制 | systemd | restart policy<br>重啟策略                  |
+| Monitoring<br>監控方式 | netdata / custom<br>netdata / 自訂 | cAdvisor / Prometheus|
+| Recovery<br>復原方式 | local restart<br>本地重啟         | distributed / self-healing<br>分散式 / 自我修復            |
+| Visibility<br>可視性  | centralized<br>集中式          | distributed → needs aggregation<br>分散式 → 需集中彙整           |
 
 ---
 

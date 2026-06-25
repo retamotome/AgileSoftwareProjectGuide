@@ -2,240 +2,334 @@
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 
-## Overview ｜ 概述  
+## Overview ｜ 概述
 
-**Audit logs** and **system logs** should serve different purposes: audit logs track user/business activities, while system logs focus on system health and critical errors. This separation prevents interference between high-volume logs and critical operations.  
-**稽核日誌** 與 **系統日誌** 應分工明確：前者記錄使用者與商務行為，後者著重在系統運作與關鍵錯誤。此設計可避免大量日誌影響系統關鍵功能。  
+This guide defines a scalable and reliable logging architecture for both normal and containerized systems. It focuses on structured logging, centralized collection, and operational reliability.  
+本指南說明如何設計一套可擴展且高可靠度的日誌架構，適用於一般系統與容器化環境。重點在於結構化日誌、集中化收集，以及營運穩定性。  
 
-## Audit Log | 稽核日誌
+## Objectives of Logging Architecture | 日誌架構設計目標
 
-### Audit Log Overview | 稽核日誌概述
-Audit logs are not just for developer debugging—they primarily ensure traceability, accountability, and help users troubleshoot issues efficiently. Clear and user-friendly logs improve both user experience and system maintainability.  
-稽核日誌不僅用於開發者除錯，其核心目的在於確保可追溯性與責任歸屬，並協助使用者有效排除問題。清晰且易於理解的日誌能提升使用者體驗與系統可維護性。  
+A well-designed logging system enables troubleshooting, traceability, compliance, and system observability.  
+良好的日誌系統應能支援問題排查、事件追蹤、法規遵循，以及整體系統觀測能力。  
 
-### Event Content | 日誌內容
-Each log entry must clearly describe who did what, when, where, and the result. A standardized structure (e.g., actor, action, target, status, timestamp, source, correlation ID) ensures effective traceability and root cause analysis.  
-每筆日誌需清楚記錄「誰、在何時何地、執行了什麼操作，以及結果為何」。透過標準化欄位（如使用者、操作、目標、狀態、時間、來源與關聯識別碼），可有效支援追蹤與根因分析。   
+**Key objectives / 主要目標**
 
-Logs should define severity levels (INFO, WARNING, ERROR, CRITICAL) and use clear, human-readable language. Avoid excessive technical jargon and provide actionable guidance when possible.  
-日誌應定義嚴重等級（資訊、警告、錯誤、嚴重），並使用易於理解的文字，避免過多技術術語，並在可能時提供可行的解決建議。   
+* Fast troubleshooting (reduce MTTR) | 快速故障排除 (降低 MTTR)
+* End-to-end traceability | 全流程追蹤
+* Audit & compliance | 稽核與合規
+* Monitoring and alerting integration | 整合監控告警
+* Scalability | 可擴展性
 
-#### Timestamp | 時間戳記
-Accurate timestamps are essential and should be synchronized using trusted sources such as NTP. For offline systems, solutions like RTC, GPS, local NTP servers, or hybrid logging help ensure long-term reliability of time data.  
-精確的時間戳記至關重要，應透過 NTP 等可信來源進行同步。對於離線系統，可採用 RTC、GPS、本地 NTP 伺服器或混合式記錄方式，以確保時間的長期準確性。  
+## Core Architecture Overview | 核心架構概觀
 
-##### Timestamp Policy | 時間戳記政策
-System time must not be modified to maintain consistency and trustworthiness of logs. If needed, a separate custom timestamp should be introduced, with recorded time differences to preserve traceability and integrity.  
-系統時間不可被修改，以維持日誌的一致性與可信度。如有需求，應使用獨立的自訂時間欄位，並記錄時間差，以確保可追溯性與完整性。  
-
-#### Log Format | 日誌格式
-
-A structured log format ensures consistency, traceability, and integration with external systems.   
-結構化日誌格式可確保一致性與可追溯性，並便於系統整合。  
-
-**Standard Fields | 標準欄位**
+All systems follow a standard logging pipeline from generation to analysis.  
+所有系統的日誌處理從產生到分析皆遵循一致的流程。  
 
 ```
-{
-  "timestamp": "ISO 8601 format",
-  "level": "INFO | WARNING | ERROR | CRITICAL",
-  "service": "Service or module name",
-  "host": "Hostname or device ID",
-  "source": "IP or origin",
-  "actor": "User ID or system actor",
-  "action": "Operation performed",
-  "target": "Resource or object",
-  "result": "SUCCESS | FAILURE",
-  "error_code": "Optional error code",
-  "message": "Human-readable description",
-  "correlation_id": "Trace ID for linking events",
-  "custom_timestamp": "Optional customer-defined time",
-  "time_delta_ms": "Difference between system and custom time",
-  "metadata": {
-    "key": "Additional structured data"
-  }
-}
+[Application / Service]
+        ↓
+[Structured Log Generation]
+        ↓
+[Collection / Forwarding Layer]
+        ↓
+[Centralized Storage]
+        ↓
+[Analysis / Visualization / Alerting]
 ```
 
-**Field Description | 欄位說明**
+This model applies uniformly to both normal and containerized environments.  
+此模型同樣適用於一般環境和容器化環境。
+  
+### Best Practice | 最佳實務
 
-- **timestamp**：System-generated authoritative time（系統權威時間）  
-- **level**：[Severity level（嚴重等級）](./Priority.md)  
-- **service**：Originating module/service（來源模組）  
-- **actor**：User or system identity（操作主體）  
-- **action**：What happened（操作行為）  
-- **target**：Affected resource（影響對象）  
-- **result**：Outcome status（執行結果）  
-- **correlation_id**：Trace across services（跨服務追蹤）  
-- **metadata**：Extended structured details（擴充資料）  
+**Container | 容器**
 
-##### Audit Log Examples | 稽核日誌範例
+* stdout
+* DaemonSet/Agent
 
-ogin Failure | 登入失敗
-```
-{
-  "timestamp": "2026-06-16T14:02:10Z",
-  "level": "WARNING",
-  "service": "audit-service",
-  "actor": "unknown",
-  "action": "LOGIN",
-  "target": "auth-system",
-  "result": "FAILURE",
-  "error_code": "AUTH_401",
-  "source": "203.0.113.5",
-  "correlation_id": "login-456",
-  "message": "Invalid username or password"
-}
-```
+**Normal | 一般**
 
-### Log Integrity | 日誌完整性
-Audit logs must be protected from tampering using mechanisms such as append-only storage, hash chaining, digital signatures, and WORM storage to ensure reliability for audits and forensics.  
-稽核日誌必須防止竄改，可透過僅新增寫入、雜湊鏈結、數位簽章與不可修改儲存等機制，確保其在稽核與鑑識分析中的可信度。  
+* `/var/log`
+* log rotation
 
-Access to audit logs must be strictly restricted. Only authorized roles can view or export logs, modifications are prohibited, and all access activities must be recorded.  
-日誌存取必須嚴格控管，僅授權角色可檢視或匯出，禁止修改，且所有存取行為皆需被記錄。  
+## Log Generation (Application Layer) | 日誌產生（應用層）
 
-Logs should have a clearly defined lifecycle, including retention duration, rotation, archiving, and traceable deletion mechanisms.  
-日誌需具備明確的生命週期管理，包括保存期限、輪替機制、歸檔策略，以及可追蹤的刪除流程。
+Logs must be structured, consistent, and traceable.  
+日誌必須具備結構化、一致性與可追蹤性，以利後續分析與維運。  
 
-Logs should support export mechanisms (e.g., files, APIs, Syslog) and integration with external systems, including centralized logging and SIEM solutions if needed.  
-日誌應支援多種匯出方式（如檔案、API、Syslog），並可與外部系統整合，例如集中式日誌系統或資安事件管理（SIEM）。  
+**Structured Logging | 結構化日誌**
+
+Please refer to the [Audit Log and System Log](./AuditLog-SystemLog.md) for details.    
+詳細內容請參考 [稽核日誌 與 系統日誌](./AuditLog-SystemLog.md)。  
 
 
+## Container vs Normal Logging Patterns | 容器 與 一般日誌模式比較
 
+Different environments use different logging mechanisms, but share the same architectural goals.  
+不同部署環境會採用不同的日誌方式，但最終目標（可觀測性與可靠性）是一致的。  
 
-## System Log | 系統日誌
+### Normal Pattern | 一般系統
 
-### System Log Overview | 系統日誌概述
-System logs focus on system behavior, debugging, and operational monitoring.  
-系統日誌著重系統內部行為、除錯與運維監控。  
-
-### Event Content | 日誌內容
-System logs capture technical runtime information for troubleshooting and performance analysis.  
-系統日誌記錄技術性執行資訊，用於除錯與效能分析。  
-
-#### Log Format | 日誌格式
-
-A structured log format ensures consistency, traceability, and integration with external systems.   
-結構化日誌格式可確保一致性與可追溯性，並便於系統整合。  
-
-**Standard Fields | 標準欄位**
-```
-{
-  "timestamp": "2026-06-16T14:20:00Z",
-  "level": "TRACE | DEBUG | INFO | WARNING | ERROR | CRITICAL",
-  "service": "module/service name",
-  "host": "hostname or device id",
-  "process_id": 1234,
-  "thread_id": 56,
-  "module": "component name",
-  "event": "event type",
-  "message": "log message",
-  "error_code": "optional",
-  "stack_trace": "optional",
-  "metrics": {
-    "cpu": "optional",
-    "memory": "optional",
-    "latency_ms": "optional"
-  },
-  "correlation_id": "trace id"
-}
-```
-
-
-##### System Log Examples | 系統日誌範例
-
-Service Startup | 服務啟動   
-```
-{
-  "timestamp": "2026-06-16T14:00:00Z",
-  "level": "INFO",
-  "service": "order-service",
-  "host": "machine-01",
-  "process_id": 1024,
-  "thread_id": 1,
-  "module": "startup",
-  "event": "SERVICE_START",
-  "message": "Order service started successfully",
-  "correlation_id": "sys-001"
-}
-```
-
-### Log Retention Policy | 保存政策
-System logs are high-volume and typically use short-term rotation.  
-系統日誌量大，通常採短期保存與輪替策略。  
-
-### Severity & Debug Levels | 嚴重性與除錯等級
-System logs include detailed levels such as DEBUG and TRACE for troubleshooting.  
-系統日誌包含 DEBUG、TRACE 等細粒度等級以支援除錯。  
-Please refer to the [Priority](./Priority.md) for details.  
-詳細內容請參考 [重要性權重](./Priority.md)。   
-
-## Comparison Table | 比較表
-
-| Aspect | Audit Log | System Log | 說明 |
-|--------|----------|-----------|------|
-| **Primary Purpose** | Traceability, compliance | Debugging, monitoring | 稽核 vs 運維 |
-| **Focus** | Who did what | System behavior | 人 vs 系統 |
-| **Content** | actor, action, result | process, thread, metrics | 商務 vs 技術 |
-| **Structure** | Strict | Flexible | 統一 vs 彈性 |
-| **Integrity** | Required | Optional | 必須 vs 視需求 |
-| **Readability** | User-friendly | Technical | 易讀 vs 技術 |
-| **Volume** | Moderate | High | 中 vs 高 |
-| **Retention** | Long-term | Short-term | 長 vs 短 |
-| **Severity Levels** | INFO / WARNING / ERROR | DEBUG / TRACE / INFO | 粗 vs 細 |
-| **Access Control** | Strict | Less strict | 嚴格 vs 寬鬆 |
-| **Modification** | Not allowed | Allowed (rotation) | 不可 vs 可清理 |
-| **Architecture** | Dedicated service | Logging pipeline | 專用服務 vs 管線 |
-
-## Load Separation Principle | 負載分流原則  
-
-**Audit logs** and **system logs** must be handled by separate services to avoid performance bottlenecks and improve scalability. Decoupling logging from core operations ensures stability under heavy load.  
-**稽核日誌** 與 **系統日誌** 應由不同服務處理，以避免資源競爭，並提升可擴展性。將日誌與核心系統解耦可在高負載下維持穩定性。  
-
-Logging should use asynchronous processing, buffering, and rate control to prevent overload. Mechanisms like queues, backpressure, and sampling ensure logs do not block or degrade system performance.  
-日誌應採用非同步處理、緩衝與流量控制，以避免過載。透過佇列、回壓與取樣等機制，確保日誌不會阻塞或影響系統效能。  
-
-### Architecture Patterns (Reference: Linux) | 架構模式（參考 Linux）
-Similar to Linux logging (e.g., syslog/journald), logs are collected through a unified interface and routed to different backends. Logging services operate independently, and critical logs are prioritized.   
-類似 Linux（如 syslog/journald）的設計，日誌透過統一介面收集並分流至不同後端，且日誌服務獨立運作，並優先處理關鍵訊息。  
-
-
-
-## Log & System Mode Mapping | 日誌與系統模式對應表
-
-
-| [System Mode<br>系統模式](./System-Mode-and-State.md)          | Goal / Intent<br>目標 / 意圖                                               | System Log Behavior<br>系統日誌行為                                                                       | Audit Log Behavior<br>稽核日誌行為                                                                           | Logging Level<br>日誌等級     | Rationale / Why<br>原因說明                                                                       |
-| ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------ |
-| **Running Mode<br>運行模式**     | Performance-first<br>效能優先<br>Stability, performance, high availability<br>穩定性、效能、高可用性            | - Log only critical errors<br>- Basic health monitoring<br>- Avoid high-frequency/internal logs<br>僅記錄關鍵錯誤、基本健康監控，避免高頻或內部細節記錄               | - Record user actions<br>- Track business operations<br>- Maintain accountability<br>記錄使用者行為與業務操作，確保可追溯性          | ERROR / WARN           | Minimize performance impact and logging overhead<br>降低記錄對效能的影響，符合正式運行效率需求                  |
-| **Manual Mode<br>手動模式**      | Visibility-first<br>可視性優先<br>Debugging, diagnostics, troubleshooting<br>除錯、診斷、故障排除               | - Full internal logs (state, flow, function calls)<br>- Enable diagnostics<br>- Support step execution info<br>完整內部行為記錄（狀態/流程/函式），支援診斷與逐步執行 | - Detailed operator actions<br>- Trace troubleshooting steps<br>- Capture debugging scenarios<br>詳細記錄操作員行為與故障排除過程 | DEBUG（開發）<br>TRACE（現場） | Maximize visibility for root cause analysis; performance is secondary<br>提升可視性以利根因分析，效能非優先 |
-| **Maintenance Mode<br>維護模式** | Traceability-first<br>可追溯性優先<br>System updates, configuration, controlled changes<br>系統更新、設定變更、受控操作 | - Log upgrade steps, migration status<br>- Record system transitions<br>- Capture service start/stop<br>記錄升級流程、資料移轉、服務啟停                    | - Track admin operations<br>- Record config changes & patches<br>- Maintain audit trail<br>記錄管理員操作、設定變更與修補歷程      | INFO / WARN / TRACE    | Ensure traceability, compliance, and rollback capability<br>確保可追溯性、合規性與回復能力                |
-| **Simulation Mode<br>模擬模式**  | Flexibility-first<br>彈性優先<br>Testing, validation, training without hardware<br>無實體硬體的測試、驗證與訓練    | - Log simulated events<br>- Capture virtual hardware interactions<br>- Record test scenarios<br>記錄模擬事件與虛擬設備互動                               | - Optional logging<br>- Record training/test user actions<br>視需求記錄訓練或測試行為                                         | DEBUG / INFO           | High verbosity supports validation and development<br>高詳細度有助於測試與開發驗證                       |
-| **Safe Mode<br>安全模式**        | Safety-first<br>安全優先<br>Safety protection under faults or hazards<br>發生故障時的安全保護             | - Log fault triggers<br>- Record safety actions (shutdown, stop)<br>- Capture recovery attempts<br>記錄故障觸發、安全動作與復原過程                         | - Minimal but critical logs<br>- Record acknowledgements or overrides<br>僅記錄重要操作（如確認或人工介入）                        | ERROR / CRITICAL       | Focus on safety and fault tracking; avoid overload during failure<br>以安全與故障追蹤為核心，避免系統過載    |
-
-### Practical Implementation Tip | 實用技巧
-You can implement this with a **mode-aware logging configuration**:  
-您可以使用**模式感知日誌設定**來實現此功能：  
+Applications write logs to files, then agents collect them.  
+應用程式將日誌寫入本機檔案，再由代理程式收集。  
 
 ```
-if (mode == RUNNING):
-    system_log.level = ERROR
-elif (mode == MANUAL):
-    system_log.level = DEBUG
-elif (mode == SAFE):
-    system_log.level = CRITICAL
-...
+App → /var/log/app.log → Fluent Bit → Backend
 ```
 
-Or use:  
-或使用：  
+**Advantages | 優點**
 
-- Runtime config switch   
-運轉時設定開關  
-- Feature flags  
-功能標誌  
-- Central logging controller  
-中央日誌控制器    
+* Simple and predictable | 本地持久化（log 不易遺失）
+* Mature tooling | 容易除錯（SSH + grep）
+
+**Limitations | 缺點**
+
+* Harder to scale | 擴展性較差
+* Requires manual management | 需管理 log rotation
+
+
+
+### Container Pattern | 容器系統
+
+Logs are written to stdout/stderr and managed by container runtime.  
+日誌透過 stdout/stderr 輸出，由容器平台負責管理與收集。  
+
+```
+Container → stdout → Agent / Log Driver → Backend
+```
+
+**Key Rule | 關鍵原則**  
+- Applications MUST NOT write log files  
+不可寫入容器內 log file  
+
+
+
+**Advantages | 優點**
+
+* Native support for distributed systems  
+原生支援分散式系統  
+* Easy aggregation  
+易於統整  
+
+
+**Limitations | 缺點**
+
+* Logs tied to container lifecycle  
+* Risk of loss without buffering  
+容器重啟可能造成 log 遺失  
+* Requires proper infrastructure setup  
+需搭配收集機制  
+
+
+
+### Key Differences | 差異比較
+
+| Aspect 項目   | Normal 一般 | Container 容器 |
+| ---- | -------- | ------ |
+| Log storage <br>儲存方式 | File <br>檔案       | stdout stream |
+| Persistence <br>持久性  | High <br>高        | Depends on collection <br>取決於收集  |
+| Debugging<br>除錯機制   | Local access easy<br>本地存取 | Needs tooling<br>支援工具         |
+| Scalability<br>擴展性  | Limited<br>有限       | Strong<br>高      |
+| Metadata<br>管理方式 | Manual<br>手動       | Built-in labels <br>平台化    |
+
+
+
+### Recommended Hybrid Model | 建議混合模式
+
+Most real systems combine both approaches.  
+實務系統通常會同時包含一般服務與容器化服務。  
+
+```
+File logs (Legacy services) + stdout logs (Container)
+          ↓
+      Fluent Bit
+          ↓
+   Central Storage
+```
+
+
+
+## Log Collection Layer | 日誌收集層
+
+A collection layer ensures reliable delivery of logs.  
+日誌收集層負責將資料穩定傳送至後端系統。  
+
+### Recommended Approach: Agent-Based Collection | 推薦方法：基於代理的收集
+
+**Tools | 建議工具**
+
+* Fluent Bit (lightweight, edge-friendly) | （輕量、適合 edge）
+* Fluentd
+* Filebeat
+
+**Flow | 流程**
+
+```
+Logs → Agent → Buffer → Retry → Backend
+```
+
+### Design Requirements | 設計要求
+
+* Local buffering (for network failure)  
+本地緩衝（應對網路故障）  
+* Retry with backoff  
+退避重試機制  
+* Decoupling from application  
+與應用程式解耦
+
+## Centralized Log Storage | 集中式日誌儲存
+
+Logs should be centrally stored for querying and analysis.  
+日誌應集中儲存，以利查詢與分析。  
+
+**Common Platforms | 常見方案**
+
+* ELK / EFK
+* Loki + Grafana
+* Cloud logging
+
+### Storage Design | 儲存設計
+
+**Retention Policy | 保留策略**
+
+| Log Type<br>日誌類型    | Retention<br>保留期限 |
+| ----------- | --------- |
+| Debug<br>除錯       | 1–3 days  |
+| Application<br>應用 | 7–30 days |
+| Audit<br>審查       | 90+ days  |
+
+
+**Index Strategy (Example) | 索引策略（範例）**
+
+```
+logs-{service}-{date}
+```
+
+**Tiered Storage | 分層儲存**
+
+* Hot → recent logs  
+熱儲存 → 最新日誌
+* Warm → older logs  
+溫儲存 → 較舊日誌
+* Cold → archive  
+冷儲儲 → 歸檔日誌  
+
+## Log Processing and Enrichment | 日誌處理與強化
+
+Logs are enriched with metadata for better analysis.  
+透過補充額外欄位，提升日誌分析能力。  
+
+Examples | 例如
+
+* Environment (prod/staging)
+* Region
+* Machine ID
+* Application version
+
+Please refer to the **Log Format** of [Audit Log and System Log](./AuditLog-SystemLog.md) for details.    
+詳細內容請參考 [稽核日誌 與 系統日誌](./AuditLog-SystemLog.md) 的［日誌格式］一節。  
+
+## Query, Visualization, and Alerting | 查詢、視覺化與告警
+
+Logs are used for search, dashboards, and alerts.  
+透過日誌進行查詢、監控儀表板與告警設定。  
+
+**Tools | 工具**
+
+* Grafana / Kibana
+* Azure Monitor / Splunk
+
+**Use Cases | 使用範例**
+
+**Search | 搜尋**
+
+```
+service="robot-controller" AND level="ERROR"
+```
+
+**Dashboards | 儀錶板**
+
+* Error rate
+* Failure trends
+* Latency
+
+**Alerting | 告警**
+
+```
+ERROR rate > threshold → trigger alert
+```
+
+
+## Reliability Considerations | 可靠度設計
+
+Log systems must handle failures and network issues.  
+日誌系統需能因應網路與系統異常。  
+
+**Key Mechanisms | 關鍵機制**
+
+* Buffer | 緩衝機制
+* Retry | 重試
+* Async | 非同步
+
+
+
+## Security and Compliance | 安全與合規
+
+Sensitive data must not be logged.  
+不可記錄敏感資訊。  
+- Passwords / Tokens / Personal data  
+密碼 / Token / 個資  
+
+**Controls | 控制措施**
+
+* Mask sensitive fields  
+屏蔽敏感字段  
+* Enforce role-based access  
+強制執行基於角色的存取控制  
+* Audit log access itself  
+稽核日誌存取記錄  
+
+## Performance Considerations | 效能考量
+
+* Non-blocking logging  
+非阻塞    
+* Avoid excessive DEBUG logs  
+控制 DEBUG log  
+* Batch transmissions  
+批次傳輸  
+
+
+
+## Common Anti-Patterns | 常見錯誤
+
+**General | 通用**
+
+* Plain text logs  
+純文字日誌  
+* No correlation IDs  
+無關聯 ID  
+* No retention policy  
+無保留策略
+
+
+**Container | 容器系統**
+
+* Writing logs to files inside containers  
+將日誌寫入容器內部的文件  
+* Ignoring stdout collection  
+忽略標準輸出收集  
+* No monitoring of log growth  
+不監控日誌成長  
+
+**Normal | 一般系統**
+
+* No log rotation  
+無日誌輪換  
+* Logs scattered across directories  
+日誌分散在各目錄中  
+* No central aggregation  
+無集中統整
+
 
 ---
 

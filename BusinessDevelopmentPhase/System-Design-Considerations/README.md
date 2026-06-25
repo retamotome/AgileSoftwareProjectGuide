@@ -40,8 +40,8 @@ Troubleshooting is never easy, often because "ease of troubleshooting" is rarely
 除錯與排障向來不容易，常見原因是「排錯便利性」這類需求在需求分析階段往往未被充分列入考量。軟體工程除了流程、程序、管理與品質保證外，也應提供讓系統在遇到問題或缺乏日誌時仍能較容易排查的機制與作法。  
 
 ### Logging Architecture | 日誌架構設計
-Please refer to the [Logging Architecture](./Logging-Architecture.md) for details.    
-詳細內容請參考 [日誌架構設計](./Logging-Architecture.md)。  
+Please refer to the [Logging Architecture](./Logging-Architecture.md) and [Audit Log and System Log](./AuditLog-SystemLog.md) for details.    
+詳細內容請參考 [日誌架構設計](./Logging-Architecture.md) 以及 [稽核日誌 與 系統日誌](./AuditLog-SystemLog.md)。  
 
 
 ### Resource Usage | 資源使用  

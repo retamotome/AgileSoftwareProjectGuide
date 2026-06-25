@@ -31,13 +31,13 @@ Enhancing capabilities is inherently a personal responsibility. Individuals must
 ## Baseline of Code Conduct｜行為準則基準
 
 The concepts outlined in this section are integral to the Performance Review process __throughout your tenure__ in this department.  
-本節所列概念將在你於本部門 __整段任職期間__，作為績效評估的重要依據。  
+本節所列概念將在您於本部門 __整段任職期間__，作為績效評估的重要依據。  
   
 ### Baseline of Job Qualifications｜職務資格基準  
 
 We assume you are already familiar with the job qualifications before applying for a job interview, and therefore, you are expected to consistently meet all of them.  
 Below are the standard baseline job qualifications in our department.  
-我們假設你在應徵面試前已充分了解職務資格，因此你應持續符合所有要求。  
+我們假設您在應徵面試前已充分了解職務資格，因此您應持續符合所有要求。  
 以下為本部門的標準職務資格基準：  
 
 - Proficient in Software Engineering, Data Structures, and Object-Oriented Programming.   
@@ -68,14 +68,14 @@ When encountering uncertainties:
 - Independently analyze the situation using methods like 5W1H. Focus on understanding the reasons behind decisions and non-decisions.  
   請先以 5W1H 等方法獨立分析情境，重點理解「為何做／為何不做」的決策脈絡。  
 - Validate your conclusions by seeking insights from seasoned professionals only after thorough deliberation.  
-  在充分思考後，再向資深同仁請益以驗證你的結論。  
+  在充分思考後，再向資深同仁請益以驗證您的結論。  
 - When queried by leaders or supervisors, take the initiative to respond promptly, providing rationale for your answers and any counterpoints.  
-  當主管或領導詢問時，請主動且即時回應，並清楚說明你的判斷依據與可能反向觀點。  
+  當主管或領導詢問時，請主動且即時回應，並清楚說明您的判斷依據與可能反向觀點。  
 
-#### Being Mindful of Your Assignments｜審慎看待你的指派工作  
+#### Being Mindful of Your Assignments｜審慎看待您的指派工作  
   
 - Validate the accuracy of your code through unit testing. Avoid claiming readiness only to encounter multiple errors immediately after committing. Such actions can negatively impact your credibility.  
-  請以單元測試驗證程式碼正確性。避免宣稱已可上線，卻在提交後立即出現多項錯誤；此類情況將損及你的可信度。  
+  請以單元測試驗證程式碼正確性。避免宣稱已可上線，卻在提交後立即出現多項錯誤；此類情況將損及您的可信度。  
 - Pay attention to pop-up notifications highlighting your invalid operations; they serve a purpose and should not be disregarded.  
   請留意系統對無效操作的跳出提醒；這些提醒有其目的，不應忽略。  
   
@@ -84,12 +84,12 @@ When encountering uncertainties:
 #### Essential Duties and Responsibilities｜核心職責  
 
 We assume you are already familiar with the essential duties and responsibilities before applying for a job interview, and therefore, you are expected to consistently meet all of them.  
-我們假設你在應徵面試前已了解核心職責與責任，因此你應持續符合所有要求。  
+我們假設您在應徵面試前已了解核心職責與責任，因此您應持續符合所有要求。  
 
 #### Additions｜補充要求  
 
 - The accuracy of your work must be above 85%.   
-  你的工作正確率必須高於 85%。  
+  您的工作正確率必須高於 85%。  
 - No reckless or incorrect output is acceptable; you are expected to deliver valuable results before concluding your work.  
   不接受草率或錯誤的產出；在結束工作前，應交付具價值的成果。  
 - Adhere to task deadlines diligently and can NOT opinionated erase Due Day field for any task.  
@@ -98,27 +98,25 @@ We assume you are already familiar with the essential duties and responsibilitie
 ### Baseline of Task Management｜任務管理基準  
 
 It is essential to understand that your tasks are your responsibility, and you are expected to manage them independently. While leaders or managers may provide reminders, they are not obligated to repeat instructions continuously.  
-請務必理解：你的任務由你負責，並應自主完成管理。雖然主管可能會提醒，但沒有義務持續重複交辦內容。  
+請務必理解：您的任務由您負責，並應自主完成管理。雖然主管可能會提醒，但沒有義務持續重複交辦內容。  
 
 #### Task Review｜任務檢視  
 
 - Take the time to read emails attentively rather than quickly skimming through them and subsequently forgetting their contents.  
-  請花時間仔細閱讀電子郵件，不要快速瀏覽後即忘記內容。  
-- Carefully review all feedback from colleagues on Jira and Skype, and make necessary adjustments to your tasks.  
-  請詳閱同仁在 Jira 與 Skype 上的所有回饋，並據此完成必要調整。  
-    - You will receive email notifications from Jira when your task is updated by others.  
-      當他人更新你的 Jira 任務時，你會收到 Jira 的電子郵件通知。  
-- Ensure accurate updates to your task progress on Jira and Confluence.  
-  請在 Jira 與 Confluence 上正確更新任務進度。  
+  請花時間仔細閱讀電子郵件，不要過目即忘。  
+- Carefully review all feedback from colleagues on task management and communication softwares, and make necessary adjustments to your tasks.  
+  請詳閱同仁在 任務管理軟體 與 通訊軟體 上的所有意見，並據此完成必要調整。  
+- Ensure accurate updates to your task progress.  
+  請確保準確更新任務進度。  
 - All daily schedules and assignments must be satisfactorily completed before the conclusion of each workday.  
   每日行程與交辦事項須在當日下班前妥善完成。  
   
 #### Communication｜溝通  
   
 - Use Chinese language unless your English proficiency is precise and effective for all team members.  
-  除非你的英文表達對所有團隊成員皆精準且有效，否則請使用中文。  
-    - This applies to Jira tasks, Confluence entries, source code submissions, and any other communication-related matters.  
-      此原則適用於 Jira 任務、Confluence 紀錄、原始碼提交與其他所有溝通相關事項。  
+  除非您的英文表達對所有團隊成員皆精準且有效，否則請使用中文。  
+    - This applies to tasks, notes, source code submissions, and any other communication-related matters.  
+      此原則適用於 任務、紀錄、原始碼提交 與 其他所有溝通相關之事項。  
 - When communicating with North American colleagues, it is essential to use English and utilize online utilities or AI tools to ensure the accuracy and clarity of your communication.  
   與北美同事溝通時，務必使用英文，並善用線上工具或 AI 工具確保訊息正確且清楚。  
   
@@ -130,15 +128,15 @@ Always bear in mind:
 - Inaccurate statements can lead to confusion and waste valuable time for everyone involved.  
   不精確的表述會造成混淆，並浪費所有相關人員的寶貴時間。  
 - Verify the task objectives thoroughly; avoid assuming you know everything. Overconfidence can undermine your credibility, so it is crucial to refrain from making false claims.  
-  請完整確認任務目標，避免自以為全都清楚。過度自信會削弱你的可信度，因此務必避免不實陳述。  
+  請完整確認任務目標，避免自以為全都清楚。過度自信會削弱您的可信度，因此務必避免不實陳述。  
 
 ---
 
 # License｜授權條款
 
 ![BY NC ND](../../img/Cc-by-nc-sa.png)     
-Agile Code of Conduct © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-敏捷準則 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+Agile Code of Conduct © 2023 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
+敏捷準則 © 2023 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 
 ---

@@ -117,27 +117,10 @@ IF livenessProbe fails → restart container
 若 livenessProbe 失敗 → 重啟容器
 ```
 
-**Architecture｜架構**
-
-```
-+-----------------------------+
-| Container Runtime           |
-|-----------------------------|
-| Health Probe Engine         |
-| State Machine               |
-| (healthy / unhealthy)       |
-+-------------+---------------+
-              |
-              ▼
-        Container Instance
-```
-
-
-
-**Key Insight｜重點觀察**
+**Design Insight｜設計重點**
 
 * This replaces **systemd (Layer 1 in normal system)**  
-  取代傳統系統中的 **systemd（第1層）**
+  取代一般系統中的 **systemd（第1層）**
 * Works at **container boundary level**  
   運作於**容器邊界層級**
 
@@ -190,22 +173,6 @@ IF logic degraded → return "degraded"
 若邏輯降級 → 回傳 "degraded"
 ```
 
-**Architecture｜架構**
-
-```
-+----------------------+
-| Application Container|
-|----------------------|
-| Business Logic       |
-| Dependency Checker   |
-| Health API Layer     |
-+----------+-----------+
-           |
-           ▼
-   /health /ready /metrics
-```
-
-
 
 ### Layer 3 – Self-Healing Policy｜第3層 – 自動修復策略
 
@@ -244,27 +211,8 @@ IF node fails → reschedule pod
 節點失效 → 重新調度 Pod
 ```
 
-**Architecture｜架構**
+**Design Insight｜設計重點**
 
-```
-+----------------------------+
-| Orchestrator / Runtime     |
-|----------------------------|
-| Restart Controller         |
-| Scheduler                  |
-| Node Manager (K8s)         |
-+-------------+--------------+
-              |
-              ▼
-        Container Lifecycle
-```
-
-
-
-**Key Insight｜重點觀察**
-
-* Combines systemd + watchdog recovery  
-  結合 systemd 與監控自動修復機制
 * Only reacts to **local container state**  
   僅反應**本地容器狀態**
 
@@ -301,25 +249,6 @@ IF repeated failure → alert
 IF dependency failure → isolate service
 IF system-wide issue → fallback
 ```
-
-
-
-**Architecture｜架構**
-
-```
-+------------------------------+
-| Central Monitor              |
-|------------------------------|
-| Container API Client         |
-| Health Aggregator            |
-| Decision Engine              |
-| Alert Manager                |
-+-------------+----------------+
-              |
-        Multi-source inputs
-```
-
-
 
 ### Layer 5 – Event-Driven Monitoring｜第5層 – 事件驅動監控
 
@@ -409,67 +338,38 @@ Container → Metrics Exporter → Prometheus → Monitor
 ## Data Flow Architecture｜資料流架構
 
 Shows how **health signals propagate and trigger actions**.  
-展示健康訊號如何傳遞與觸發行動
-```
-              +---------------------+
-              |   Container Apps    |
-              |---------------------|
-              | /health /ready      |
-              | heartbeat inside    |
-              +----------+----------+
-                         │
-                         ▼
-              +---------------------+
-              | Container Runtime   |
-              |---------------------|
-              | health status       |
-              +----------+----------+
-                         │
-               ┌─────────┴─────────┐
-               ▼                   ▼
-      +----------------+   +----------------------+
-      | Event Stream   |   | Metrics System       |
-      | (real-time)    |   | (Prometheus, etc.)   |
-      +--------+-------+   +----------+-----------+
-               │                      │
-               ▼                      ▼
-             +--------------------------+
-             | Central Monitor          |
-             |--------------------------|
-             | decision + recovery      |
-             +-----------+--------------+
-                         │
-        ┌────────────────┼────────────────┐
-        ▼                ▼                ▼
-Restart Container   Raise Alert   Isolate Service
-```
+呈現健康訊號如何傳遞與觸發行動
+
+![Data Flow Architecture](./img/Healthy-Monitoring_Containerized.svg)
 
 
 ## Failure Coverage Mapping｜故障覆蓋對應
 
-Maps failure types to detection layers, ensuring **complete observability coverage**.
+Maps failure types to detection layers, ensuring **complete observability coverage**.  
+將故障類型對應到偵測層，確保**完全可觀測性覆蓋**。  
 
-| Failure Type        | 故障類型 | Detection Path | 偵測層   |
-| ------------------- | ---- | -------------- | ----- |
-| Container crash     | 容器崩潰 | Layer 3        | 第3層   |
-| App failure         | 應用異常 | Layer 1 + 2    | 第1+2層 |
-| Dependency failure  | 依賴失效 | Layer 2        | 第2層   |
-| Restart loop        | 重啟迴圈 | Layer 4 + 5    | 第4+5層 |
-| Resource exhaustion | 資源耗盡 | Layer 6        | 第6層   |
+| Failure Type<br>故障類型 | Detection Path<br>偵測層   |
+| ------------------- | -------------- |
+| Container crash<br>容器崩潰 | Layer 3<br>第3層   |
+| App failure<br>應用異常 | Layer 1 + 2<br>第1+2層 |
+| Dependency failure<br>依賴失效 | Layer 2<br>第2層   |
+| Restart loop<br>重啟迴圈 | Layer 4 + 5<br>第4+5層 |
+| Resource exhaustion<br>資源耗盡 | Layer 6<br>第6層   |
 
 
 
 ## Best Practice Summary｜最佳實務總結
 
-Defines **minimum required controls** for production-grade reliability.
+Defines **minimum required controls** for production-grade reliability.  
+定義生產級可靠性所需的**最低控制要求**。  
 
-| Feature              | 功能      | Required      | 必要性 | Reason            | 原因    |
-| -------------------- | ------- | ------------- | --- | ----------------- | ----- |
-| Runtime health check | 執行時健康檢查 | ✅ Must        | 必須  | Detect failure    | 偵測錯誤  |
-| `/health` API        | 健康 API  | ✅ Must        | 必須  | Logic correctness | 邏輯正確性 |
-| Self-healing         | 自動修復    | ✅ Must        | 必須  | Auto recovery     | 自動復原  |
-| Central monitor      | 中央監控    | ✅ Yes         | 建議  | Coordination      | 系統協調  |
-| Metrics              | 指標監控    | ✅ Recommended | 建議  | Insights          | 效能分析  |
+| Feature<br>功能      | Required<br>必要性 | Reason<br>原因    |
+| -------------------- | ------------ |----------------- | 
+| Runtime health check<br>執行時健康檢查 | Must<br>必須  | Detect failure<br>偵測錯誤  |
+| `/health` API<br>健康 API  |  Must<br>必須  | Logic correctness<br>邏輯正確性 |
+| Self-healing<br>自動修復    |  Must<br>必須  | Auto recovery<br>自動復原  |
+| Central monitor<br>中央監控    |  Yes<br>建議  | Coordination<br>系統協調  |
+| Metrics<br>指標監控    |  Recommended<br>建議  | Insights<br>效能分析  |
 
 ---
 
