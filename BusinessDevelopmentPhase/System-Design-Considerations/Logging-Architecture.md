@@ -4,8 +4,8 @@
 
 ## Overview ｜ 概述
 
-This guide defines a scalable and reliable logging architecture for both normal and containerized systems. It focuses on structured logging, centralized collection, and operational reliability.  
-本指南說明如何設計一套可擴展且高可靠度的日誌架構，適用於一般系統與容器化環境。重點在於結構化日誌、集中化收集，以及營運穩定性。  
+This guide defines a scalable and reliable logging architecture for both native and containerized systems. It focuses on structured logging, centralized collection, and operational reliability.  
+本指南說明如何設計一套可擴展且高可靠度的日誌架構，適用於原生系統與容器化環境。重點在於結構化日誌、集中化收集，以及營運穩定性。  
 
 ## Objectives of Logging Architecture | 日誌架構設計目標
 
@@ -28,53 +28,66 @@ All systems follow a standard logging pipeline from generation to analysis.
 ```
 [Application / Service]
         ↓
-[Structured Log Generation]
-        ↓
 [Collection / Forwarding Layer]
+        ↓
+[Message Queue]
         ↓
 [Centralized Storage]
         ↓
-[Analysis / Visualization / Alerting]
+[Search: Query Engine]
+        ↓
+[Dashboard]
 ```
 
-This model applies uniformly to both normal and containerized environments.  
-此模型同樣適用於一般環境和容器化環境。
-  
-### Best Practice | 最佳實務
+This model applies uniformly to both native and containerized environments.  
+此模型同時適用於原生環境和容器化環境。
 
-**Container | 容器**
+## Log Producer Layer | 日誌產生層  
 
-* stdout
-* DaemonSet/Agent
+All applications (native + containers) act as **log producers**, but they must remain **decoupled from storage**.   
+所有應用程式（原生應用程式 + 容器應用程式）都充當**日誌生產者**，但它們必須與儲存**完全分離**。  
+The key concept is:  
+關鍵概念是：
+> Applications generate logs, but never manage delivery or persistence.  
+> 應用程式產生日誌，但無需管理日誌的傳遞或持久化。   
 
-**Normal | 一般**
+**Unified Output Strategy | 統一的輸出策略**
 
-* `/var/log`
-* log rotation
+* **Native apps** → `journald`
+* **Containers** → `stdout / stderr`
 
-## Log Generation (Application Layer) | 日誌產生（應用層）
+Example | 範例:
+
+```bash
+# Native
+journalctl -u service-name
+
+# Docker → always stdout
+docker logs container_name
+```
+
+
+**Structured Logging | 結構化日誌**  
 
 Logs must be structured, consistent, and traceable.  
 日誌必須具備結構化、一致性與可追蹤性，以利後續分析與維運。  
-
-**Structured Logging | 結構化日誌**
 
 Please refer to the [Audit Log and System Log](./AuditLog-SystemLog.md) for details.    
 詳細內容請參考 [稽核日誌 與 系統日誌](./AuditLog-SystemLog.md)。  
 
 
-## Container vs Normal Logging Patterns | 容器 與 一般日誌模式比較
+### Container vs Native Logging Patterns | 容器日誌 與 原生系統日誌 模式比較
 
 Different environments use different logging mechanisms, but share the same architectural goals.  
 不同部署環境會採用不同的日誌方式，但最終目標（可觀測性與可靠性）是一致的。  
 
-### Normal Pattern | 一般系統
+#### Native Pattern | 原生系統日誌
 
 Applications write logs to files, then agents collect them.  
 應用程式將日誌寫入本機檔案，再由代理程式收集。  
 
 ```
-App → /var/log/app.log → Fluent Bit → Backend
+App → /var/log/app.log → Agent / Log Driver → Backend
 ```
 
 **Advantages | 優點**
@@ -87,15 +100,41 @@ App → /var/log/app.log → Fluent Bit → Backend
 * Harder to scale | 擴展性較差
 * Requires manual management | 需管理 log rotation
 
+**File Layout | 檔案分布**  
+```
+/var/log/
+├── system/
+│   ├── syslog.log
+│   ├── kernel.log
+│   └── auth.log
+│
+├── application/
+│   ├── robot-controller/
+│   │   ├── app.log
+│   │   ├── error.log
+│   │   └── access.log
+│   │
+│   ├── efem-service/
+│   │   ├── app.log
+│   │   └── debug.log
+│
+├── middleware/
+│   ├── kafka/
+│   └── nginx/
+│
+└── custom/
+    └── *.log
+```
 
+---
 
-### Container Pattern | 容器系統
+#### Container Pattern | 容器系統日誌
 
 Logs are written to stdout/stderr and managed by container runtime.  
 日誌透過 stdout/stderr 輸出，由容器平台負責管理與收集。  
 
 ```
-Container → stdout → Agent / Log Driver → Backend
+Application → stdout/stderr → container runtime → Agent / Log Driver → Backend
 ```
 
 **Key Rule | 關鍵原則**  
@@ -120,32 +159,54 @@ Container → stdout → Agent / Log Driver → Backend
 * Requires proper infrastructure setup  
 需搭配收集機制  
 
+**Fluent Bit Input**  
 
+```
+[INPUT]
+    Name              tail
+    Path              /var/lib/docker/containers/*/*.log
+    Parser            docker
+```
+Where use Docker default log path  
+```
+/var/lib/docker/containers/
+└── <container_id>/
+    └── <container_id>-json.log
+```
+Or mounted volume  
+```
+/shared/logs/
+└── app/
+    └── app.log
+```
+and container runs with
+```
+-v /shared/logs:/logs
+```
 
-### Key Differences | 差異比較
-
-| Aspect 項目   | Normal 一般 | Container 容器 |
-| ---- | -------- | ------ |
-| Log storage <br>儲存方式 | File <br>檔案       | stdout stream |
-| Persistence <br>持久性  | High <br>高        | Depends on collection <br>取決於收集  |
-| Debugging<br>除錯機制   | Local access easy<br>本地存取 | Needs tooling<br>支援工具         |
-| Scalability<br>擴展性  | Limited<br>有限       | Strong<br>高      |
-| Metadata<br>管理方式 | Manual<br>手動       | Built-in labels <br>平台化    |
-
-
-
-### Recommended Hybrid Model | 建議混合模式
+#### Recommended Hybrid Model | 建議混合模式
 
 Most real systems combine both approaches.  
-實務系統通常會同時包含一般服務與容器化服務。  
+實務系統通常會同時包含原生服務與容器化服務。  
 
 ```
 File logs (Legacy services) + stdout logs (Container)
           ↓
-      Fluent Bit
+      Agent / Log Driver
           ↓
-   Central Storage
+      Central Storage
 ```
+
+### Recommended Utilities
+
+| Category        | Recommendation              | Notes                            |
+| --------------- | --------------------------- | -------------------------------- |
+| Logging Library | `log4j2`, `logback` (Java)  | High performance, async support  |
+|                 | `spdlog` (C++)              | Lightweight, fast                |
+|                 | `winston`, `pino` (Node.js) | JSON-native logging              |
+| Log Format      | JSON                        | Mandatory for downstream parsing |
+| Context         | OpenTelemetry SDK           | Adds trace\_id correlation       |
+
 
 
 
@@ -154,13 +215,16 @@ File logs (Legacy services) + stdout logs (Container)
 A collection layer ensures reliable delivery of logs.  
 日誌收集層負責將資料穩定傳送至後端系統。  
 
-### Recommended Approach: Agent-Based Collection | 推薦方法：基於代理的收集
+### Agent-Based Collection | 基於代理的收集
 
-**Tools | 建議工具**
+A lightweight **log agent (e.g., Fluent Bit)** acts as the **single collection and delivery pipeline**.   
+This is the **most important component** in your design.   
+一個輕量級的**日誌代理（例如 Fluent Bit）**充當**單一的日誌收集和交付管道**。  
+這是您設計中**最重要的元件**。
 
-* Fluent Bit (lightweight, edge-friendly) | （輕量、適合 edge）
-* Fluentd
-* Filebeat
+> The agent absorbs complexity so applications stay simple and robust.  
+> 代理程式會吸收複雜性，從而使應用程式保持簡潔和健壯。
+
 
 **Flow | 流程**
 
@@ -177,16 +241,95 @@ Logs → Agent → Buffer → Retry → Backend
 * Decoupling from application  
 與應用程式解耦
 
-## Centralized Log Storage | 集中式日誌儲存
+### Recommended Utilities
+
+| Tool                           | Strength                        | Notes                         |
+| ------------------------------ | ------------------------------- | ----------------------------- |
+| **Fluent Bit** (Recommended) | Lightweight, ideal for embedded | Cortex-A friendly             |
+| Fluentd                        | More powerful but heavier       | Use if complex routing needed |
+| Filebeat                       | Simple, stable                  | Good ELK integration          |
+| Vector (Datadog OSS)           | Modern, fast                    | Strong performance            |
+
+
+**Fluent Bit Collection Example**
+```
+[INPUT]
+    Name tail
+    Path /var/log/application/*/*.log
+    Tag app.*
+
+[INPUT]
+    Name systemd
+    Tag system.*
+```
+
+### Why not direct DB logging? | 為什麼不直接記錄到資料庫？  
+
+**Feedback amplification failure** (very common failure mode)  
+**回應放大故障**（非常常見的故障模式）  
+```
+Exception occurs → app logs heavily → DB overloaded →   
+發生異常 → 應用程式日誌量巨大 → 資料庫過載 →  
+
+logging becomes slower → app becomes slower →
+日誌記錄速度變慢 → 應用運轉速度變慢 →
+
+more timeouts → more logs → meltdown loop  
+逾時次數增多 → 記錄增多 → 崩潰循環
+```
+ 
+| Issue<br>問題          | Without agent<br>不使用代理    | With agent<br>使用代理    |
+| -------------- | --------------------- | --------------------- |
+| DB slow<br>資料庫運行緩慢        | application slows<br>應用程式運行緩慢     |  buffered<br>緩衝 |
+| DB down<br>資料庫無運作        | logs lost / app error<br>日誌遺失/應用程式錯誤 | retry<br>重試    |
+| high log burst<br>日誌爆發 | system instability<br>系統不穩定    | smoothed<br>平滑 |
+
+## Message Queue Phase (Decoupling Layer)
+
+Provide **asynchronous, scalable, fault-tolerant transport**
+
+### Key Concepts
+
+* Prevent backpressure from storage
+* Enable **multi-consumer pipelines**
+* Durable buffering
+
+### Recommended Utilities
+
+| Tool           | Best Use Case                     | Notes                    |
+| -------------- | --------------------------------- | ------------------------ |
+| **Kafka**     | High throughput, industrial scale | Industry standard        |
+| RabbitMQ       | Lower throughput, simpler routing | Easier to manage         |
+| NATS JetStream | Lightweight, low latency          | Good for edge systems    |
+| Redis Streams  | Simple pipeline                   | Not for large scale logs |
+
+### Design Notes
+
+* Use **topic per log type** (`system`, `app`, `security`)
+* Enable **retention policy** (e.g., 24–72 hrs)
+
+
+
+## Centralized Storage (Persistence Layer) | 集中式儲存
 
 Logs should be centrally stored for querying and analysis.  
 日誌應集中儲存，以利查詢與分析。  
 
-**Common Platforms | 常見方案**
+### Key Concepts
 
-* ELK / EFK
-* Loki + Grafana
-* Cloud logging
+* Separation between **hot storage** and **archival**
+* Indexing strategy is critical
+* Avoid DB for raw logs (use search engines instead)
+
+### Recommended Utilities
+
+| Tool                             | Strength                    | Notes                       |
+| -------------------------------- | --------------------------- | --------------------------- |
+| **Elasticsearch / OpenSearch** ✅ | Full-text search, indexing  | Core logging DB             |
+| Loki (Grafana)                   | Cost-effective, label-based | Good alternative            |
+| ClickHouse                       | High compression, analytics | Good for metrics/log hybrid |
+| Object Storage (S3/MinIO)        | Archive                     | Cheap long-term storage     |
+
 
 ### Storage Design | 儲存設計
 
@@ -214,53 +357,100 @@ logs-{service}-{date}
 * Cold → archive  
 冷儲儲 → 歸檔日誌  
 
-## Log Processing and Enrichment | 日誌處理與強化
+### Database-Based Logging | 基於資料庫的日誌記錄
 
-Logs are enriched with metadata for better analysis.  
-透過補充額外欄位，提升日誌分析能力。  
+A database acts as the **central log repository**, optimized for:  
+資料庫充當**中央日誌儲存庫**，針對以下方面進行了最佳化：  
 
-Examples | 例如
+* Query | 查詢
+* Debugging | 除錯
+* Short-term retention | 短期保留
 
-* Environment (prod/staging)
-* Region
-* Machine ID
-* Application version
-
-Please refer to the **Log Format** of [Audit Log and System Log](./AuditLog-SystemLog.md) for details.    
-詳細內容請參考 [稽核日誌 與 系統日誌](./AuditLog-SystemLog.md) 的［日誌格式］一節。  
-
-## Query, Visualization, and Alerting | 查詢、視覺化與告警
-
-Logs are used for search, dashboards, and alerts.  
-透過日誌進行查詢、監控儀表板與告警設定。  
-
-**Tools | 工具**
-
-* Grafana / Kibana
-* Azure Monitor / Splunk
-
-**Use Cases | 使用範例**
-
-**Search | 搜尋**
-
-```
-service="robot-controller" AND level="ERROR"
-```
-
-**Dashboards | 儀錶板**
-
-* Error rate
-* Failure trends
-* Latency
-
-**Alerting | 告警**
-
-```
-ERROR rate > threshold → trigger alert
-```
+> Database logging is acceptable if used behind an agent and kept within scale limits.  
+> 如果使用代理程式並控制在規模限制範圍內，則資料庫日誌記錄是可以接受的。  
 
 
-## Reliability Considerations | 可靠度設計
+**Key Limitations (important to accept) | 主要限制（必須接受）**
+
+Database is **not a log engine**:  
+資料庫**並非日誌引擎**：
+
+* Not ideal for very high ingestion rates  
+不適用於極高的資料存取速率  
+* Limited full-text search  
+全文搜尋功能有限  
+* Requires cleanup strategy
+需要製定資料清理策略  
+
+**MariaDB vs PostgreSQL (practical decision) | MariaDB 與 PostgreSQL（實際選擇）**
+
+* **PostgreSQL** → better for structured logs (JSON, scaling)  
+PostgreSQL → 更適合結構化日誌（JSON，可擴充性強）  
+
+* **MariaDB** → acceptable if:  
+MariaDB → 若符合下列條件，則可接受：
+  * using flattened schema  
+  使用扁平化模式
+  * avoiding JSON-heavy queries    
+  避免大量 JSON 查詢
+
+## Search Phase (Query & Analysis)
+
+Provide fast log querying, filtering, correlation
+
+### Key Concepts
+
+* Full-text search
+* Time-series filtering
+* Correlation via `trace_id`
+
+### Recommended Utilities
+
+| Tool                          | Notes                            |
+| ----------------------------- | -------------------------------- |
+| **Elasticsearch Query DSL**   | Powerful but complex             |
+| OpenSearch Dashboards         | Integrated experience            |
+| Grafana (Loki/Elastic plugin) | Unified observability            |
+| Kibana                        | Classic ELK visualization/search |
+
+### Typical Queries
+
+* Error rate over time
+* Service-specific logs
+* Trace-based debugging
+
+## Dashboard Phase (Visualization & Monitoring)
+
+### Purpose
+
+Convert logs into **actionable insights**
+
+### Key Concepts
+
+* Real-time observability
+* Alerting & anomaly detection
+* Role-based dashboards (Ops / Dev / Manager)
+
+### Recommended Utilities
+
+| Tool                      | Strength                    |
+| ------------------------- | --------------------------- |
+| **Grafana** ✅             | Best for unified dashboards |
+| Kibana                    | Built-in with Elastic       |
+| OpenSearch Dashboards     | Open-source Kibana fork     |
+| Prometheus + Alertmanager | Metrics + alerting          |
+
+### Dashboard Examples
+
+* System health overview
+* Error heatmap
+* Throughput per service
+* Container failure tracking
+
+
+## Design Consideration | 設計考量
+
+### Reliability Considerations | 可靠度設計
 
 Log systems must handle failures and network issues.  
 日誌系統需能因應網路與系統異常。  
@@ -273,7 +463,7 @@ Log systems must handle failures and network issues.
 
 
 
-## Security and Compliance | 安全與合規
+### Security and Compliance | 安全與合規
 
 Sensitive data must not be logged.  
 不可記錄敏感資訊。  
@@ -289,7 +479,7 @@ Sensitive data must not be logged.
 * Audit log access itself  
 稽核日誌存取記錄  
 
-## Performance Considerations | 效能考量
+### Performance Considerations | 效能考量
 
 * Non-blocking logging  
 非阻塞    
@@ -300,7 +490,7 @@ Sensitive data must not be logged.
 
 
 
-## Common Anti-Patterns | 常見錯誤
+### Common Anti-Patterns | 常見錯誤
 
 **General | 通用**
 
@@ -321,7 +511,7 @@ Sensitive data must not be logged.
 * No monitoring of log growth  
 不監控日誌成長  
 
-**Normal | 一般系統**
+**Native | 原生系統**
 
 * No log rotation  
 無日誌輪換  

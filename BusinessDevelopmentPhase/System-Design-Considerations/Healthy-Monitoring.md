@@ -36,9 +36,9 @@
 * Lower overhead  
   更低的系統負載
 
-## Normal System Health Monitoring｜一般系統健康監控
-Please refer to the [Normal System Health Monitoring Design Guide](./Normal-Healthy-Monitoring.md) for details.    
-詳細內容請參考 [一般系統健康監控設計指南](./Normal-Healthy-Monitoring.md)。  
+## Native System Health Monitoring｜原生系統健康監控
+Please refer to the [Native System Health Monitoring Design Guide](./Native-Healthy-Monitoring.md) for details.    
+詳細內容請參考 [原生系統健康監控設計指南](./Native-Healthy-Monitoring.md)。  
 
 ## Containerized System Health Monitoring｜容器化系統健康監控
 Please refer to the [Containerized System Health Monitoring Design Guide](./Containerized-Healthy-Monitoring.md) for details.    
@@ -47,7 +47,7 @@ Please refer to the [Containerized System Health Monitoring Design Guide](./Cont
 
 ## Comparison｜比較
 
-| Aspect<br>面向   | Normal System<br>一般系統         | Container System<br>容器化系統                 |
+| Aspect<br>面向   | Native System<br>原生系統         | Container System<br>容器化系統                 |
 | ---------------- | --------------------- | ------------------- |
 | Process control<br>程序控制 | systemd| runtime / orchestrator<br>執行環境 / 編排器            |
 | Health detection<br>健康偵測 | internal + watchdog<br>內部監測 + 看門狗   | probe + API<br>探針 + API              |

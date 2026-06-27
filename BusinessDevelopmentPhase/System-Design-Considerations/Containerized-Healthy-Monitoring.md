@@ -119,8 +119,8 @@ IF livenessProbe fails → restart container
 
 **Design Insight｜設計重點**
 
-* This replaces **systemd (Layer 1 in normal system)**  
-  取代一般系統中的 **systemd（第1層）**
+* This replaces **systemd (Layer 1 in native system)**  
+  取代原生系統中的 **systemd（第1層）**
 * Works at **container boundary level**  
   運作於**容器邊界層級**
 

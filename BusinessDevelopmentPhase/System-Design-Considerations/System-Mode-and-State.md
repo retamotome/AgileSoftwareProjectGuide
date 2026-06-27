@@ -204,7 +204,7 @@ Furthermore:
 另外：  
 
 * The mapping between **system Modes** and **component States** shall be explicitly defined and verified to ensure that the system achieves or maintains a **stability** under both normal and fault conditions.  
-**系統模式**和**組件狀態**之間的映射關係應明確定義並驗證，以確保系統達到或保持在正常和故障情況下均保持**穩定性**。  
+**系統模式**和**元件狀態**之間的映射關係應明確定義並驗證，以確保系統達到或保持在正常和故障情況下均保持**穩定性**。  
 * Interactions between subsystems during Mode transitions shall be designed to prevent **fault propagation** and ensure **fail-safe or fail-operational behavior**, as required by the target **Safety Integrity Level (SIL)** or **Performance Level (PL)**.  
 模式轉換期間子系統之間的互動應設計為防止**故障傳播**，並確保**故障安全或故障運行行為**，以滿足目標 **安全完整性等級 (SIL)** 或 **效能等級 (PL)** 的要求。  
 * Diagnostic coverage and monitoring mechanisms shall confirm that all required State transitions have been successfully executed.  
