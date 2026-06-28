@@ -167,13 +167,13 @@ Application → stdout/stderr → container runtime → Agent / Log Driver → B
     Path              /var/lib/docker/containers/*/*.log
     Parser            docker
 ```
-Where use Docker default log path  
+Option 1: Use Docker default log path  
 ```
 /var/lib/docker/containers/
 └── <container_id>/
     └── <container_id>-json.log
 ```
-Or mounted volume  
+Option 2: Mounted volume  
 ```
 /shared/logs/
 └── app/
@@ -448,7 +448,7 @@ Convert logs into **actionable insights**
 * Container failure tracking
 
 
-## Design Consideration | 設計考量
+## General Design Consideration | 通用設計考量
 
 ### Reliability Considerations | 可靠度設計
 

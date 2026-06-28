@@ -4,7 +4,7 @@
 
 ## Overview｜概述
 
-**Summary｜摘要**
+
 
 Defines a **layered health monitoring architecture for containerized systems**, focusing on **observability, self-healing, and cross-service coordination**.  
 定義一個**分層式容器化系統健康監控架構**，專注於**可觀測性、自動修復與跨服務協調**。
@@ -70,7 +70,7 @@ In Kubernetes:
 
 ### Layer 1 – Container Runtime Health Check｜第1層 – 容器執行環境健康檢查
 
-**Summary｜摘要**
+
 
 Provides **basic container-level health validation**, acting as the **entry point for failure detection inside containers**.  
 提供**基本容器層級健康驗證**，作為**容器內故障偵測的入口點**。
@@ -128,7 +128,7 @@ IF livenessProbe fails → restart container
 
 ### Layer 2 – Application Health API｜第2層 – 應用程式健康 API
 
-**Summary｜摘要**
+
 
 Ensures **functional correctness and dependency readiness**, not just container liveness.  
 確保**功能正確性與依賴可用性**，不僅是容器是否存活。
@@ -176,7 +176,7 @@ IF logic degraded → return "degraded"
 
 ### Layer 3 – Self-Healing Policy｜第3層 – 自動修復策略
 
-**Summary｜摘要**
+
 
 Provides **automatic recovery from failures**, driven by runtime or orchestrator policies.  
 透過執行環境或編排器策略提供**自動故障恢復**。
@@ -220,7 +220,7 @@ IF node fails → reschedule pod
 
 ### Layer 4 – Centralized Health Monitor｜第4層 – 集中式健康監控
 
-**Summary｜摘要**
+
 
 Provides **system-wide visibility and decision-making**, enabling **cross-container intelligence**.  
 提供**系統範圍內的可視性和決策能力**，實現**跨容器智慧**。
@@ -252,7 +252,7 @@ IF system-wide issue → fallback
 
 ### Layer 5 – Event-Driven Monitoring｜第5層 – 事件驅動監控
 
-**Summary｜摘要**
+
 
 Provides **real-time system awareness** using event streams instead of polling.  
 以事件流提供**即時監控能力**，取代輪詢。
@@ -294,7 +294,7 @@ Container Runtime → Event stream → Central Monitor
 
 ### Layer 6 – Metrics & Observability｜第6層 – 指標與可觀測性
 
-**Summary｜摘要**
+
 
 Enables **deep insight and predictive monitoring**, beyond binary health states.  
 提供**深度分析與預測能力**，超越單純健康狀態判斷。

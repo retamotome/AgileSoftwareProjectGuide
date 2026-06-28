@@ -5,7 +5,7 @@
 
 ## Overview｜概述
 
-**Summary｜摘要**
+
 
 This guide defines a **multi-layer health monitoring architecture** for non-containerized systems, ensuring reliability across **process, logic, and system levels**.  
 本指南定義一個**多層式健康監控架構**，適用於非容器化系統，確保在**程序、邏輯與系統層級**的可靠性。
@@ -63,8 +63,6 @@ A robot controller process：
 
 ## Recommended Monitoring Layers｜建議監控層級
 ### Layer 1 – Process Supervision｜第1層 – 程序監控
-
-**Summary｜摘要**
 
 Ensures **process availability** through automatic restart and crash detection.  
 透過自動重啟與崩潰偵測，確保**程序可用性**。
@@ -126,7 +124,7 @@ Watchdog 逾時 → 強制重啟
 
 ### Layer 2 – Internal Watchdog / Heartbeat｜第2層 – 內部看門狗／心跳機制
 
-**Summary｜摘要**
+
 
 Detects **“alive but unhealthy” states** such as deadlocks and freezes.  
 偵測 **「仍存活但不健康」** 的狀態，例如死鎖或凍結。
@@ -180,7 +178,7 @@ IF heartbeat stops → mark unhealthy
 
 ### Layer 3 – Functional Health Check｜第3層 – 功能性健康檢查
 
-**Summary｜摘要**
+
 
 Validates whether the service is **functionally correct**, not just running.  
 驗證服務是否**功能正確**，而不只是正在運行。
@@ -246,7 +244,7 @@ IF functional failure → restart OR isolate dependency
 
 ### Layer 4 – System Resource Monitoring｜第4層 – 系統資源監控
 
-**Summary｜摘要**
+
 
 Ensures system stability by monitoring **resource usage trends**.  
 透過監控**資源使用趨勢**確保系統穩定。
@@ -297,7 +295,7 @@ System Metrics → Monitoring Agent → Central Watchdog
 
 ### Layer 5 – Central Watchdog｜第5層 – 中央監控
 
-**Summary｜摘要**
+
 
 Acts as the **decision-making core**, coordinating all monitoring layers.  
 作為**決策核心**，整合所有監控層資訊。
