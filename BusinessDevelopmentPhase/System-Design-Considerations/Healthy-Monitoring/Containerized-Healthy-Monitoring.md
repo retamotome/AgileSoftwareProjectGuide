@@ -1,6 +1,6 @@
 # Containerized System Health Monitoring Design Guide｜容器化系統健康監控設計指南
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 
 ## Overview｜概述
 
@@ -340,7 +340,7 @@ Container → Metrics Exporter → Prometheus → Monitor
 Shows how **health signals propagate and trigger actions**.  
 呈現健康訊號如何傳遞與觸發行動
 
-![Data Flow Architecture](./img/Healthy-Monitoring_Containerized.svg)
+![Data Flow Architecture](../img/Healthy-Monitoring_Containerized.svg)
 
 
 ## Failure Coverage Mapping｜故障覆蓋對應
@@ -375,7 +375,7 @@ Defines **minimum required controls** for production-grade reliability.
 
 # License｜授權條款
 
-![BY NC ND](../../img/Cc-by-nc-sa.png)  
+![BY NC ND](../../../img/Cc-by-nc-sa.png)  
 Containerized System Health Monitoring Design Guide © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
 容器化系統健康監控設計指南 © 2026 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 

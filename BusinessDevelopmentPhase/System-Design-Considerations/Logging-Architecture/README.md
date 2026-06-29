@@ -1,6 +1,6 @@
 # Logging Architecture | 日誌架構設計
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 
 ## Overview ｜ 概述
 
@@ -28,9 +28,9 @@ All systems follow a standard logging pipeline from generation to analysis.
 ```
 [Application / Service]
         ↓
-[Collection / Forwarding Layer]
+[Collection / Forwarding Layer (with disk buffer)]
         ↓
-[Message Queue]
+[Message Queue (with ACKs)]
         ↓
 [Centralized Storage]
         ↓
@@ -159,27 +159,23 @@ Application → stdout/stderr → container runtime → Agent / Log Driver → B
 * Requires proper infrastructure setup  
 需搭配收集機制  
 
-**Fluent Bit Input**  
-
-```
-[INPUT]
-    Name              tail
-    Path              /var/lib/docker/containers/*/*.log
-    Parser            docker
-```
+**File Layout | 檔案分布**  
 Option 1: Use Docker default log path  
+選項 1：使用 Docker 預設日誌路徑  
 ```
 /var/lib/docker/containers/
 └── <container_id>/
     └── <container_id>-json.log
 ```
-Option 2: Mounted volume  
+Option 2: Mounted volume    
+選項 2：掛載磁碟區  
 ```
 /shared/logs/
 └── app/
     └── app.log
 ```
-and container runs with
+and container runs with  
+並指定於容器啟動參數  
 ```
 -v /shared/logs:/logs
 ```
@@ -197,23 +193,23 @@ File logs (Legacy services) + stdout logs (Container)
       Central Storage
 ```
 
-### Recommended Utilities
+### Recommended Utilities | 推薦工具
 
-| Category        | Recommendation              | Notes                            |
+| Category<br>類別        | Recommendation<br>建議              | Notes<br>備註                            |
 | --------------- | --------------------------- | -------------------------------- |
-| Logging Library | `log4j2`, `logback` (Java)  | High performance, async support  |
-|                 | `spdlog` (C++)              | Lightweight, fast                |
-|                 | `winston`, `pino` (Node.js) | JSON-native logging              |
-| Log Format      | JSON                        | Mandatory for downstream parsing |
-| Context         | OpenTelemetry SDK           | Adds trace\_id correlation       |
-
-
+| Logging Library<br>日誌庫 | `log4j2`, `logback` (Java)  | High performance, async support<br>高效能，支援非同步  |
+|                 | `spdlog` (C++)              | Lightweight, fast<br>輕量級，快速                |
+|                 | `winston`, `pino` (Node.js) | JSON-native logging<br>原生 JSON 日誌              |
+| Log Format<br>日誌格式      | JSON                        | Mandatory for downstream parsing<br>下游解析的必要條件 |
+| Context<br>上下文         | OpenTelemetry SDK           | Adds trace\_id correlation<br>新增 trace_id 關聯       |
 
 
 ## Log Collection Layer | 日誌收集層
 
 A collection layer ensures reliable delivery of logs.  
 日誌收集層負責將資料穩定傳送至後端系統。  
+
+
 
 ### Agent-Based Collection | 基於代理的收集
 
@@ -241,18 +237,23 @@ Logs → Agent → Buffer → Retry → Backend
 * Decoupling from application  
 與應用程式解耦
 
-### Recommended Utilities
 
-| Tool                           | Strength                        | Notes                         |
+Please refer to the [Zero‑Log‑Loss Pipeline](./Zero‑Log‑Loss-Pipeline.md) for details.    
+詳細內容請參考 [零日誌遺失管線](./Zero‑Log‑Loss-Pipeline.md) 。  
+
+### Recommended Utilities | 推薦工具
+
+| Tool<br>工具                           | Strength<br>優點                        | Notes<br>備註                         |
 | ------------------------------ | ------------------------------- | ----------------------------- |
-| **Fluent Bit** (Recommended) | Lightweight, ideal for embedded | Cortex-A friendly             |
-| Fluentd                        | More powerful but heavier       | Use if complex routing needed |
-| Filebeat                       | Simple, stable                  | Good ELK integration          |
-| Vector (Datadog OSS)           | Modern, fast                    | Strong performance            |
+| **Fluent Bit** (Recommended)（建議） | Lightweight, ideal for embedded<br>輕量級，嵌入式應用的理想選擇 | Cortex-A friendly<br>支援 Cortex-A             |
+| Fluentd                        | More powerful but heavier<br>功能更強大，但體積更大       | Use if complex routing needed<br>適用於需要複雜佈線的情況 |
+| Filebeat                       | Simple, stable<br>簡單穩定                  | Good ELK integration<br>ELK 整合良好          |
+| Vector (Datadog OSS)<br>（Datadog 開源軟體）           | Modern, fast<br>現代、快速                    | Strong performance<br>效能強勁            |
 
 
-**Fluent Bit Collection Example**
+**Fluent Bit Collection Example | 收集設定範例**  
 ```
+# Native System
 [INPUT]
     Name tail
     Path /var/log/application/*/*.log
@@ -261,7 +262,16 @@ Logs → Agent → Buffer → Retry → Backend
 [INPUT]
     Name systemd
     Tag system.*
+
+# Container
+[INPUT]
+    Name      tail
+    Path      /var/lib/docker/containers/*/*.log
+    Parser    docker
 ```
+
+Please refer to the [Docker Log Driver vs Fluent Bit Tailing](./LogDriver-vs-AgentTailing.md) for details.    
+詳細內容請參考 [Docker 記錄驅動 vs Fluent Bit 日誌擷取](./LogDriver-vs-AgentTailing.md) 。  
 
 ### Why not direct DB logging? | 為什麼不直接記錄到資料庫？  
 
@@ -284,17 +294,28 @@ more timeouts → more logs → meltdown loop
 | DB down<br>資料庫無運作        | logs lost / app error<br>日誌遺失/應用程式錯誤 | retry<br>重試    |
 | high log burst<br>日誌爆發 | system instability<br>系統不穩定    | smoothed<br>平滑 |
 
-## Message Queue Phase (Decoupling Layer)
 
-Provide **asynchronous, scalable, fault-tolerant transport**
+Please refer to the [Logging vs Relational DB in a Logging Pipeline](./Comparison-in-LoggingPipeline.md) for details.    
+詳細內容請參考 [日誌管線中的 Logging vs 關聯式資料庫](./Comparison-in-LoggingPipeline.md) 。  
 
-### Key Concepts
+## Message Queue Phase (Decoupling Layer) | 訊息佇列階段（解耦層）
 
-* Prevent backpressure from storage
-* Enable **multi-consumer pipelines**
-* Durable buffering
+Provide **asynchronous, scalable, fault-tolerant transport**  
+提供**非同步、可擴充、容錯的傳輸**  
 
-### Recommended Utilities
+### Key Concepts | 關鍵概念
+
+* Prevent backpressure from storage  
+防止儲存反壓  
+* Enable **multi-consumer pipelines**  
+支援**多消費者管道**  
+* Durable buffering  
+持久緩衝  
+
+Please refer to the [Zero‑Log‑Loss Pipeline](./Zero‑Log‑Loss-Pipeline.md) for details.    
+詳細內容請參考 [零日誌遺失管線](./Zero‑Log‑Loss-Pipeline.md) 。  
+
+### Recommended Utilities | 推薦工具
 
 | Tool           | Best Use Case                     | Notes                    |
 | -------------- | --------------------------------- | ------------------------ |
@@ -321,7 +342,7 @@ Logs should be centrally stored for querying and analysis.
 * Indexing strategy is critical
 * Avoid DB for raw logs (use search engines instead)
 
-### Recommended Utilities
+### Recommended Utilities | 推薦工具
 
 | Tool                             | Strength                    | Notes                       |
 | -------------------------------- | --------------------------- | --------------------------- |
@@ -357,43 +378,6 @@ logs-{service}-{date}
 * Cold → archive  
 冷儲儲 → 歸檔日誌  
 
-### Database-Based Logging | 基於資料庫的日誌記錄
-
-A database acts as the **central log repository**, optimized for:  
-資料庫充當**中央日誌儲存庫**，針對以下方面進行了最佳化：  
-
-* Query | 查詢
-* Debugging | 除錯
-* Short-term retention | 短期保留
-
-> Database logging is acceptable if used behind an agent and kept within scale limits.  
-> 如果使用代理程式並控制在規模限制範圍內，則資料庫日誌記錄是可以接受的。  
-
-
-**Key Limitations (important to accept) | 主要限制（必須接受）**
-
-Database is **not a log engine**:  
-資料庫**並非日誌引擎**：
-
-* Not ideal for very high ingestion rates  
-不適用於極高的資料存取速率  
-* Limited full-text search  
-全文搜尋功能有限  
-* Requires cleanup strategy
-需要製定資料清理策略  
-
-**MariaDB vs PostgreSQL (practical decision) | MariaDB 與 PostgreSQL（實際選擇）**
-
-* **PostgreSQL** → better for structured logs (JSON, scaling)  
-PostgreSQL → 更適合結構化日誌（JSON，可擴充性強）  
-
-* **MariaDB** → acceptable if:  
-MariaDB → 若符合下列條件，則可接受：
-  * using flattened schema  
-  使用扁平化模式
-  * avoiding JSON-heavy queries    
-  避免大量 JSON 查詢
-
 ## Search Phase (Query & Analysis)
 
 Provide fast log querying, filtering, correlation
@@ -404,7 +388,7 @@ Provide fast log querying, filtering, correlation
 * Time-series filtering
 * Correlation via `trace_id`
 
-### Recommended Utilities
+### Recommended Utilities | 推薦工具
 
 | Tool                          | Notes                            |
 | ----------------------------- | -------------------------------- |
@@ -421,8 +405,6 @@ Provide fast log querying, filtering, correlation
 
 ## Dashboard Phase (Visualization & Monitoring)
 
-### Purpose
-
 Convert logs into **actionable insights**
 
 ### Key Concepts
@@ -431,7 +413,7 @@ Convert logs into **actionable insights**
 * Alerting & anomaly detection
 * Role-based dashboards (Ops / Dev / Manager)
 
-### Recommended Utilities
+### Recommended Utilities | 推薦工具
 
 | Tool                      | Strength                    |
 | ------------------------- | --------------------------- |
@@ -446,7 +428,6 @@ Convert logs into **actionable insights**
 * Error heatmap
 * Throughput per service
 * Container failure tracking
-
 
 ## General Design Consideration | 通用設計考量
 
@@ -525,7 +506,7 @@ Sensitive data must not be logged.
 
 # License｜授權條款
 
-![BY NC ND](../../img/Cc-by-nc-sa.png)  
+![BY NC ND](../../../img/Cc-by-nc-sa.png)  
 Logging Architecture © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
 日誌架構設計 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 

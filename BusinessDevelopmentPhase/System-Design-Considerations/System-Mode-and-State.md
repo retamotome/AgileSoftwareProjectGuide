@@ -408,8 +408,8 @@ You should explicitly define for each transition:
 
 
 ## Log & System Mode Mapping | 日誌與系統模式對應表  
-Please refer to the [Log & System Mode Mapping](./Logging-Architecture.md#log--system-mode-mapping--日誌與系統模式對應表) for details.  
-詳細內容請參考 [日誌與系統模式對應表](./Logging-Architecture.md#log--system-mode-mapping--日誌與系統模式對應表)。  
+Please refer to the [Log & System Mode Mapping](./Logging-Architecture/README.md#log--system-mode-mapping--日誌與系統模式對應表) for details.  
+詳細內容請參考 [日誌與系統模式對應表](./Logging-Architecture/README.md#log--system-mode-mapping--日誌與系統模式對應表)。  
 
 
 ---

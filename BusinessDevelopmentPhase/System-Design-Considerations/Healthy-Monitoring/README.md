@@ -1,6 +1,6 @@
 # System Health Monitoring Design Guide｜系統健康監控設計指南
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 
 ## Key Design Principles｜關鍵設計原則
 
@@ -37,12 +37,12 @@
   更低的系統負載
 
 ## Native System Health Monitoring｜原生系統健康監控
-Please refer to the [Native System Health Monitoring Design Guide](./Native-Healthy-Monitoring.md) for details.    
-詳細內容請參考 [原生系統健康監控設計指南](./Native-Healthy-Monitoring.md)。  
+Please refer to the [Native System Health Monitoring Design Guide](../Native-Healthy-Monitoring.md) for details.    
+詳細內容請參考 [原生系統健康監控設計指南](../Native-Healthy-Monitoring.md)。  
 
 ## Containerized System Health Monitoring｜容器化系統健康監控
-Please refer to the [Containerized System Health Monitoring Design Guide](./Containerized-Healthy-Monitoring.md) for details.    
-詳細內容請參考 [容器化系統健康監控設計指南](./Containerized-Healthy-Monitoring.md)。  
+Please refer to the [Containerized System Health Monitoring Design Guide](../Containerized-Healthy-Monitoring.md) for details.    
+詳細內容請參考 [容器化系統健康監控設計指南](../Containerized-Healthy-Monitoring.md)。  
 
 
 ## Comparison｜比較
@@ -60,7 +60,7 @@ Please refer to the [Containerized System Health Monitoring Design Guide](./Cont
 
 # License｜授權條款
 
-![BY NC ND](../../img/Cc-by-nc-sa.png)  
+![BY NC ND](../../../img/Cc-by-nc-sa.png)  
 System Health Monitoring Design Guide © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
 系統健康監控設計指南 © 2026 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 

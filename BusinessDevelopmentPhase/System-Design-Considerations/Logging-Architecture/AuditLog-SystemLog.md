@@ -1,6 +1,6 @@
 # Audit Log and System Log | 稽核日誌 與 系統日誌
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 
 ## Overview ｜ 概述  
 
@@ -68,7 +68,7 @@ A structured log format ensures consistency, traceability, and integration with 
 **Field Description | 欄位說明**
 
 - **timestamp**：System-generated authoritative time（系統權威時間）  
-- **level**：[Severity level（嚴重等級）](./Priority.md)  
+- **level**：[Severity level（嚴重等級）](../Priority.md)  
 - **service**：Originating module/service（來源模組）  
 - **actor**：User or system identity（操作主體）  
 - **action**：What happened（操作行為）  
@@ -176,8 +176,8 @@ System logs are high-volume and typically use short-term rotation.
 ### Severity & Debug Levels | 嚴重性與除錯等級
 System logs include detailed levels such as DEBUG and TRACE for troubleshooting.  
 系統日誌包含 DEBUG、TRACE 等細粒度等級以支援除錯。  
-Please refer to the [Priority](./Priority.md) for details.  
-詳細內容請參考 [重要性權重](./Priority.md)。   
+Please refer to the [Priority](../Priority.md) for details.  
+詳細內容請參考 [重要性權重](../Priority.md)。   
 
 ## Comparison Table | 比較表
 
@@ -213,7 +213,7 @@ Similar to Linux logging (e.g., syslog/journald), logs are collected through a u
 ## Log & System Mode Mapping | 日誌與系統模式對應表
 
 
-| [System Mode<br>系統模式](./System-Mode-and-State.md)          | Goal / Intent<br>目標 / 意圖                                               | System Log Behavior<br>系統日誌行為                                                                       | Audit Log Behavior<br>稽核日誌行為                                                                           | Logging Level<br>日誌等級     | Rationale / Why<br>原因說明                                                                       |
+| [System Mode<br>系統模式](../System-Mode-and-State.md)          | Goal / Intent<br>目標 / 意圖                                               | System Log Behavior<br>系統日誌行為                                                                       | Audit Log Behavior<br>稽核日誌行為                                                                           | Logging Level<br>日誌等級     | Rationale / Why<br>原因說明                                                                       |
 | ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------ |
 | **Running Mode<br>運行模式**     | Performance-first<br>效能優先<br>Stability, performance, high availability<br>穩定性、效能、高可用性            | - Log only critical errors<br>- Basic health monitoring<br>- Avoid high-frequency/internal logs<br>僅記錄關鍵錯誤、基本健康監控，避免高頻或內部細節記錄               | - Record user actions<br>- Track business operations<br>- Maintain accountability<br>記錄使用者行為與業務操作，確保可追溯性          | ERROR / WARN           | Minimize performance impact and logging overhead<br>降低記錄對效能的影響，符合正式運行效率需求                  |
 | **Manual Mode<br>手動模式**      | Visibility-first<br>可視性優先<br>Debugging, diagnostics, troubleshooting<br>除錯、診斷、故障排除               | - Full internal logs (state, flow, function calls)<br>- Enable diagnostics<br>- Support step execution info<br>完整內部行為記錄（狀態/流程/函式），支援診斷與逐步執行 | - Detailed operator actions<br>- Trace troubleshooting steps<br>- Capture debugging scenarios<br>詳細記錄操作員行為與故障排除過程 | DEBUG（開發）<br>TRACE（現場） | Maximize visibility for root cause analysis; performance is secondary<br>提升可視性以利根因分析，效能非優先 |
@@ -249,7 +249,7 @@ Or use:
 
 # License｜授權條款
 
-![BY NC ND](../../img/Cc-by-nc-sa.png)  
+![BY NC ND](../../../img/Cc-by-nc-sa.png)  
 Logging Architecture © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
 日誌架構設計 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
