@@ -102,7 +102,7 @@ python -m venv .venv
 
 ### **安全檢測與發布控管**
 
-#### **標準開發流程（DevSecOps）**
+#### **標準開發流程（DevSecOps）** 
 
 ```
 需求 → 設計 → 開發 → Commit → PR → CI → 安全檢查 → Release

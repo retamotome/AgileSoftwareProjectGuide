@@ -5,7 +5,7 @@
 ## Overview ｜ 概述
 
 Understanding and clearly defining **System Modes** and **System States** is essential for robust requirement analysis.  
-理解並清楚定義**系統模式（System Modes）**與**系統狀態（System States）**，是建立穩健需求分析的關鍵。
+理解並清楚定義**系統模式（System Modes）** 與**系統狀態（System States）** ，是建立穩健需求分析的關鍵。
 
 This ensures the system behaves predictably under all circumstances, supports troubleshooting, and meets both operational and safety requirements.  
 這可確保系統在各種情境下皆能可預測地運作，支援故障排除，並同時滿足營運與安全需求。
@@ -32,7 +32,7 @@ Common modes include:
 常見模式包括：
 
 
-- **Running Mode (Auto Operation) ｜ 運行模式（自動運轉）**
+- **Running Mode (Auto Operation) ｜ 運行模式（自動運轉）** 
     * System delivers normal services to users.  
     系統提供正常服務
     * Prioritizes stability, safety, and performance.  
@@ -46,7 +46,7 @@ Common modes include:
     * No debug overhead for maximum efficiency.  
     無除錯額外負擔以確保最高效率
 
-- **Manual Mode (Operator Control) ｜ 手動模式（操作員控制）**
+- **Manual Mode (Operator Control) ｜ 手動模式（操作員控制）** 
     * Used primarily for diagnostics, troubleshooting, and validation.  
     主要用於診斷、故障排除與驗證
     * Lower performance is acceptable in favor of visibility and control.  
@@ -332,7 +332,7 @@ Running
 **Explanation | 說明**
 
 * Requires **graceful stop**  
-  需要進行**平滑停止（優雅停機）**
+  需要進行**平滑停止（優雅停機）** 
 * System may reboot into maintenance environment  
   系統可能會重新啟動進入維護環境
 * Controlled downtime is expected  

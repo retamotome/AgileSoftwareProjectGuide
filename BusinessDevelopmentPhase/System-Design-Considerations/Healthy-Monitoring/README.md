@@ -29,7 +29,7 @@
   自動執行重啟
 
 
-### **Event > Polling (when possible)｜優先使用事件驅動（優於輪詢）**
+### **Event > Polling (when possible)｜優先使用事件驅動（優於輪詢）** 
 
 * More scalable  
   更具擴展性
@@ -37,12 +37,12 @@
   更低的系統負載
 
 ## Native System Health Monitoring｜原生系統健康監控
-Please refer to the [Native System Health Monitoring Design Guide](../Native-Healthy-Monitoring.md) for details.    
-詳細內容請參考 [原生系統健康監控設計指南](../Native-Healthy-Monitoring.md)。  
+Please refer to the [Native System Health Monitoring Design Guide](./Native-Healthy-Monitoring.md) for details.    
+詳細內容請參考 [原生系統健康監控設計指南](./Native-Healthy-Monitoring.md)。  
 
 ## Containerized System Health Monitoring｜容器化系統健康監控
-Please refer to the [Containerized System Health Monitoring Design Guide](../Containerized-Healthy-Monitoring.md) for details.    
-詳細內容請參考 [容器化系統健康監控設計指南](../Containerized-Healthy-Monitoring.md)。  
+Please refer to the [Containerized System Health Monitoring Design Guide](./Containerized-Healthy-Monitoring.md) for details.    
+詳細內容請參考 [容器化系統健康監控設計指南](./Containerized-Healthy-Monitoring.md)。  
 
 
 ## Comparison｜比較

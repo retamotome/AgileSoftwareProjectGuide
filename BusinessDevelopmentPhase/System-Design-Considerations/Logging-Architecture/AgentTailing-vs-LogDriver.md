@@ -1,4 +1,4 @@
-# Docker Log Driver vs Fluent Bit Tailing | Docker 記錄驅動 vs Fluent Bit 日誌擷取
+# Agent-Based Collection vs Docker Log Driver | 代理式收集 vs Docker 記錄驅動
 
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
@@ -27,7 +27,7 @@ To address this, production systems typically adopt one of two approaches: direc
 
 
 
-## Agent-Based Collection Approach | 代理式收集架構（Agent-Based）
+## Agent-Based Collection Approach | 代理式收集架構  
 
 In this model, logs follow a multi-stage path:  
 在此模型中，日誌會經過多個階段：
@@ -102,7 +102,7 @@ Fluent Bit tailing 會因檔案收集產生些微延遲，但可靠性顯著提�
 | Crash resilience<br>當機韌性       | Limited buffering<br>緩衝能力有限           | Strong with disk buffering<br>磁碟緩衝強    |
 | System coupling<br>系統耦合        | Tight integration<br>高耦合           | Loosely coupled<br>低耦合              |
 | Local log availability<br>本地日誌保留 | Not retained locally<br>不保留        | Available on host<br>主機可存取            |
-| Backpressure handling<br>背壓處理  | Weak<br>較弱                        | Strong<br>較強                       |
+| Backpressure handling<br>反壓處理  | Weak<br>較弱                        | Strong<br>較強                       |
 | Flexibility<br>彈性            | Limited routing options<br>路由選項有限     | Supports multiple outputs<br>支援多輸出    |
 | Production suitability<br>生產環境適用性 | Situational<br>視情況而定                 | Strongly recommended<br>強烈建議         |
 
@@ -124,8 +124,8 @@ For production environments where log durability and failure handling are critic
 # License｜授權條款
 
 ![BY NC ND](../../../img/Cc-by-nc-sa.png)  
-Docker Log Driver vs Fluent Bit Tailing © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-Docker 記錄驅動 vs Fluent Bit 日誌擷取 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+Agent-Based Collection vs Docker Log Driver © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
+代理式收集 vs Docker 記錄驅動 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 
 ---

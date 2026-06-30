@@ -6,11 +6,11 @@
 
 A **logging system** is designed for high-throughput, append-only data ingestion where events are written continuously and rarely modified. The primary goal is to capture system behavior, operational signals, and diagnostic information with minimal latency or data loss. Logs are typically treated as time-series or event streams, optimized for sequential writes and efficient aggregation during search and analysis.
 
-**日誌系統（Logging System）**的設計目的是處理高吞吐量、僅追加（append-only）的資料寫入，事件會持續產生且幾乎不會被修改。其主要目標是在低延遲與低資料遺失風險下，完整記錄系統行為、營運訊號及除錯資訊。日誌通常被視為時間序列或事件流，並針對順序寫入與後續搜尋分析的聚合效率進行最佳化。
+**日誌系統（Logging System）** 的設計目的是處理高吞吐量、僅追加（append-only）的資料寫入，事件會持續產生且幾乎不會被修改。其主要目標是在低延遲與低資料遺失風險下，完整記錄系統行為、營運訊號及除錯資訊。日誌通常被視為時間序列或事件流，並針對順序寫入與後續搜尋分析的聚合效率進行最佳化。
 
 In contrast, a **relational database (RDB)** is designed for structured data with strong consistency, transactional guarantees, and normalized relationships. Its purpose is to support business logic, enforce schema constraints, and enable precise querying and updates.
 
-相較之下，**關聯式資料庫（RDB）**則是為結構化資料而設計，強調一致性（Consistency）、交易保證（Transaction）以及正規化關聯。其核心用途在於支撐商業邏輯、強制資料結構規範（Schema），並提供精確查詢與資料更新能力。
+相較之下，**關聯式資料庫（RDB）** 則是為結構化資料而設計，強調一致性（Consistency）、交易保證（Transaction）以及正規化關聯。其核心用途在於支撐商業邏輯、強制資料結構規範（Schema），並提供精確查詢與資料更新能力。
 
 This difference explains why logging systems emphasize **write scalability and analysis**, while relational databases emphasize **data correctness and structured querying**.
 

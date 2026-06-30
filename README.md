@@ -86,10 +86,10 @@ For an introductory presentation, see:
 
 > [!important]   
 > Test engineering in **Business Development** focuses on validating **business requirements** using **behavior-driven techniques (BDD)**.   
-> 在**商業(需求)發展階段**，測試工程重點為使用**行為驅動開發（BDD）**來驗證**商業需求**。  
+> 在**商業(需求)發展階段**，測試工程重點為使用**行為驅動開發（BDD）** 來驗證**商業需求**。  
 >  
 > Test engineering in **Software Development** focuses on verifying **implementation correctness** using **test-driven approaches (TDD)**.  
-> 在**軟體開發階段**，測試工程重點為使用**測試驅動開發（TDD）**來驗證**實作正確性**。  
+> 在**軟體開發階段**，測試工程重點為使用**測試驅動開發（TDD）** 來驗證**實作正確性**。  
 
 ---
 

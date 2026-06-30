@@ -9,7 +9,7 @@ At this stage, focus on defining requirements at the **business level**—avoid 
 在此階段，應專注於**商業層級的需求定義**，避免涉及技術細節。  
 
 All **Feature Requirements** should include **Specification by Example** scenario tables. These help create clear, testable acceptance criteria align with BDD principle.  
-所有 **功能需求（Feature Requirements）** 應包含 **Specification by Example（範例式規格）** 的情境表格，以建立清楚且可測試的驗收標準，並符合 BDD 原則。  
+所有 **功能需求（Feature Requirements）**  應包含 **Specification by Example（範例式規格）**  的情境表格，以建立清楚且可測試的驗收標準，並符合 BDD 原則。  
 
 > [!note]     
 > BDD (Behavior-Driven Development) is mainly used for acceptance tests.  
@@ -56,7 +56,7 @@ Each requirement should include tables which be presented using the method from 
 - **Error Handling** ｜ 錯誤處理  
 
 These tables are then used to generate **acceptance** test cases in a **pseudocode-like** format, such as [Gherkin](https://cucumber.io/docs/gherkin/).  
-這些表格接著可轉換為類似**偽程式碼（pseudocode）**格式的**驗收測試案例**，例如使用 [Gherkin](https://cucumber.io/docs/gherkin/)。  
+這些表格接著可轉換為類似**偽程式碼（pseudocode）** 格式的**驗收測試案例**，例如使用 [Gherkin](https://cucumber.io/docs/gherkin/)。  
 
 Today, these can be run directly as tests using supported frameworks. This approach predates the term *“Vibe Coding”*.  
 現今可透過支援框架直接執行，這種方法甚至早於 *Vibe Coding* 概念出現。  

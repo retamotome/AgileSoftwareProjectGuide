@@ -86,7 +86,7 @@ Provides **basic container-level health validation**, acting as the **entry poin
   * K8s `livenessProbe`, `readinessProbe`
 
 * Evaluates service via **external probe (HTTP/command)**  
-  透過 **外部探測（HTTP 或指令）** 評估服務狀態
+  透過 **外部探測（HTTP 或指令）**  評估服務狀態
 
 
 
@@ -120,7 +120,7 @@ IF livenessProbe fails → restart container
 **Design Insight｜設計重點**
 
 * This replaces **systemd (Layer 1 in native system)**  
-  取代原生系統中的 **systemd（第1層）**
+  取代原生系統中的 **systemd（第1層）** 
 * Works at **container boundary level**  
   運作於**容器邊界層級**
 

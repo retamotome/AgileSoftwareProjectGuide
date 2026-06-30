@@ -15,10 +15,10 @@ When handling data that requires frequent searching, filtering, or analytical pr
 ## Using External Storage ｜ 使用外部儲存體
 
 Always perform a **full format** when initializing external storage (e.g., SD cards, HDDs, removable media).  
-在初始化外部儲存（如 SD 卡、硬碟、可移除媒體）時，務必進行 **完整格式化（full format）**。
+在初始化外部儲存（如 SD 卡、硬碟、可移除媒體）時，務必進行 **完整格式化（full format）** 。
 
 - Full format scans and **identifies bad sectors**, marking them unusable.  
-  完整格式化會掃描並標記 **壞軌（bad sectors）** 以避免使用  
+  完整格式化會掃描並標記 **壞軌（bad sectors）**  以避免使用  
 
 - Ensures **data integrity** and more reliable long-term operation.  
   確保 **資料完整性**，並提升長期運行的可靠性  

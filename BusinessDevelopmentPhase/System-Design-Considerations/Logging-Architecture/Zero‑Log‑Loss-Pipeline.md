@@ -1,4 +1,4 @@
-# Zero‑Log‑Loss Pipeline (Even During Crashes) | 零日誌遺失管線（即使發生當機）
+# Zero‑Log‑Loss Pipeline (Even During Crashes) | 日誌零遺失管線（即使發生當機）
 
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
@@ -75,7 +75,7 @@ In this configuration, a log entry is acknowledged only after it has been writte
 
 
 
-## Backpressure and Flow Control | 背壓處理與流量控制
+## Backpressure and Flow Control | 反壓處理與流量控制
 
 When downstream systems such as Kafka or storage backends become unavailable or slow, the pipeline must handle the situation without dropping logs. This is achieved through layered buffering.  
 當下游系統（如 Kafka 或儲存系統）不可用或效能下降時，管線必須能處理壅塞情況而不丟失日誌，這透過分層緩衝機制達成。
@@ -120,7 +120,7 @@ By continuously tailing container log files and persisting them locally, Fluent 
 
 ![BY NC ND](../../../img/Cc-by-nc-sa.png)  
 Zero‑Log‑Loss Pipeline © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-零日誌遺失管線 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+日誌零遺失管線 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 
 ---

@@ -14,21 +14,21 @@
 
 ***
 
-## **目的（Purpose）**
+## **目的（Purpose）** 
 
 為確保公司於軟體開發生命週期中之資訊安全，降低供應鏈攻擊、未授權軟體使用及憑證外洩等風險，建立一致性與可稽核之安全控管機制，並符合 ISO/IEC 27001:2022 標準要求，特訂定本政策。  
 To ensure information security throughout the software development lifecycle, reduce risks such as supply chain attacks, unauthorized software usage, and credential leakage, and establish consistent and auditable security controls in compliance with ISO/IEC 27001:2022 requirements, this policy is hereby established.
 
 ***
 
-## **適用範圍（Scope）**
+## **適用範圍（Scope）** 
 
 本政策適用於所有涉及軟體開發、測試、建置及部署之相關活動，包含公司內部人員、外包人員及合作夥伴於公司開發環境中之操作行為。  
 This policy applies to all activities related to software development, testing, build, and deployment, including operations performed by internal employees, outsourced personnel, and partners within the company’s development environment.
 
 ***
 
-## **角色與責任（Roles and Responsibilities）**
+## **角色與責任（Roles and Responsibilities）** 
 
 | 角色 / Role | 職責 / Responsibilities |
 | --------- | ----------------------------- |
@@ -39,11 +39,11 @@ This policy applies to all activities related to software development, testing, 
 
 ***
 
-## **政策內容（Policy Statements）**
+## **政策內容（Policy Statements）** 
 
-### **軟體與套件管理（Software and Package Management）**
+### **軟體與套件管理（Software and Package Management）** 
 
-**控制要求（Control Requirements）**
+**控制要求（Control Requirements）** 
 
 * 開發所使用之軟體、工具、套件與服務須經資訊處審核並核准後方可使用  
   Software, tools, packages, and services used for development must be reviewed and approved by the IT Department before use.
@@ -56,7 +56,7 @@ This policy applies to all activities related to software development, testing, 
 * 未列入核准清單之軟體，須完成正式審查與風險評估程序  
   Software not on the approved list must undergo formal review and risk assessment.
 
-**ISO 控制對應（ISO Control Mapping）**
+**ISO 控制對應（ISO Control Mapping）** 
 
 * A.8.9 Configuration Management
 * A.8.19 Installation of Software on Operational Systems
@@ -65,9 +65,9 @@ This policy applies to all activities related to software development, testing, 
 
 ***
 
-### **開發依賴與安裝安全（Dependency and Installation Security）**
+### **開發依賴與安裝安全（Dependency and Installation Security）** 
 
-**控制要求（Control Requirements）**
+**控制要求（Control Requirements）** 
 
 * 所有專案須採用版本鎖定機制（Lock File）  
   All projects must adopt version-locking mechanisms (Lock File).
@@ -80,7 +80,7 @@ This policy applies to all activities related to software development, testing, 
 * 預設應停用第三方自動執行腳本機制  
   Third-party auto-executed script mechanisms should be disabled by default.
 
-**ISO 控制對應（ISO Control Mapping）**
+**ISO 控制對應（ISO Control Mapping）** 
 
 * A.8.28 Secure Coding
 * A.8.25 Secure Development Lifecycle
@@ -89,9 +89,9 @@ This policy applies to all activities related to software development, testing, 
 
 ***
 
-### **敏感資料保護（Sensitive Data Protection）**
+### **敏感資料保護（Sensitive Data Protection）** 
 
-**控制要求（Control Requirements）**
+**控制要求（Control Requirements）** 
 
 * 禁止於本機儲存敏感資訊（如密碼、金鑰、憑證、Token）  
   Storing sensitive information locally is prohibited (e.g., passwords, keys, certificates, tokens).
@@ -102,7 +102,7 @@ This policy applies to all activities related to software development, testing, 
 * 禁止使用本機預設憑證儲存路徑（如 `~/.aws`、`~/.ssh` 等）  
   Use of default local credential storage paths is prohibited (e.g., `~/.aws`, `~/.ssh`).
 
-**ISO 控制對應（ISO Control Mapping）**
+**ISO 控制對應（ISO Control Mapping）** 
 
 * A.8.12 Data Leakage Prevention
 * A.5.34 Privacy and Protection of PII
@@ -111,9 +111,9 @@ This policy applies to all activities related to software development, testing, 
 
 ***
 
-### **開發環境隔離（Development Environment Isolation）**
+### **開發環境隔離（Development Environment Isolation）** 
 
-**控制要求（Control Requirements）**
+**控制要求（Control Requirements）** 
 
 * 開發作業須於隔離環境中進行（如 Container、VM 或 Sandbox）  
   Development activities must be conducted in isolated environments (e.g., containers, VMs, or sandboxes).
@@ -122,7 +122,7 @@ This policy applies to all activities related to software development, testing, 
 * 開發、測試與佈署環境須明確區隔  
   Development, testing, and deployment environments must be clearly separated.
 
-**ISO 控制對應（ISO Control Mapping）**
+**ISO 控制對應（ISO Control Mapping）** 
 
 * A.8.31 Separation of Development, Test and Production
 * A.8.20 Network Security
@@ -130,9 +130,9 @@ This policy applies to all activities related to software development, testing, 
 
 ***
 
-### **安全測試與掃描（Security Testing and Scanning）**
+### **安全測試與掃描（Security Testing and Scanning）** 
 
-**控制要求（Control Requirements）**
+**控制要求（Control Requirements）** 
 
 * 程式碼在 Commit 與 Pull Request 前須執行安全掃描  
   Security scanning must be performed before commits and pull requests.
@@ -141,7 +141,7 @@ This policy applies to all activities related to software development, testing, 
 * CI/CD 流程應整合自動化安全檢查機制（如 SCA、Secret Scan）  
   CI/CD pipelines should integrate automated security checks (e.g., SCA, secret scanning).
 
-**ISO 控制對應（ISO Control Mapping）**
+**ISO 控制對應（ISO Control Mapping）** 
 
 * A.8.29 Security Testing in Development
 * A.8.8 Management of Technical Vulnerabilities
@@ -149,9 +149,9 @@ This policy applies to all activities related to software development, testing, 
 
 ***
 
-### **資安事件應變（Information Security Incident Response）**
+### **資安事件應變（Information Security Incident Response）** 
 
-**控制要求（Control Requirements）**  
+**控制要求（Control Requirements）**   
 當發現或懷疑開發環境遭受攻擊時，應立即執行以下措施：  
 When an attack on the development environment is detected or suspected, the following actions shall be taken immediately:
 
@@ -170,7 +170,7 @@ When an attack on the development environment is detected or suspected, the foll
 * 檢查是否影響 CI/CD、版本與產品發布  
   Verify impacts on CI/CD, versioning, and product releases.
 
-**ISO 控制對應（ISO Control Mapping）**
+**ISO 控制對應（ISO Control Mapping）** 
 
 * A.5.24 Information Security Incident Management Planning
 * A.5.25 Assessment and Decision on Information Security Events
@@ -179,9 +179,9 @@ When an attack on the development environment is detected or suspected, the foll
 
 ***
 
-### **安全認知與訓練（Security Awareness and Training）**
+### **安全認知與訓練（Security Awareness and Training）** 
 
-**控制要求（Control Requirements）**
+**控制要求（Control Requirements）** 
 
 * 人員須具備供應鏈攻擊與安全開發之基本認知  
   Personnel must have basic awareness of supply chain attacks and secure development.
@@ -190,15 +190,15 @@ When an attack on the development environment is detected or suspected, the foll
 * 應強化對常見錯誤觀念之認知修正（如過度信任開源套件）  
   Awareness correction for common misconceptions should be reinforced (e.g., overtrust in open-source packages).
 
-**ISO 控制對應（ISO Control Mapping）**
+**ISO 控制對應（ISO Control Mapping）** 
 
 * A.6.3 Information Security Awareness, Education and Training
 
 ***
 
-## **控制要求與稽核證據（Control Requirements and Audit Evidence）**
+## **控制要求與稽核證據（Control Requirements and Audit Evidence）** 
 
-### **安全控制與證據對應（Security Control and Evidence Mapping）**
+### **安全控制與證據對應（Security Control and Evidence Mapping）** 
 
 | 控制編號 / Control ID | 控制項目 / Control Item | 控制要求 / Control Requirement | ISO 對應 / ISO Mapping | 稽核證據 / Audit Evidence | 責任單位 / Responsible Unit |
 | ----- | ----------- | ----------------- | ------ | ------------------- | ------ |
@@ -215,7 +215,7 @@ When an attack on the development environment is detected or suspected, the foll
 
 ***
 
-## **風險說明（Risk Considerations）**
+## **風險說明（Risk Considerations）** 
 
 本政策主要因應以下資訊安全風險：  
 This policy primarily addresses the following information security risks:
@@ -227,7 +227,7 @@ This policy primarily addresses the following information security risks:
 
 ***
 
-## **稽核與遵循（Compliance and Audit）**
+## **稽核與遵循（Compliance and Audit）** 
 
 * 本政策納入公司資訊安全管理制度（ISMS）稽核範圍  
   This policy is included in the company’s ISMS audit scope.
@@ -242,7 +242,7 @@ This policy primarily addresses the following information security risks:
 
 ***
 
-## **文件控管（Document Control）**
+## **文件控管（Document Control）** 
 
 | 項目 / Item | 說明 / Description |
 | ------ | ------------ |

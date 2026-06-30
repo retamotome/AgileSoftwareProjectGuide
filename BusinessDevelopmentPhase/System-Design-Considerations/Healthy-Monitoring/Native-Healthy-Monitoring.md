@@ -29,7 +29,7 @@ This guide defines a **multi-layer health monitoring architecture** for non-cont
     **相依性**（上下游系統是否正常）
 
 * Uses **layered defense (defense-in-depth)**  
-  採用**分層防禦（縱深防禦）**
+  採用**分層防禦（縱深防禦）** 
 
 **Architecture｜架構**
 

@@ -87,7 +87,7 @@ Applications write logs to files, then agents collect them.
 應用程式將日誌寫入本機檔案，再由代理程式收集。  
 
 ```
-App → /var/log/app.log → Agent / Log Driver → Backend
+App → /var/log/app.log → Agent → Backend
 ```
 
 **Advantages | 優點**
@@ -136,6 +136,9 @@ Logs are written to stdout/stderr and managed by container runtime.
 ```
 Application → stdout/stderr → container runtime → Agent / Log Driver → Backend
 ```
+
+Please refer to the [Agent-Based Collection vs Docker Log Driver](./AgentTailing-vs-LogDriver.md) for details.    
+詳細內容請參考 [代理式收集 vs Docker 記錄驅動](./AgentTailing-vs-LogDriver.md) 。  
 
 **Key Rule | 關鍵原則**  
 - Applications MUST NOT write log files  
@@ -215,7 +218,7 @@ A collection layer ensures reliable delivery of logs.
 
 A lightweight **log agent (e.g., Fluent Bit)** acts as the **single collection and delivery pipeline**.   
 This is the **most important component** in your design.   
-一個輕量級的**日誌代理（例如 Fluent Bit）**充當**單一的日誌收集和交付管道**。  
+一個輕量級的**日誌代理（例如 Fluent Bit）** 充當**單一的日誌收集和交付管道**。  
 這是您設計中**最重要的元件**。
 
 > The agent absorbs complexity so applications stay simple and robust.  
@@ -239,7 +242,7 @@ Logs → Agent → Buffer → Retry → Backend
 
 
 Please refer to the [Zero‑Log‑Loss Pipeline](./Zero‑Log‑Loss-Pipeline.md) for details.    
-詳細內容請參考 [零日誌遺失管線](./Zero‑Log‑Loss-Pipeline.md) 。  
+詳細內容請參考 [日誌零遺失管線](./Zero‑Log‑Loss-Pipeline.md) 。  
 
 ### Recommended Utilities | 推薦工具
 
@@ -269,9 +272,6 @@ Please refer to the [Zero‑Log‑Loss Pipeline](./Zero‑Log‑Loss-Pipeline.md
     Path      /var/lib/docker/containers/*/*.log
     Parser    docker
 ```
-
-Please refer to the [Docker Log Driver vs Fluent Bit Tailing](./LogDriver-vs-AgentTailing.md) for details.    
-詳細內容請參考 [Docker 記錄驅動 vs Fluent Bit 日誌擷取](./LogDriver-vs-AgentTailing.md) 。  
 
 ### Why not direct DB logging? | 為什麼不直接記錄到資料庫？  
 
@@ -313,22 +313,24 @@ Provide **asynchronous, scalable, fault-tolerant transport**
 持久緩衝  
 
 Please refer to the [Zero‑Log‑Loss Pipeline](./Zero‑Log‑Loss-Pipeline.md) for details.    
-詳細內容請參考 [零日誌遺失管線](./Zero‑Log‑Loss-Pipeline.md) 。  
+詳細內容請參考 [日誌零遺失管線](./Zero‑Log‑Loss-Pipeline.md) 。  
 
 ### Recommended Utilities | 推薦工具
 
-| Tool           | Best Use Case                     | Notes                    |
+| Tool<br>工具           | Best Use Case<br>最佳實例                     | Notes<br>備註                    |
 | -------------- | --------------------------------- | ------------------------ |
-| **Kafka**     | High throughput, industrial scale | Industry standard        |
-| RabbitMQ       | Lower throughput, simpler routing | Easier to manage         |
-| NATS JetStream | Lightweight, low latency          | Good for edge systems    |
-| Redis Streams  | Simple pipeline                   | Not for large scale logs |
+| **Kafka**     | High throughput, industrial scale<br>高吞吐量，工業級規模 | Industry standard<br>業界標準        |
+| RabbitMQ       | Lower throughput, simpler routing<br>吞吐量較低，路由更簡單 | Easier to manage<br>更易於管理         |
+| NATS JetStream | Lightweight, low latency<br>輕量級，低延遲          | Good for edge systems<br>適用於邊緣系統    |
+| Redis Streams  | Simple pipeline<br>簡單的管線                   | Not for large scale logs<br>不適用於大規模日誌 |
 
-### Design Notes
 
-* Use **topic per log type** (`system`, `app`, `security`)
-* Enable **retention policy** (e.g., 24–72 hrs)
+### Design Notes | 設計說明
 
+* Use **topic per log type** (`system`, `app`, `security`)  
+**一個日誌類型用一個主題**（`system`、`app`、`security`）  
+* Enable **retention policy** (e.g., 24–72 hrs)  
+啟用**保留策略**（例如，24-72 小時）  
 
 
 ## Centralized Storage (Persistence Layer) | 集中式儲存
@@ -336,20 +338,24 @@ Please refer to the [Zero‑Log‑Loss Pipeline](./Zero‑Log‑Loss-Pipeline.md
 Logs should be centrally stored for querying and analysis.  
 日誌應集中儲存，以利查詢與分析。  
 
-### Key Concepts
+### Key Concepts | 關鍵概念
 
-* Separation between **hot storage** and **archival**
-* Indexing strategy is critical
-* Avoid DB for raw logs (use search engines instead)
+* Separation between **hot storage** and **archival**  
+**熱儲存** 與 **歸檔儲存** 分離  
+* Indexing strategy is critical  
+索引策略至關重要  
+* Avoid DB for raw logs (use search engines instead)  
+避免將原始日誌儲存在資料庫中（應使用搜尋引擎）  
+
 
 ### Recommended Utilities | 推薦工具
 
-| Tool                             | Strength                    | Notes                       |
+| Tool<br>工具                             | Strength<br>優點                    | Notes<br>備註                       |
 | -------------------------------- | --------------------------- | --------------------------- |
-| **Elasticsearch / OpenSearch** ✅ | Full-text search, indexing  | Core logging DB             |
-| Loki (Grafana)                   | Cost-effective, label-based | Good alternative            |
-| ClickHouse                       | High compression, analytics | Good for metrics/log hybrid |
-| Object Storage (S3/MinIO)        | Archive                     | Cheap long-term storage     |
+| **Elasticsearch / OpenSearch** ✅ | Full-text search, indexing<br>全文搜尋、索引  | Core logging DB<br>核心日誌資料庫             |
+| Loki (Grafana)                   | Cost-effective, label-based<br>經濟高效，基於標籤 | Good alternative<br>不錯的替代方案            |
+| ClickHouse                       | High compression, analytics<br>高壓縮率、分析 | Good for metrics/log hybrid<br>適用於指標/日誌混合儲存 |
+| Object Storage (S3/MinIO)<br>物件儲存 (S3/MinIO)        | Archive<br>歸檔                     | Cheap long-term storage<br>低成本的長期儲存     |
 
 
 ### Storage Design | 儲存設計
@@ -363,7 +369,7 @@ Logs should be centrally stored for querying and analysis.
 | Audit<br>審查       | 90+ days  |
 
 
-**Index Strategy (Example) | 索引策略（範例）**
+**Index Strategy (Example) | 索引策略（範例）** 
 
 ```
 logs-{service}-{date}
@@ -378,56 +384,76 @@ logs-{service}-{date}
 * Cold → archive  
 冷儲儲 → 歸檔日誌  
 
-## Search Phase (Query & Analysis)
+## Search Phase (Query & Analysis) | 搜尋階段（查詢與分析）  
 
-Provide fast log querying, filtering, correlation
+Provide fast log querying, filtering, correlation  
+提供快速的日誌查詢、過濾和關聯功能  
 
-### Key Concepts
+### Key Concepts | 關鍵概念  
 
-* Full-text search
-* Time-series filtering
-* Correlation via `trace_id`
+* Full-text search  
+全文搜尋  
+* Time-series filtering  
+時間序列過濾  
+* Correlation via `trace_id`  
+透過 `trace_id` 進行關聯  
+
 
 ### Recommended Utilities | 推薦工具
 
-| Tool                          | Notes                            |
+| Tool<br>工具                          | Notes<br>註釋                            |
 | ----------------------------- | -------------------------------- |
-| **Elasticsearch Query DSL**   | Powerful but complex             |
-| OpenSearch Dashboards         | Integrated experience            |
-| Grafana (Loki/Elastic plugin) | Unified observability            |
-| Kibana                        | Classic ELK visualization/search |
+| **Elasticsearch Query DSL**<br>**Elasticsearch 查詢 DSL**   | Powerful but complex<br>功能強大但較為複雜              |
+| OpenSearch Dashboards<br>OpenSearch 儀表板         | Integrated experience<br>整合體驗            |
+| Grafana (Loki/Elastic plugin)<br>Grafana（Loki/Elastic 外掛程式） | Unified observability<br>統一可觀測性            |
+| Kibana                        | Classic ELK visualization/search<br>經典的 ELK 視覺化/搜尋 |
 
-### Typical Queries
 
-* Error rate over time
-* Service-specific logs
-* Trace-based debugging
+### Typical Queries | 典型查詢
 
-## Dashboard Phase (Visualization & Monitoring)
+* Error rate over time  
+錯誤率隨時間的變化  
+* Service-specific logs  
+特定服務的日誌  
+* Trace-based debugging  
+基於追蹤的調試  
 
-Convert logs into **actionable insights**
 
-### Key Concepts
+## Dashboard Phase (Visualization & Monitoring) | 儀表板階段（視覺化與監控）  
 
-* Real-time observability
-* Alerting & anomaly detection
-* Role-based dashboards (Ops / Dev / Manager)
+Convert logs into **actionable insights**  
+將日誌轉化為**可執行的洞察**  
+
+### Key Concepts | 關鍵概念  
+
+* Real-time observability  
+即時可觀測性  
+* Alerting & anomaly detection  
+警報與異常偵測  
+* Role-based dashboards (Ops / Dev / Manager)  
+角色為基礎的儀錶板（維運/開發/管理）  
+
 
 ### Recommended Utilities | 推薦工具
 
-| Tool                      | Strength                    |
+| Tool<br>工具                      | Strength<br>優勢                    |
 | ------------------------- | --------------------------- |
-| **Grafana** ✅             | Best for unified dashboards |
-| Kibana                    | Built-in with Elastic       |
-| OpenSearch Dashboards     | Open-source Kibana fork     |
-| Prometheus + Alertmanager | Metrics + alerting          |
+| **Grafana** ✅             | Best for unified dashboards<br>最適合統一儀錶板 |
+| Kibana                    | Built-in with Elastic<br>內建 Elastic       |
+| OpenSearch Dashboards     | Open-source Kibana fork<br>Kibana 的開源分支     |
+| Prometheus + Alertmanager | Metrics + alerting<br>指標 + 警報          |
 
-### Dashboard Examples
+### Dashboard Examples | 儀表板範例
 
-* System health overview
-* Error heatmap
-* Throughput per service
-* Container failure tracking
+* System health overview  
+系統健康狀況概覽  
+* Error heatmap  
+錯誤熱圖  
+* Throughput per service  
+各服務吞吐量  
+* Container failure tracking  
+容器故障追蹤  
+
 
 ## General Design Consideration | 通用設計考量
 

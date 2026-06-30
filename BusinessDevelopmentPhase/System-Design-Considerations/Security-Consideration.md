@@ -14,7 +14,7 @@ All external connections **must be protected using strong encryption mechanisms*
   * **Secure WebSocket (WSS)**  
 
 * **Plain-text communication protocols (e.g., HTTP, Telnet, FTP) are strictly prohibited**  
-**禁止使用明文傳輸協定（如 HTTP、Telnet、FTP）**  
+**禁止使用明文傳輸協定（如 HTTP、Telnet、FTP）**   
 * TLS certificates must be:  
   TLS 憑證必須：  
 
@@ -46,7 +46,7 @@ The following interfaces are within scope of this control:
 ### Network Access Control Requirements ｜ 網路存取控制要求
 
 * All network ports must follow a **default-deny policy**:  
-  所有網路連接埠必須採用**預設拒絕原則（default-deny）**：
+  所有網路連接埠必須採用**預設拒絕原則（default-deny）** ：
 
   * All ports are **denied by default**  
     預設全部禁止
@@ -210,7 +210,7 @@ API 行為需：
 ### Use Stored Procedures ｜ 使用預存程序
 
 Use **stored procedures** for all database operations instead of embedding raw SQL queries or data access logic directly in application code.  
-所有資料庫操作應使用 **預存程序（Stored Procedures）**，而非將原始 SQL 查詢或資料存取邏輯直接寫在應用程式中。  
+所有資料庫操作應使用 **預存程序（Stored Procedures）** ，而非將原始 SQL 查詢或資料存取邏輯直接寫在應用程式中。  
 
 Stored procedures help to:  
 預存程序有助於：  
@@ -257,11 +257,11 @@ All external interfaces supporting removable devices (e.g., USB ports, SD card s
 所有支援可移除裝置（如 USB、SD 卡、外接儲存）的外部介面，在交付客戶的系統中均應 **停用或嚴格控管** ，以降低資安風險並防止未授權存取或系統被異常修改。  
 
 In alignment with **IEC 61508 (functional safety lifecycle and system integrity)** and **ISO 13849 (safety-related parts of control systems)**, the following requirements shall apply:  
-依據 **IEC 61508（功能安全生命週期與系統完整性）** 與 **ISO 13849（控制系統安全相關部分）**，應符合以下要求：  
+依據 **IEC 61508（功能安全生命週期與系統完整性）**  與 **ISO 13849（控制系統安全相關部分）** ，應符合以下要求：  
 
 ### Requirements ｜ 要求  
 
-* **Default State (Deployment) ｜ 預設狀態（部署）**
+* **Default State (Deployment) ｜ 預設狀態（部署）** 
 
   * All removable device interfaces shall be **disabled by default** in production/released systems.  
   所有可移除裝置介面在正式環境中必須 **預設停用**  
@@ -291,13 +291,13 @@ In alignment with **IEC 61508 (functional safety lifecycle and system integrity)
     符合縱深防禦原則
 
 
-* **Controlled Enablement ([Maintenance Mode](./System-Mode-and-State.md#system-modes--系統模式)) ｜ 受控啟用（[維護模式](./System-Mode-and-State.md#system-modes--系統模式)）**  
+* **Controlled Enablement ([Maintenance Mode](./System-Mode-and-State.md#system-modes--系統模式)) ｜ 受控啟用（[維護模式](./System-Mode-and-State.md#system-modes--系統模式)）**   
 
   * If required for diagnostics or maintenance:  
   若需診斷或維護：  
 
     * Interfaces shall only be enabled in a **restricted system Mode** (e.g., *Maintenance Mode*)  
-    僅能於 **受限系統模式（如維護模式）** 中啟用  
+    僅能於 **受限系統模式（如維護模式）**  中啟用  
     * Access shall require:  
     存取必須具備：  
 
@@ -312,7 +312,7 @@ In alignment with **IEC 61508 (functional safety lifecycle and system integrity)
   * The status (enabled/disabled) of removable interfaces shall be:  
   介面狀態（啟用／停用）必須：  
     * Defined in the **Safety Requirements Specification (SRS)**  
-    定義於 **SRS（安全需求規格）** 
+    定義於 **SRS（安全需求規格）**  
     * Verified during **validation and acceptance testing**  
     於驗證與驗收測試中確認  
     * Traceable to **hazard analysis and risk assessment** (e.g., FMEA, threat modeling)  
