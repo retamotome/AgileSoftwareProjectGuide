@@ -1,5 +1,8 @@
 # Business Development Phase ｜ 商業(需求)發展階段
 
+![Business Development Phase](../img/BusinessDevelopmentPhase.png)  
+
+
 ## Overview ｜ 概述
 
 This phase focuses on defining clear, testable business requirements and preparing a foundation for behavior-driven validation.  
