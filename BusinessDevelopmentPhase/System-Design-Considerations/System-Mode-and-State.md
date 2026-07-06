@@ -131,7 +131,7 @@ Typical states include:
     - Waiting for commands or events; may enter low-power state.   
     等待事件或指令，可能進入低功耗狀態  
 
-- **Running (Auto Operation) ｜ 運行** 
+- **Execution ｜ 執行** 
     - System is actively performing its main function.   
     系統執行主要功能  
     - Equivalent to Running Mode.   
@@ -230,7 +230,7 @@ Furthermore:
 |------|-------------------|---------|
 | Startup | System initialization | 系統啟動初始化 |
 | Standby | Waiting for command | 待機 |
-| Running | Normal operation | 正常運行 |
+| Execution | Normal operation | 正常運行 |
 | Degraded | Reduced capability | 降級運行 |
 | Emergency | Fault response<br>Must transition to Safe Mode | 緊急處理<br>必須轉換至安全模式 |
 | Shutdown | Graceful stop | 正常關機 |
@@ -243,7 +243,7 @@ Focus: **performance, availability**
 |------|-------------------|---------|
 | Startup | Diagnostic setup<br>May include debug configs | 診斷初始化<br>可能需要引入除錯設定 |
 | Standby | Wait operator<br>Interactive | 等待操作<br>互動模式 |
-| Running (Manual) | Step execution | 手動逐步執行 |
+| Execution (Manual) | Step execution | 手動逐步執行 |
 | Degraded | Fault reproduction | 故障分析 |
 | Emergency | Safety response | 安全反應 |
 | Shutdown | Exit | 結束 |
@@ -256,7 +256,7 @@ Focus: **visibility, debugging**
 |------|-------------------|---------|
 | Startup | Maintenance init | 維護初始化 |
 | Standby | Idle | 待機 |
-| Running | Upgrade / patch / config change | 更新、修補與變更設定 |
+| Execution | Upgrade / patch / config change | 更新、修補與變更設定 |
 | Degraded | Partial service | 部分功能 |
 | Shutdown | Planned stop | 計劃停機 |
 
@@ -268,7 +268,7 @@ Focus: **admin operations**
 |------|-------------------|---------|
 | Startup | Load simulation | 模擬初始化 |
 | Standby | Await simulation input | 等待模擬輸入 |
-| Running | Simulated run | 模擬運行 |
+| Execution | Simulated run | 模擬運行 |
 | Degraded | Fault simulation | 故障模擬 |
 | Shutdown | End simulation | 結束模擬 |
 
@@ -289,12 +289,12 @@ Focus: **risk reduction**
 
 ### Mapping Matrix | 對應表
 
-| Mode \ State | Startup | Standby       | Running       | Degraded | Emergency     | Shutdown |
+| Mode \ State | Startup | Standby       | Execution       | Degraded | Emergency     | Shutdown |
 | ------------ | ------- | ------------- | ------------- | -------- | ------------- | -------- |
 | Running Mode | ✅       | ✅             | ✅             | ✅        | ✅             | ✅        |
 | Manual Mode  | ✅       | ✅             | ✅ (manual)    | ✅        | ✅             | ✅        |
-| Maintenance  | ✅       | ✅             | ✅ (service)   | ✅        | ❌ (rare)      | ✅        |
-| Simulation   | ✅       | ✅             | ✅ (simulated) | ✅        | ✅ (simulated) | ✅        |
+| Maintenance Mode  | ✅       | ✅             | ✅ (service)   | ✅        | ❌ (rare)      | ✅        |
+| Simulation Mode  | ✅       | ✅             | ✅ (simulated) | ✅        | ✅ (simulated) | ✅        |
 | Safe Mode    | ❌       | ✅ (safe idle) | ❌             | ✅ (Fallback)     | ✅             | ✅        |
 
 
@@ -320,13 +320,13 @@ Running
   → Standby 
   → Shutdown 
   → Startup (Maintenance) 
-  → Running (Maintenance Task)
+  → Execution (Maintenance Task)
 
 運行
   → 待命
   → 關機
   → 啟動（維護）
-  → 運行（維護任務）
+  → 執行（維護任務）
 ```
 
 **Explanation | 說明**
@@ -355,13 +355,13 @@ Running (Maintenance Task)
   → Shutdown / Restart
   → Startup / Initialization
   → Standby
-  → Running
+  → Execution
 
 運行（維護任務）
   → 關機 / 重新啟動
   → 啟動 / 初始化
   → 待命
-  → 運行
+  → 執行
 ```
 
 **Explanation | 說明**
@@ -390,7 +390,7 @@ Enter target mode initialization state
 進入目標模式的初始化狀態
         ↓
 Move to operational state of that mode
-進入該模式的運行狀態
+進入該模式的執行狀態
 ```
 
 ### Key Design Insight | 關鍵設計重點
@@ -402,7 +402,7 @@ You should explicitly define for each transition:
 | ------------------------------------ | --------------------------------------------------------- |
 | Mode transition trigger<br>模式轉換觸發條件  | Fault / operator / schedule<br>故障／操作員／排程                  |
 | Allowed state transitions<br>允許的狀態轉換 | Per mode<br>依模式定義                                         |
-| Forbidden states<br>禁止的狀態            | e.g., Running not allowed in Safe Mode<br>例如：安全模式不可進入運行狀態 |
+| Forbidden states<br>禁止的狀態            | e.g., Execution not allowed in Safe Mode<br>例如：安全模式不可進入執行狀態 |
 | Transition order<br>轉換順序             | No ambiguity<br>不可有歧義                                     |
 | Timeout / watchdog<br>逾時／監控機制        | Safety requirement<br>安全需求                                |
 
