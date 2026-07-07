@@ -316,13 +316,13 @@ Running Mode → Maintenance Mode
 **State Flow | 狀態流程**
 
 ```
-Running 
+Execution 
   → Standby 
   → Shutdown 
   → Startup (Maintenance) 
   → Execution (Maintenance Task)
 
-運行
+執行
   → 待命
   → 關機
   → 啟動（維護）
@@ -351,13 +351,13 @@ Maintenance Mode → Running Mode
 **State Flow | 狀態流程**
 
 ```
-Running (Maintenance Task)
+Execution (Maintenance Task)
   → Shutdown / Restart
   → Startup / Initialization
   → Standby
   → Execution
 
-運行（維護任務）
+執行（維護任務）
   → 關機 / 重新啟動
   → 啟動 / 初始化
   → 待命
