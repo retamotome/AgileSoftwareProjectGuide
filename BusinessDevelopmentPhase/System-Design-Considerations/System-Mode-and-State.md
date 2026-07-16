@@ -95,6 +95,10 @@ Common modes include:
     * Useful for development, validation, and operator training.  
     適用於開發、驗證與操作員訓練
 
+> [!note]      
+> Simulation Mode is typically disabled in production builds to improve security.  
+> 正式版本通常會關閉模擬模式，以提升安全性。 
+
 - **Safe Mode ｜ 安全模式**
     * Activated to protect the system when faults or unsafe conditions are detected.  
     當發生故障或不安全狀況時啟動

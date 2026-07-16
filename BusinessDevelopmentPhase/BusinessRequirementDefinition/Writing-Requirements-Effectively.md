@@ -1,4 +1,4 @@
-# Writing Requirements Effectively ｜ 撰寫需求的高效方法
+# Writing Business Requirements Effectively ｜ 撰寫商業需求的高效方法
 
 ## Overview ｜ 概述
 
@@ -115,8 +115,8 @@ These acceptance test cases can be executed:
 # License｜授權條款
 
 ![BY NC ND](../../img/Cc-by-nc-sa.png)  
-Writing Requirements Effectively © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-撰寫需求的高效方法 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+Writing Business Requirements Effectively © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
+撰寫商業需求的高效方法 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 ---
 

@@ -35,8 +35,20 @@ For more background, see:
 
 ## Guidance ｜ 指引
 
-+ [Writing Requirements Effectively 撰寫需求的高效方法](./BusinessRequirementDefinition/Writing-Requirements-Effectively.md).  
++ [Writing Business Requirements Effectively 撰寫商業需求的高效方法](./BusinessRequirementDefinition/Writing-Requirements-Effectively.md).  
 + [Practical System Design Considerations 系統設計實務考量](./System-Design-Considerations/README.md).    
+
+### Test Engineering in the Business Development Phase | 商業開發階段的測試工程  
+**Test Engineering in the Business Development phase** focuses on validating and refining **business requirements** through **Behavior-Driven Development (BDD)** practices. At this stage, the primary objective is not to verify technical implementation details, but to ensure that the proposed solution accurately reflects the customer's business needs, expectations, and workflows.  
+**商業開發（Business Development）階段的測試工程（Test Engineering）** ，主要著重於透過 **行為驅動開發（Behavior-Driven Development, BDD）** 的方法來驗證與精煉 **商業需求（Business Requirements）** 。在此階段，重點並非驗證技術實作細節，而是確認所提出的解決方案能夠正確反映客戶的商業需求、期望以及實際工作流程。  
+
+The term *business* is expressed through **customer behavior**—how users interact with the product, what outcomes they expect, and how business value is realized. For this reason, **behavior-driven techniques** are particularly effective in this phase. By describing requirements in terms of observable behaviors and business outcomes, stakeholders, business analysts, developers, and test engineers can establish a shared understanding of what success looks like before implementation begins.  
+所謂的「商業（Business）」本質上是透過 **客戶行為（Customer Behavior）** 來呈現的，包括使用者如何與產品互動、期望獲得什麼結果，以及產品如何創造商業價值。因此，在此階段採用 **行為驅動（Behavior-Driven）** 的方法特別適合。  
+透過以可觀察的使用者行為與商業成果來描述需求，利害關係人、商業分析師、開發人員以及測試工程師能夠在實作開始之前，建立一致且清晰的理解，明確定義何謂成功的解決方案。  
+
+BDD helps transform business requirements into clear, testable scenarios, reducing ambiguity and improving alignment between customer expectations and delivered solutions.  
+BDD 能夠將商業需求轉化為清楚且可驗證的情境（Scenarios），降低需求歧義，提高客戶期望與最終交付成果之間的一致性，進而提升產品開發的成功率。  
+
 
 <details>
 <summary>News and Reference｜參考資訊</summary>
