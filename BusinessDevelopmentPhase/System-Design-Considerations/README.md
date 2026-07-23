@@ -184,9 +184,9 @@ Please refer to the [Security Consideration](./Security-Consideration.md) for de
 
 # License｜授權條款
 
-![BY NC ND](../../img/Cc-by-nc-sa.png)  
+![BY NC SA](../../img/Cc-by-nc-sa.png)  
 Practical System Design Considerations © 2018 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-系統設計實務考量 © 2018 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+系統設計實務考量 © 2018 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際版](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 ---
 

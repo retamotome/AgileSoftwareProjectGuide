@@ -114,9 +114,9 @@ Users frequently encounter login failures due to unclear error messages and inco
 
 # License｜授權條款
 
-![BY NC ND](../../../img/Cc-by-nc-sa.png)  
+![BY NC SA](../../../img/Cc-by-nc-sa.png)  
 Business Requirement Example © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-商業需求範例 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+商業需求範例 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際版](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 ---
 

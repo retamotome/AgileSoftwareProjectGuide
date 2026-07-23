@@ -123,9 +123,9 @@ For production environments where log durability and failure handling are critic
 
 # License｜授權條款
 
-![BY NC ND](../../../img/Cc-by-nc-sa.png)  
+![BY NC SA](../../../img/Cc-by-nc-sa.png)  
 Agent-Based Collection vs Docker Log Driver © 2026 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-代理式收集 vs Docker 記錄驅動 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+代理式收集 vs Docker 記錄驅動 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際版](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 
 ---
