@@ -178,7 +178,7 @@ Minor inconvenience with little to no impact on core functionality.<br>對核心
 
 ![BY NC SA](../../img/Cc-by-nc-sa.png)  
 Priority © 2025 by Jen Yuan Pan is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en).  
-重要性權重 © 2025 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際版](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+重要性權重 © 2025 作者 潘貞元（Reta Pan），依 [姓名-非商業性-相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
 
 ---
 
