@@ -277,6 +277,7 @@ Please refer to the [Zero‑Log‑Loss Pipeline](./Zero‑Log‑Loss-Pipeline.md
 
 **Feedback amplification failure** (very common failure mode)  
 **回應放大故障**（非常常見的故障模式）  
+
 ```
 Exception occurs → app logs heavily → DB overloaded →   
 發生異常 → 應用程式日誌量巨大 → 資料庫過載 →  
@@ -287,7 +288,10 @@ logging becomes slower → app becomes slower →
 more timeouts → more logs → meltdown loop  
 逾時次數增多 → 記錄增多 → 崩潰循環
 ```
- 
+
+* 請參考說明影片：[碧海潮生曲的系統架構學 -- 從《射鵰英雄傳》看《易經》、五音、五行到狀態機](https://youtu.be/4RROHItZuWc)
+
+
 | Issue<br>問題          | Without agent<br>不使用代理    | With agent<br>使用代理    |
 | -------------- | --------------------- | --------------------- |
 | DB slow<br>資料庫運行緩慢        | application slows<br>應用程式運行緩慢     |  buffered<br>緩衝 |
