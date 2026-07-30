@@ -289,7 +289,7 @@ more timeouts → more logs → meltdown loop
 逾時次數增多 → 記錄增多 → 崩潰循環
 ```
 
-* 請參考說明影片：[碧海潮生曲的系統架構學 -- 從《射鵰英雄傳》看《易經》、五音、五行到狀態機](https://youtu.be/4RROHItZuWc)
+![Youtube](../../../img/YouTube_icon.gif) 請參考說明影片：[碧海潮生曲的系統架構學 -- 從《射鵰英雄傳》看《易經》、五音、五行到狀態機](https://youtu.be/bK8FlP9ZoeA)
 
 
 | Issue<br>問題          | Without agent<br>不使用代理    | With agent<br>使用代理    |

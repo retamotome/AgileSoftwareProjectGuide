@@ -7,11 +7,15 @@
 This section provides a concise overview of key reliability strategies and general considerations essential during the Requirement Analysis phase of software engineering and project management, along with practical tips based on my real-world experience.   
 本章節提供在軟體工程與專案管理的需求分析階段中，關鍵可靠性策略與一般考量的簡要概述，並附上我在實務經驗中的一些實用建議。
 
-Companion video: [Lesson 02: Business Requirement Definition](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).    
-參考影片： [Lesson 02: 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)。  
-
-For guidance on writing requirements, see [Writing Requirements Effectively](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
+### Open Resources | 開放資源  
+* For guidance on writing requirements, see [Writing Requirements Effectively](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
 關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。 
+
+
+#### Open Courseware | 開放式課程  
+* [Lesson 02: Business Requirement Definition | 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).
+* [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesign.md)
+
 
 ## System Architecture | 系統架構  
 
