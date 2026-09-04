@@ -18,36 +18,36 @@ Always perform a **full format** when initializing external storage (e.g., SD ca
 在初始化外部儲存（如 SD 卡、硬碟、可移除媒體）時，務必進行 **完整格式化（full format）** 。
 
 - Full format scans and **identifies bad sectors**, marking them unusable.  
-  完整格式化會掃描並標記 **壞軌（bad sectors）**  以避免使用  
+  完整格式化會掃描並標記 **壞軌（bad sectors）**  以避免使用。  
 
 - Ensures **data integrity** and more reliable long-term operation.  
-  確保 **資料完整性**，並提升長期運行的可靠性  
+  確保 **資料完整性**，並提升長期運行的可靠性。  
 
 > [!important]  
 > **Avoid** using **shared folders or network-shared storage** for critical data:  
 > **避免**將關鍵資料存放於 **共享資料夾或網路共享儲存**：  
 > - Data transfer is **not encrypted by default** (e.g., SMB/NFS), unless explicitly configured.  
->   預設傳輸**未加密**（如 SMB/NFS），除非額外設定  
+>   預設傳輸**未加密**（如 SMB/NFS），除非額外設定。  
 > - Exposes risk of **data interception, leakage, or unauthorized access**.  
->   增加**資料攔截、外洩或未授權存取**風險  
+>   增加**資料攔截、外洩或未授權存取**風險。  
 
 
 ## Ensuring Reliable Data Sync ｜ 確保資料同步可靠性  
 
 - **Closing a file (`close()`) is not enough**: It only flushes user‑space buffers to the OS; data may still remain in the kernel’s page cache.  
-  **僅呼叫 `close()` 並不足夠**：僅會將使用者空間資料寫入 OS，資料仍可能停留在核心快取（page cache）
+  **僅呼叫 `close()` 並不足夠**：僅會將使用者空間資料寫入 OS，資料仍可能停留在核心快取（page cache）。
 
 - **Explicit flush required**: Use `fsync(fd)` or `fdatasync(fd)` on Linux/Unix, and `FlushFileBuffers(handle)` on Windows, to force both data and metadata to stable storage.  
-  **需明確強制寫入**：在 Linux/Unix 使用 `fsync` / `fdatasync`，在 Windows 使用 `FlushFileBuffers`，確保資料與中繼資料真正寫入儲存裝置  
+  **需明確強制寫入**：在 Linux/Unix 使用 `fsync` / `fdatasync`，在 Windows 使用 `FlushFileBuffers`，確保資料與中繼資料真正寫入儲存裝置。  
 
 - **Performance trade‑off**: Frequent sync calls can reduce throughput, so durability must be balanced with efficiency.  
-  **效能取捨**：頻繁同步會降低效能，需在可靠性與效率間取得平衡  
+  **效能取捨**：頻繁同步會降低效能，需在可靠性與效率間取得平衡。  
 
 - **Structured persistence techniques**: Write‑ahead logging (WAL), checkpointing, and replication provide stronger guarantees of reliability and recovery compared to relying solely on sync calls.  
-  **結構化持久化技術**：如 WAL（預寫式日誌）、Checkpoint、Replication，可提供更高的可靠性與復原能力  
+  **結構化持久化技術**：如 WAL（預寫式日誌）、Checkpoint、Replication，可提供更高的可靠性與復原能力。  
 
 - **Best practice workflow**: `write → fsync/fdatasync → close` ensures data is truly committed to disk and minimizes risk of loss during crashes or power failures.  
-  **最佳實務流程**：`write → fsync/fdatasync → close`，可確保資料真正寫入磁碟，降低當機或斷電風險  
+  **最佳實務流程**：`write → fsync/fdatasync → close`，可確保資料真正寫入磁碟，降低當機或斷電風險。  
 
 
 ## Data Transmission ｜ 資料傳輸  
@@ -92,25 +92,25 @@ This approach:
 此方法優點：
 
 - Simplifies error handling and retries (only failed chunks are resent).  
-  僅需重新傳送失敗區塊，簡化錯誤處理  
+  僅需重新傳送失敗區塊，簡化錯誤處理。  
 
 - Prevents excessive memory usage.  
-  避免過度消耗記憶體  
+  避免過度消耗記憶體。  
 
 - Is widely adopted in **REST APIs** and cloud services for handling big datasets.  
-  廣泛應用於 **REST API 與雲端服務**  
+  廣泛應用於 **REST API 與雲端服務**。  
 
 
 ### Limitations ｜ 限制
 
 - Not all protocols support resume (e.g., **SCP, WebDAV**).  
-  並非所有協定都支援續傳（如 **SCP、WebDAV**）  
+  並非所有協定都支援續傳（如 **SCP、WebDAV**）。  
 
 - Resume may fail if the source data changes mid‑transfer or if metadata (timestamps, permissions) is not preserved.  
-  若來源資料於傳輸中變更或中繼資料（時間戳、權限）未保存，可能導致續傳失敗  
+  若來源資料於傳輸中變更或中繼資料（時間戳、權限）未保存，可能導致續傳失敗。  
 
 - Peer or server availability is required (especially in BitTorrent).  
-  需依賴節點或伺服器可用性（尤其是 BitTorrent）    
+  需依賴節點或伺服器可用性（尤其是 BitTorrent）。    
 
 ---
 

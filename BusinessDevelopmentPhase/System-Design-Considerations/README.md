@@ -119,12 +119,15 @@ Most systems do not implement full redundancy due to cost and complexity. Instea
 ### A/B Update Mechanism | A/B 更新機制  
 
 To ensure safe updates and prevent system corruption, the A/B Update strategy uses two identical volumes managed by an Update Manager.  
-為了確保更新安全並避免系統損壞，A/B 更新機制使用由更新管理器控制的兩個相同磁碟區。  
+為了確保更新安全並避免系統損壞，A/B 更新機制使用由更新管理器控制的兩個相同但獨立的磁碟區。  
 
 * If booting from volume B fails, the system automatically reverts to volume A, erases volume B, and restores it from volume A.  
   若從磁碟區 B 開機失敗，系統會自動回復至磁碟區 A，清除磁碟區 B，並由 A 還原。  
 * If booting from volume B succeeds, volume A is erased and synchronized with the contents of volume B.  
   若從磁碟區 B 開機成功，磁碟區 A 會被清除並與 B 的內容同步。  
+
+Please refer to the [Android Virtual A/B Overview](https://source.android.com/docs/core/ota/virtual_ab) for details.    
+詳細內容請參考 [Android 虛擬 A/B 版本總覽](https://source.android.com/docs/core/ota/virtual_ab?hl=zh-tw)。
 
 ### Power Failure Handling | 電力故障處理
 
