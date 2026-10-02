@@ -243,8 +243,10 @@ SCA: Software Composition Analysis 軟體組成分析
 
 ---
 
-# License｜授權條款
+# 授權條款
 
 ![BY NC SA](../../../img/Cc-by-nc-sa.png)     
-軟體安全管理施行細則 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。  
+軟體安全管理施行細則 © 2026 作者 潘貞元（Reta Pan），採用  [姓名標示－非商業性－相同方式分享 4.0 國際](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en) 授權。   
+
+詳細授權內容、權利義務、使用限制及其他相關條件，請參閱《[完整授權條款](https://github.com/retamotome/retamotome/blob/main/LICENSE.md)》。使用本文件即表示您已閱讀、理解並同意遵守該等條款。 
 
