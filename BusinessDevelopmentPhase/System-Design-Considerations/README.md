@@ -8,13 +8,19 @@ This section provides a concise overview of key reliability strategies and gener
 本章節提供在軟體工程與專案管理的需求分析階段中，關鍵可靠性策略與一般考量的簡要概述，並附上我在實務經驗中的一些實用建議。
 
 ### Open Resources | 開放資源  
-* For guidance on writing requirements, see [Writing Requirements Effectively](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
-關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。 
-
 
 #### Open Courseware | 開放式課程  
-* [Lesson 02: Business Requirement Definition | 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).
-* [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesign.md)
+* [Lesson 02: Business Requirement Definition | 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)
+* [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesign.md)   
+
+
+## Prerequisites ｜ 前置條件
+
+Effective system design is built upon a solid understanding of business requirements. Prior to entering the system architecture and functional design phases, business requirements should be clearly elicited, analyzed, and documented. A well-defined set of business requirements provides a consistent foundation for decision-making throughout the design process and helps reduce project risks, rework efforts, and long-term maintenance costs. For detailed concepts, processes, and practical techniques related to business requirement definition, please refer to [Lesson 02: Business Requirement Definition](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).   
+系統設計的品質高度依賴需求分析的完整性。在進入系統架構與功能設計階段之前，應先充分釐清並定義商業需求，以建立一致且明確的設計基礎，降低後續開發與維護成本。關於商業需求定義的概念、流程與實務方法，請參考《[Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)》。   
+
+For guidance on writing requirements, see [Writing Requirements Effectively](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
+關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。 
 
 
 ## System Architecture | 系統架構  
@@ -88,9 +94,13 @@ Please refer to the [System Mode and State](./System-Mode-and-State.md) for deta
 
 ### System Health Monitoring｜系統健康監控
 Please refer to the [System Health Monitoring](./Healthy-Monitoring/README.md) for details.  
-詳細內容請參考 [系統健康監控](./Healthy-Monitoring/README.md)。
+詳細內容請參考 [系統健康監控](./Healthy-Monitoring/README.md)。  
 
-## Failure Tolerance Strategy | 故障容忍策略  
+## Failure Tolerance Strategy | 失效容忍策略   
+
+### Overview | 概述  
+Please refer to the [From Error Handling to Robustness: Understanding Fault Tolerance, Resilience, and Graceful Degradation](RobustnessOverview.md) for details.  
+詳細內容請參考 [從 Error Handling 到 Robustness：理解 Fault Tolerance、Resilience 與 Graceful Degradation](RobustnessOverview.md)。
 
 ### Redundancy and Failover | 冗餘與故障切換  
 

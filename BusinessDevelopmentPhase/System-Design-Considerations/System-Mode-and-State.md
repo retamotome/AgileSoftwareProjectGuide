@@ -87,7 +87,7 @@ Common modes include:
     * Sometimes called Service Mode or Admin Mode.  
     又稱服務模式或管理模式  
     * Please refer to [Removable Devices](Security-Consideration.md#removable-devices--可移除裝置) section if needed.  
-    如需參考，請見 [可移除裝置](Security-Consideration.md#removable-devices--可移除裝置)
+    如需參考，請見 [可移除裝置](Security-Consideration.md#removable-devices--可移除裝置) 說明
 
 - **Simulation Mode ｜ 模擬模式**
     * Allows the system to run without real hardware (e.g., for testing or training).  
@@ -111,6 +111,8 @@ Common modes include:
         停用危險操作  
         - Switch to minimal, safe functionality 
         切換至最小安全功能  
+    * Please refer to the [Failure Tolerance Strategy](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) for details  
+    詳細內容請參考 [失效容忍策略](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) 說明   
 
 ## System States ｜ 系統狀態
 
@@ -150,6 +152,8 @@ Typical states include:
         感測器故障但系統仍可運行  
         - Reduced performance, but not a complete stop   
         效能下降但不中止  
+    - Please refer to the [Failure Tolerance Strategy](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) for details  
+    詳細內容請參考 [失效容忍策略](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) 說明   
 
 - **Emergency ｜ 緊急狀態** 
 
