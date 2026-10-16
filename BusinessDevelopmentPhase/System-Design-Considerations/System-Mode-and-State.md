@@ -32,87 +32,96 @@ Common modes include:
 常見模式包括：
 
 
-- **Running Mode (Auto Operation) ｜ 運行模式（自動運轉）** 
-    * System delivers normal services to users.  
-    系統提供正常服務
-    * Prioritizes stability, safety, and performance.  
-    優先考量穩定性、安全性與效能
-    * Minimal logging (only errors or critical events).  
-    最小化記錄（僅保留錯誤或關鍵事件）
-    * Debugging tools and test hooks are disabled.  
-    停用除錯工具與測試掛鉤
-    * Optimized for high availability and monitoring.  
-    針對高可用性與監控進行最佳化
-    * No debug overhead for maximum efficiency.  
-    無除錯額外負擔以確保最高效率
+### Running Mode (Auto Operation) ｜ 運行模式（自動運轉）  
 
-- **Manual Mode (Operator Control) ｜ 手動模式（操作員控制）** 
-    * Used primarily for diagnostics, troubleshooting, and validation.  
-    主要用於診斷、故障排除與驗證
-    * Lower performance is acceptable in favor of visibility and control.  
-    為了提升可視性與控制性，可接受較低效能
-    * Enables additional logging, diagnostics, and sometimes step execution.  
-    啟用更多記錄、診斷功能，並可能支援逐步執行
-    * May expose features not available in production (e.g., breakpoints, verbose logs).  
-    可能包含正式環境沒有的功能（如 breakpoint、詳細 log）
-    * Typical differences between development and production environments:  
-    開發與產品環境差異：  
+  * System delivers normal services to users.  
+  系統提供正常服務
+  * Prioritizes stability, safety, and performance.  
+  優先考量穩定性、安全性與效能
+  * Minimal logging (only errors or critical events).  
+  最小化記錄（僅保留錯誤或關鍵事件）
+  * Debugging tools and test hooks are disabled.  
+  停用除錯工具與測試掛鉤
+  * Optimized for high availability and monitoring.  
+  針對高可用性與監控進行最佳化
+  * No debug overhead for maximum efficiency.  
+  無除錯額外負擔以確保最高效率
 
-        | Feature / Item  功能/項目         | Development  開發       | Production 產品 | 
-        |-------------------------|---------------------|------------------------------| 
-        | Mode Name 模式名稱              | Debug Mode 偵錯模式         | Troubleshooting Mode 故障排除模式        | 
-        | Bug Reproduction 缺陷重現       | Off-site 異地           | On-site 現場                     | 
-        | Logic Verification 邏輯驗證     | Off-site　異地            | On-site 現場                     | 
-        | Logging Level 日誌等級          | Debug 調試              | Trace 追蹤                       | 
-        | Breakpoints/Step Exec 斷點/單步執行  | Yes 可行                | No 不可行                          | 
-        | Diagnostics 診斷            | Manual 手動             | Utilities with product 產品自備工具      | 
+### Manual Mode (Operator Control) ｜ 手動模式（操作員控制）   
 
-> [!note]      
-> Diagnostic utilities should be delivered with the product for field troubleshooting.  
-> 診斷工具應隨產品提供，以利現場問題排除。
-> 
-> Debug features are typically disabled in production builds to improve performance and security.  
-> 正式版本通常會關閉除錯功能，以提升效能與安全性。  
+  * Used primarily for diagnostics, troubleshooting, and validation.  
+  主要用於診斷、故障排除與驗證
+  * Lower performance is acceptable in favor of visibility and control.  
+  為了提升可視性與控制性，可接受較低效能
+  * Enables additional logging, diagnostics, and sometimes step execution.  
+  啟用更多記錄、診斷功能，並可能支援逐步執行
+  * May expose features not available in production (e.g., breakpoints, verbose logs).  
+  可能包含正式環境沒有的功能（如 breakpoint、詳細 log）
+  * Typical differences between development and production environments:  
+  開發與產品環境差異：  
+
+    | Feature / Item  功能/項目         | Development  開發       | Production 產品 | 
+    |-------------------------|---------------------|------------------------------| 
+    | Mode Name 模式名稱              | Debug Mode 偵錯模式         | Troubleshooting Mode 故障排除模式        | 
+    | Bug Reproduction 缺陷重現       | Off-site 異地           | On-site 現場                     | 
+    | Logic Verification 邏輯驗證     | Off-site　異地            | On-site 現場                     | 
+    | Logging Level 日誌等級          | Debug 調試              | Trace 追蹤                       | 
+    | Breakpoints/Step Exec 斷點/單步執行  | Yes 可行                | No 不可行                          | 
+    | Diagnostics 診斷            | Manual 手動             | Utilities with product 產品自備工具      | 
+
+    > [!note]      
+    > Diagnostic utilities should be delivered with the product for field troubleshooting.  
+    > 診斷工具應隨產品提供，以利現場問題排除。
+    > 
+    > Debug features are typically disabled in production builds to improve performance and security.  
+    > 正式版本通常會關閉除錯功能，以提升效能與安全性。  
 
 
-- **Maintenance Mode ｜ 維護模式**
-    * Used for updates, patches, and configuration changes.  
-    用於更新、修補與變更設定
-    * Restricts normal user access; only administrators can interact.  
-    限制一般使用者存取，僅管理員可操作
-    * System may be partially or fully unavailable.  
-    系統可能部分或完全不可用
-    * Supports data migration, upgrade scripts, and controlled downtime.  
-    支援資料移轉、升級腳本與可控停機
-    * Sometimes called Service Mode or Admin Mode.  
-    又稱服務模式或管理模式  
-    * Please refer to [Removable Devices](Security-Consideration.md#removable-devices--可移除裝置) section if needed.  
-    如需參考，請見 [可移除裝置](Security-Consideration.md#removable-devices--可移除裝置) 說明
+### Maintenance Mode ｜ 維護模式   
 
-- **Simulation Mode ｜ 模擬模式**
-    * Allows the system to run without real hardware (e.g., for testing or training).  
-    允許系統在無實體硬體下運行（用於測試或訓練）
-    * Useful for development, validation, and operator training.  
-    適用於開發、驗證與操作員訓練
+  * Used for updates, patches, and configuration changes.  
+  用於更新、修補與變更設定  
+  
+    * Please refer to the [Upgrade Strategy](../System-Design-Considerations/README.md#upgrade-strategy--系統升級策略) section if needed  
+    如需參考，請見 [系統升級策略](../System-Design-Considerations/README.md#upgrade-strategy--系統升級策略) 說明 
 
-> [!note]      
-> Simulation Mode is typically disabled in production builds to improve security.  
-> 正式版本通常會關閉模擬模式，以提升安全性。 
+  * Restricts normal user access; only administrators can interact.  
+  限制一般使用者存取，僅管理員可操作
+  * System may be partially or fully unavailable.  
+  系統可能部分或完全不可用
+  * Supports data migration, upgrade scripts, and controlled downtime.  
+  支援資料移轉、升級腳本與可控停機
+  * Sometimes called Service Mode or Admin Mode.  
+  又稱服務模式或管理模式  
+  * Please refer to [Removable Devices](Security-Consideration.md#removable-devices--可移除裝置) section if needed.  
+  如需參考，請見 [可移除裝置](Security-Consideration.md#removable-devices--可移除裝置) 說明
 
-- **Safe Mode ｜ 安全模式**
-    * Activated to protect the system when faults or unsafe conditions are detected.  
-    當發生故障或不安全狀況時啟動
-    * Limits system functionality to prevent damage or hazards.  
-    限制系統功能以避免損害或危險
-    * Examples ｜ 範例: 
-        - Stop robot motion 
-        停止機器人運動  
-        - Disable unsafe operations 
-        停用危險操作  
-        - Switch to minimal, safe functionality 
-        切換至最小安全功能  
-    * Please refer to the [Failure Tolerance Strategy](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) for details  
-    詳細內容請參考 [失效容忍策略](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) 說明   
+### Simulation Mode ｜ 模擬模式   
+    
+  * Allows the system to run without real hardware (e.g., for testing or training).  
+  允許系統在無實體硬體下運行（用於測試或訓練）
+  * Useful for development, validation, and operator training.  
+  適用於開發、驗證與操作員訓練
+
+  > [!note]      
+  > Simulation Mode is typically disabled in production builds to improve security.  
+  > 正式版本通常會關閉模擬模式，以提升安全性。 
+
+### Safe Mode ｜ 安全模式   
+    
+  * Activated to protect the system when faults or unsafe conditions are detected.  
+  當發生故障或不安全狀況時啟動
+  * Limits system functionality to prevent damage or hazards.  
+  限制系統功能以避免損害或危險
+  * Examples ｜ 範例: 
+      - Stop robot motion 
+      停止機器人運動  
+      - Disable unsafe operations 
+      停用危險操作  
+      - Switch to minimal, safe functionality 
+      切換至最小安全功能  
+  * Please refer to the [Failure Tolerance Strategy](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) for details  
+  詳細內容請參考 [失效容忍策略](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) 說明   
 
 ## System States ｜ 系統狀態
 
@@ -125,52 +134,55 @@ States often transition in response to events, commands, or errors.
 Typical states include:  
 常見狀態包括：
 
-- **Startup / Initialization ｜ 啟動 / 初始化** 
-    - System boots and prepares for operation.   
-    系統啟動並準備運行  
-    - Tasks include loading configuration, initializing hardware/connections, and performing self-checks.   
-    包含載入設定、初始化硬體與連線、自我檢測  
+### Startup / Initialization ｜ 啟動 / 初始化   
 
-- **Standby / Idle ｜ 待機** 
-    - System is powered but not actively processing.   
-    系統已上電但未執行任務  
-    - Waiting for commands or events; may enter low-power state.   
-    等待事件或指令，可能進入低功耗狀態  
+  - System boots and prepares for operation.   
+  系統啟動並準備運行  
+  - Tasks include loading configuration, initializing hardware/connections, and performing self-checks.   
+  包含載入設定、初始化硬體與連線、自我檢測  
 
-- **Execution ｜ 執行** 
-    - System is actively performing its main function.   
-    系統執行主要功能  
-    - Equivalent to Running Mode.   
-    等同於「運行模式」  
+### Standby / Idle ｜ 待機   
 
-- **Degraded / Fallback ｜ 降級 / 回退** 
+  - System is powered but not actively processing.   
+  系統已上電但未執行任務  
+  - Waiting for commands or events; may enter low-power state.   
+  等待事件或指令，可能進入低功耗狀態  
 
-    - System continues operation with reduced capability due to partial failure.   
-    部分失效但仍維持運作
-    - Examples ｜ 範例: 
-        - One sensor fails → system still runs with limited features   
-        感測器故障但系統仍可運行  
-        - Reduced performance, but not a complete stop   
-        效能下降但不中止  
-    - Please refer to the [Failure Tolerance Strategy](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) for details  
-    詳細內容請參考 [失效容忍策略](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) 說明   
+### Execution ｜ 執行   
+    
+  - System is actively performing its main function.   
+  系統執行主要功能  
+  - Equivalent to Running Mode.   
+  等同於「運行模式」  
 
-- **Emergency ｜ 緊急狀態** 
+### Degraded / Fallback ｜ 降級 / 回退   
 
-    - Immediate response to critical faults or hazards.   
-    對重大故障或危險即時反應  
-    - Examples ｜ 範例: 
-        - Emergency stop (E-stop)   
-        緊急停止  
-        - Alarm-triggered state   
-        警報觸發  
+  - System continues operation with reduced capability due to partial failure.   
+  部分失效但仍維持運作
+  - Examples ｜ 範例: 
+      - One sensor fails → system still runs with limited features   
+      感測器故障但系統仍可運行  
+      - Reduced performance, but not a complete stop   
+      效能下降但不中止  
+  - Please refer to the [Failure Tolerance Strategy](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) for details  
+  詳細內容請參考 [失效容忍策略](../System-Design-Considerations/README.md#failure-tolerance-strategy--失效容忍策略) 說明   
 
-- **Shutdown ｜ 關機** 
+### Emergency ｜ 緊急狀態   
 
-    - System gracefully stops operation.   
-    系統正常關閉  
-    - Tasks include closing connections, saving state, and preventing data loss.   
-    包含關閉連線、儲存狀態、防止資料遺失  
+  - Immediate response to critical faults or hazards.   
+  對重大故障或危險即時反應  
+  - Examples ｜ 範例: 
+      - Emergency stop (E-stop)   
+      緊急停止  
+      - Alarm-triggered state   
+      警報觸發  
+
+### Shutdown ｜ 關機   
+
+  - System gracefully stops operation.   
+  系統正常關閉  
+  - Tasks include closing connections, saving state, and preventing data loss.   
+  包含關閉連線、儲存狀態、防止資料遺失  
 
 > [!tip]  
 > When defining requirements, always specify which modes and states are relevant, how transitions occur, and what restrictions or features apply in each. This clarity helps prevent ambiguity and ensures the system is reliable, safe, and maintainable.   
@@ -297,17 +309,20 @@ Focus: **risk reduction**
 
 ### Mapping Matrix | 對應表
 
-| Mode \ State | Startup | Standby       | Execution       | Degraded | Emergency     | Shutdown |
-| ------------ | ------- | ------------- | ------------- | -------- | ------------- | -------- |
-| Running Mode | ✅       | ✅             | ✅             | ✅        | ✅             | ✅        |
-| Manual Mode  | ✅       | ✅             | ✅ (manual)    | ✅        | ✅             | ✅        |
-| Maintenance Mode  | ✅       | ✅             | ✅ (service)   | ✅        | ❌ (rare)      | ✅        |
-| Simulation Mode  | ✅       | ✅             | ✅ (simulated) | ✅        | ✅ (simulated) | ✅        |
-| Safe Mode    | ❌       | ✅ (safe idle) | ❌             | ✅ (Fallback)     | ✅             | ✅        |
+| Mode \ State | Running Mode | Manual Mode  | Maintenance Mode  | Simulation Mode  | Safe Mode    | 
+| ---- | ---- |---- |---- |---- | ---- |
+| Startup  |  ✅  | ✅  | ✅  | ✅  | ❌  |
+| Standby  |  ✅  | ✅  | ✅  | ✅  | ✅ (safe idle) |
+| Execution  |  ✅  | ✅ (manual) | ✅ (service)    | ✅ (simulated)  | ❌  |
+| Degraded  |  ✅  | ✅  | ✅  | ✅  | ✅ (Fallback)  |
+| Emergency  |  ✅  | ✅  | ❌ (rare)    | ✅ (simulated) | ✅  |
+| Shutdown  |  ✅  | ✅  | ✅  | ✅  | ✅  |
 
 
-## Mode Transition Flows | 模式轉換流程
-### Simplified Example | 簡化範例
+
+## Mode Transition Flows | 模式轉換流程  
+
+## Simplified Example | 簡化範例  
 
 ![Mode and State](./img/Mode_State.svg)
 
@@ -416,6 +431,7 @@ You should explicitly define for each transition:
 
 
 ## Log & System Mode Mapping | 日誌與系統模式對應表  
+
 Please refer to the [Log & System Mode Mapping](./Logging-Architecture/AuditLog-SystemLog.md#log--system-mode-mapping--日誌與系統模式對應表) for details.  
 詳細內容請參考 [日誌與系統模式對應表](./Logging-Architecture/AuditLog-SystemLog.md#log--system-mode-mapping--日誌與系統模式對應表)。  
 

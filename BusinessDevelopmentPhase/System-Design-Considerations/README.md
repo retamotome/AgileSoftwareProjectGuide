@@ -125,6 +125,17 @@ Most systems do not implement full redundancy due to cost and complexity. Instea
 * Only the affected container needs to be **restarted**  
   僅需 **重新啟動受影響的容器**  
 
+### Power Failure Handling | 電力故障處理
+
+Please refer to the [Power Failure Handling](./Power-Failure-Handling.md) for details.    
+詳細內容請參考 [電力故障處理](./Power-Failure-Handling.md)。
+
+## Upgrade Strategy | 系統升級策略
+
+### Industrial Control Systems | 工業設備控制系統
+
+Please refer to the [Upgrade Strategy for Industrial Control Systems](Upgrade/UpgradeStrategyICS.md) for details.  
+詳細內容請參考 [工業設備控制系統升級策略](Upgrade/UpgradeStrategyICS.md)。 
 
 ### A/B Update Mechanism | A/B 更新機制  
 
@@ -138,11 +149,6 @@ To ensure safe updates and prevent system corruption, the A/B Update strategy us
 
 Please refer to the [Android Virtual A/B Overview](https://source.android.com/docs/core/ota/virtual_ab) for details.    
 詳細內容請參考 [Android 虛擬 A/B 版本總覽](https://source.android.com/docs/core/ota/virtual_ab?hl=zh-tw)。
-
-### Power Failure Handling | 電力故障處理
-
-Please refer to the [Power Failure Handling](./Power-Failure-Handling.md) for details.    
-詳細內容請參考 [電力故障處理](./Power-Failure-Handling.md)。
 
 ## Load Balancing Strategy | 負載平衡策略  
 
