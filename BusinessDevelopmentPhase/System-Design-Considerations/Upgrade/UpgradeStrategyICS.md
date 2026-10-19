@@ -16,6 +16,9 @@ As a result, industrial control systems require a different upgrade strategy fro
 In a traditional IT environment, the primary objective of an upgrade is to maintain uninterrupted service. Since users continue accessing the system throughout deployment, modern upgrade techniques are designed to keep services online. Techniques such as Blue-Green Deployment, Canary Deployment, and Rolling Upgrade enable new and old software versions to coexist during transition periods. If issues are identified, traffic can simply be redirected back to the previous version.   
 在傳統 IT 環境中，升級的首要目標是維持服務不中斷。由於系統升級期間仍有大量使用者持續存取服務，因此現代 IT 系統普遍採用不中斷服務的部署技術，例如 Blue-Green Deployment、Canary Deployment 與 Rolling Upgrade。新舊版本可於轉換期間同時存在，若發現異常，系統可快速將流量切換回舊版本。  
 
+Please refer to the [Online Upgrade Specification for Enterprise IT Systems](Upgrade/OnlineUpgradeIT.md) for details.  
+詳細內容請參考 [企業 IT 系統線上升級技術規格書](Upgrade/OnlineUpgradeIT.md)。   
+
 Industrial control systems, however, operate under different assumptions. Physical devices such as robots, conveyors, PLCs, vacuum systems, aligners, elevators, and vision systems may be executing operations when an upgrade is initiated. In these environments, maintaining operational safety is significantly more important than maintaining software availability. Consequently, many industrial systems still prefer controlled offline upgrades for critical control components.   
 然而，工業控制系統的運作模式完全不同。當升級開始時，機器手臂、輸送系統、PLC、真空系統、對位裝置或視覺系統可能正在執行設備動作。在此情境下，設備安全遠比服務不中斷更加重要。因此，許多工業控制系統對於核心控制元件仍然傾向採用受控的離線升級方式。   
 
@@ -30,8 +33,8 @@ Because the data is expected to remain unchanged during the upgrade window, file
 Offline upgrades prioritize predictability and safety over deployment speed. This approach is commonly adopted for robot motion controllers, PLC communication modules, safety-related services, machine control systems, and semiconductor equipment controllers.  
 離線升級的核心目標是確保系統行為可預測且安全可靠，而非追求最快速的部署效率。因此，機器人控制器、PLC 通訊模組、安全控制模組、設備控制核心以及半導體設備控制系統，通常都採用此類策略。   
 
-Please refer to the [Offline Upgrade Validation Specification](OfflineUpgrade.md) for details.  
-詳細內容請參考 [離線升級驗證技術規格書](OfflineUpgrade.md)。   
+Please refer to the [Offline Upgrade Validation Specification](OfflineUpgradeICS.md) for details.  
+詳細內容請參考 [離線升級驗證技術規格書](OfflineUpgradeICS.md)。   
 
 ## Online Upgrade Strategy | 線上升級策略  
 
@@ -44,8 +47,8 @@ Instead, online upgrade validation focuses on consistency and functionality. Suc
 Modern IT systems commonly employ Blue-Green Deployment, Canary Deployment, and Rolling Upgrade techniques. These methods reduce deployment risk by gradually introducing new software versions while continuously monitoring system health and user impact.   
 現代 IT 系統普遍採用 Blue-Green Deployment、Canary Deployment 與 Rolling Upgrade 等方式進行升級。透過逐步導入新版本並持續監控系統健康狀況，可有效降低部署風險並提高系統可用性。   
 
-Please refer to the [Online Upgrade Validation Specification](OnlineUpgrade.md) for details.  
-詳細內容請參考 [線上升級驗證技術規格書](OnlineUpgrade.md)。   
+Please refer to the [Online Upgrade Validation Specification](OnlineUpgradeICS.md) for details.  
+詳細內容請參考 [線上升級驗證技術規格書](OnlineUpgradeICS.md)。   
 
 
 ## Why Manifest Validation Is More Important in OT Systems | 為何 Manifest 驗證更適合 OT 系統
@@ -83,8 +86,8 @@ For equipment control platforms such as EFEM systems, robot controllers, and fac
 # License｜授權條款
 
 ![BY NC SA](../../../img/Cc-by-nc-sa.png)   
-Upgrade Strategy for Industrial Control Systems © 2018 by Jen Yuan Pan is licensed under the `Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International`.  
-工業設備控制系統升級策略 © 2018 作者 潘貞元（Reta Pan），依 `Creative Commons 姓名標示－非商業性－相同方式分享 4.0 國際版` 授權。  
+Upgrade Strategy for Industrial Control Systems © 2026 by Jen Yuan Pan is licensed under the `Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International`.  
+工業設備控制系統升級策略 © 2026 作者 潘貞元（Reta Pan），依 `Creative Commons 姓名標示－非商業性－相同方式分享 4.0 國際版` 授權。  
 
 For the complete license terms, rights and obligations, restrictions on use, and other applicable conditions, please refer to the [Full License Terms](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md). By using this work, you acknowledge that you have read, understood, and agree to comply with such terms.  
 詳細授權內容、權利義務、使用限制及其他相關條件，請參閱《[完整授權條款](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md)》。您使用本作品，即表示已充分閱讀、確已知悉並同意遵守該等條款與規定，並承認其具有法律約束力。     
