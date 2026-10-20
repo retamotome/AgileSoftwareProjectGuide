@@ -60,6 +60,9 @@ Recommended deployment architectures include:
 The selected architecture shall support rapid rollback and controlled traffic routing.   
 所採用的架構必須支援快速回復及流量控制能力。   
 
+Please refer to the [Upgrade Architecture Requirements](OnlineUpgradeICS.md#upgrade-architecture-requirements--升級架構需求) for details.  
+詳細內容請參考 [升級架構需求](OnlineUpgradeICS.md#upgrade-architecture-requirements--升級架構需求)。   
+
 ## Pre-Upgrade Assessment | 升級前評估  
 
 Prior to deployment, the system shall undergo a readiness assessment.  

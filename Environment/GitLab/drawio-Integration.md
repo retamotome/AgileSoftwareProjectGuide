@@ -133,7 +133,7 @@ sudo gitlab-ctl restart nginx
 sudo gitlab-ctl status
 ```
 
-**Debug if needed:**
+**Diagnostic if needed:**
 
 ```bash
 sudo gitlab-ctl tail nginx

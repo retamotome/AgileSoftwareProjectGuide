@@ -293,7 +293,7 @@ In alignment with **IEC 61508 (functional safety lifecycle and system integrity)
 
 * **Controlled Enablement ([Maintenance Mode](./System-Mode-and-State.md#system-modes--系統模式)) ｜ 受控啟用（[維護模式](./System-Mode-and-State.md#system-modes--系統模式)）**   
 
-  * If required for diagnostics or maintenance:  
+  * If required for diagnostic or maintenance:  
   若需診斷或維護：  
 
     * Interfaces shall only be enabled in a **restricted system Mode** (e.g., *Maintenance Mode*)  

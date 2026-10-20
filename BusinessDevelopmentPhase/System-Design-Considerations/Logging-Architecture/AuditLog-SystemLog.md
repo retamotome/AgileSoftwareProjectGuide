@@ -131,7 +131,7 @@ A structured log format ensures consistency, traceability, and integration with 
 ```
 {
   "timestamp": "2026-06-16T14:20:00Z",
-  "level": "TRACE | DEBUG | INFO | WARNING | ERROR | CRITICAL",
+  "level": "INFO | WARNING | ERROR | CRITICAL | FATAL",
   "service": "module/service name",
   "host": "hostname or device id",
   "process_id": 1234,
@@ -173,17 +173,18 @@ Service Startup | 服務啟動
 System logs are high-volume and typically use short-term rotation.  
 系統日誌量大，通常採短期保存與輪替策略。  
 
-### Severity & Debug Levels | 嚴重性與除錯等級
-System logs include detailed levels such as DEBUG and TRACE for troubleshooting.  
-系統日誌包含 DEBUG、TRACE 等細粒度等級以支援除錯。  
-Please refer to the [Priority](../Priority.md) for details.  
-詳細內容請參考 [重要性權重](../Priority.md)。   
+### Severity & Diagnostic Levels | 嚴重性與除錯等級
+System logs include detailed levels such as DIAG and TRACE for troubleshooting.  
+系統日誌包含 DIAG、TRACE 等細粒度等級以支援除錯。  
+
+Please refer to the [Priority](../Priority.md) and [Trace and Diagnostic Architecture](MCUDiagnosticFramework.md#trace-and-diagnostic-architecture--trace-與-diagnostic-架構) for details.  
+詳細內容請參考 [重要性權重](../Priority.md) 以及 [Trace 與 Diagnostic 架構](MCUDiagnosticFramework.md#trace-and-diagnostic-architecture--trace-與-diagnostic-架構)。   
 
 ## Comparison Table | 比較表
 
 | Aspect | Audit Log | System Log | 說明 |
 |--------|----------|-----------|------|
-| **Primary Purpose** | Traceability, compliance | Debugging, monitoring | 稽核 vs 運維 |
+| **Primary Purpose** | Traceability, compliance | Diagnostic, monitoring | 稽核 vs 運維 |
 | **Focus** | Who did what | System behavior | 人 vs 系統 |
 | **Content** | actor, action, result | process, thread, metrics | 商務 vs 技術 |
 | **Structure** | Strict | Flexible | 統一 vs 彈性 |
@@ -191,7 +192,7 @@ Please refer to the [Priority](../Priority.md) for details.
 | **Readability** | User-friendly | Technical | 易讀 vs 技術 |
 | **Volume** | Moderate | High | 中 vs 高 |
 | **Retention** | Long-term | Short-term | 長 vs 短 |
-| **Severity Levels** | INFO / WARNING / ERROR | DEBUG / TRACE / INFO | 粗 vs 細 |
+| **Severity Levels** | INFO / WARNING / ERROR | DIAG / TRACE / INFO | 粗 vs 細 |
 | **Access Control** | Strict | Less strict | 嚴格 vs 寬鬆 |
 | **Modification** | Not allowed | Allowed (rotation) | 不可 vs 可清理 |
 | **Architecture** | Dedicated service | Logging pipeline | 專用服務 vs 管線 |
@@ -216,9 +217,9 @@ Similar to Linux logging (e.g., syslog/journald), logs are collected through a u
 | [System Mode<br>系統模式](../System-Mode-and-State.md)          | Goal / Intent<br>目標 / 意圖                                               | System Log Behavior<br>系統日誌行為                                                                       | Audit Log Behavior<br>稽核日誌行為                                                                           | Logging Level<br>日誌等級     | Rationale / Why<br>原因說明                                                                       |
 | ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------ |
 | **Running Mode<br>運行模式**     | Performance-first<br>效能優先<br>Stability, performance, high availability<br>穩定性、效能、高可用性            | - Log only critical errors<br>- Basic health monitoring<br>- Avoid high-frequency/internal logs<br>僅記錄關鍵錯誤、基本健康監控，避免高頻或內部細節記錄               | - Record user actions<br>- Track business operations<br>- Maintain accountability<br>記錄使用者行為與業務操作，確保可追溯性          | ERROR / WARN           | Minimize performance impact and logging overhead<br>降低記錄對效能的影響，符合正式運行效率需求                  |
-| **Manual Mode<br>手動模式**      | Visibility-first<br>可視性優先<br>Debugging, diagnostics, troubleshooting<br>除錯、診斷、故障排除               | - Full internal logs (state, flow, function calls)<br>- Enable diagnostics<br>- Support step execution info<br>完整內部行為記錄（狀態/流程/函式），支援診斷與逐步執行 | - Detailed operator actions<br>- Trace troubleshooting steps<br>- Capture debugging scenarios<br>詳細記錄操作員行為與故障排除過程 | DEBUG（開發）<br>TRACE（現場） | Maximize visibility for root cause analysis; performance is secondary<br>提升可視性以利根因分析，效能非優先 |
-| **Maintenance Mode<br>維護模式** | Traceability-first<br>可追溯性優先<br>System updates, configuration, controlled changes<br>系統更新、設定變更、受控操作 | - Log upgrade steps, migration status<br>- Record system transitions<br>- Capture service start/stop<br>記錄升級流程、資料移轉、服務啟停                    | - Track admin operations<br>- Record config changes & patches<br>- Maintain audit trail<br>記錄管理員操作、設定變更與修補歷程      | INFO / WARN / TRACE    | Ensure traceability, compliance, and rollback capability<br>確保可追溯性、合規性與回復能力                |
-| **Simulation Mode<br>模擬模式**  | Flexibility-first<br>彈性優先<br>Testing, validation, training without hardware<br>無實體硬體的測試、驗證與訓練    | - Log simulated events<br>- Capture virtual hardware interactions<br>- Record test scenarios<br>記錄模擬事件與虛擬設備互動                               | - Optional logging<br>- Record training/test user actions<br>視需求記錄訓練或測試行為                                         | DEBUG / INFO           | High verbosity supports validation and development<br>高詳細度有助於測試與開發驗證                       |
+| **Manual Mode<br>手動模式**      | Visibility-first<br>可視性優先<br>Debugging, diagnostics, troubleshooting<br>除錯、診斷、故障排除               | - Full internal logs (state, flow, function calls)<br>- Enable diagnostics<br>- Support step execution info<br>完整內部行為記錄（狀態/流程/函式），支援診斷與逐步執行 | - Detailed operator actions<br>- Trace troubleshooting steps<br>- Capture debugging scenarios<br>詳細記錄操作員行為與故障排除過程 | TRACE（開發）<br>DIAG（現場） | Maximize visibility for root cause analysis; performance is secondary<br>提升可視性以利根因分析，效能非優先 |
+| **Maintenance Mode<br>維護模式** | Traceability-first<br>可追溯性優先<br>System updates, configuration, controlled changes<br>系統更新、設定變更、受控操作 | - Log upgrade steps, migration status<br>- Record system transitions<br>- Capture service start/stop<br>記錄升級流程、資料移轉、服務啟停                    | - Track admin operations<br>- Record config changes & patches<br>- Maintain audit trail<br>記錄管理員操作、設定變更與修補歷程      | INFO / WARN / DIAG    | Ensure traceability, compliance, and rollback capability<br>確保可追溯性、合規性與回復能力                |
+| **Simulation Mode<br>模擬模式**  | Flexibility-first<br>彈性優先<br>Testing, validation, training without hardware<br>無實體硬體的測試、驗證與訓練    | - Log simulated events<br>- Capture virtual hardware interactions<br>- Record test scenarios<br>記錄模擬事件與虛擬設備互動                               | - Optional logging<br>- Record training/test user actions<br>視需求記錄訓練或測試行為                                         | DIAG / INFO           | High verbosity supports validation and development<br>高詳細度有助於測試與開發驗證                       |
 | **Safe Mode<br>安全模式**        | Safety-first<br>安全優先<br>Safety protection under faults or hazards<br>發生故障時的安全保護             | - Log fault triggers<br>- Record safety actions (shutdown, stop)<br>- Capture recovery attempts<br>記錄故障觸發、安全動作與復原過程                         | - Minimal but critical logs<br>- Record acknowledgements or overrides<br>僅記錄重要操作（如確認或人工介入）                        | ERROR / CRITICAL       | Focus on safety and fault tracking; avoid overload during failure<br>以安全與故障追蹤為核心，避免系統過載    |
 
 ### Practical Implementation Tip | 實用技巧
@@ -229,7 +230,7 @@ You can implement this with a **mode-aware logging configuration**:
 if (mode == RUNNING):
     system_log.level = ERROR
 elif (mode == MANUAL):
-    system_log.level = DEBUG
+    system_log.level = DIAG
 elif (mode == SAFE):
     system_log.level = CRITICAL
 ...

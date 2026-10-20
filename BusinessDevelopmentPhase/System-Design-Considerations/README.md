@@ -53,13 +53,12 @@ Troubleshooting is never easy, often because "ease of troubleshooting" is rarely
 Please refer to the:  
 詳細內容請參考：  
 
-* [MCU Diagnostic Framework Design Specification](./Logging-Architecture/MCUDiagnosticFramework.md),   
-[MCU 診斷框架設計規格書](./Logging-Architecture/MCUDiagnosticFramework.md)，  
-* [Logging Architecture](./Logging-Architecture/README.md) and   
- [日誌架構設計](./Logging-Architecture/README.md) 以及   
-* [Audit Log and System Log](./Logging-Architecture/AuditLog-SystemLog.md) for details.    
- [稽核日誌 與 系統日誌](./Logging-Architecture/AuditLog-SystemLog.md)。    
-
+* [Logging Architecture](./Logging-Architecture/README.md),   
+ [日誌架構設計](./Logging-Architecture/README.md)，      
+* [Audit Log and System Log](./Logging-Architecture/AuditLog-SystemLog.md) and    
+ [稽核日誌 與 系統日誌](./Logging-Architecture/AuditLog-SystemLog.md) 以及    
+* [MCU Diagnostic Framework Design Specification](./Logging-Architecture/MCUDiagnosticFramework.md) for details.   
+[MCU 診斷框架設計規格書](./Logging-Architecture/MCUDiagnosticFramework.md)。  
 
 ### Resource Usage | 資源使用  
 
@@ -139,15 +138,8 @@ Please refer to the [Power Failure Handling](./Power-Failure-Handling.md) for de
 
 ## Upgrade Strategy | 系統升級策略
 
-### Enterprise IT Systems | 企業 IT 系統
-
-Please refer to the [Online Upgrade Specification for Enterprise IT Systems](Upgrade/OnlineUpgradeIT.md) for details.  
-詳細內容請參考 [企業 IT 系統線上升級技術規格書](Upgrade/OnlineUpgradeIT.md)。   
-
-### Industrial Control Systems | 工業設備控制系統
-
-Please refer to the [Upgrade Strategy for Industrial Control Systems](Upgrade/UpgradeStrategyICS.md) for details.  
-詳細內容請參考 [工業設備控制系統升級策略](Upgrade/UpgradeStrategyICS.md)。    
+Please refer to the [System Upgrade Strategy](Upgrade/UpgradeStrategyICS.md) for details.  
+詳細內容請參考 [系統升級策略](Upgrade/UpgradeStrategyICS.md)。    
 
 ### A/B Update Mechanism | A/B 更新機制  
 

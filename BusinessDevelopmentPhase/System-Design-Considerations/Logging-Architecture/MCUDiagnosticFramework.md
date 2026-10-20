@@ -43,30 +43,167 @@ Trace Log 雖然有助於開發階段除錯，但在正式產品中通常會造�
 Instead of recording every function call or variable update, the framework records significant operational events such as state transitions, alarms, communication failures, startup sequences, and operator actions.   
 因此，本架構不記錄每一次函式呼叫或變數變化，而是記錄具有診斷價值的重要事件，例如狀態切換、設備告警、通訊異常、系統啟動流程以及操作指令等。   
 
-## Log Level Architecture | 日誌等級架構   
+## Trace and Diagnostic Architecture | Trace 與 Diagnostic 架構   
 
-Please refer to the [Priority](../Priority.md) for details.    
-詳細內容請參考 [重要性權重](../Priority.md) 。   
+Although TRACE and DIAG (Diagnostic) messages are often grouped together in many software projects, they serve fundamentally different purposes and should be treated as separate diagnostic layers.   
+雖然許多軟體專案會將 TRACE 與 DEBUG 視為同一類資訊，但在工業控制系統中，兩者的用途其實完全不同，因此應視為不同層級的診斷資訊。   
 
-### Build Configuration Strategy | 建置策略   
+TRACE information is intended primarily for software developers during design verification, algorithm validation, performance analysis, and low-level debugging. TRACE messages typically capture execution flow, function entry and exit, state transitions, timing measurements, and internal implementation details.   
+TRACE 主要提供軟體開發人員使用，適用於演算法驗證、系統分析、效能分析及程式除錯。TRACE 通常記錄程式執行流程、函式進出、狀態切換、執行時間以及其他內部實作細節。  
 
-Engineering builds shall support full diagnostic capability, including TRACE output.   
-研發版本應保留完整診斷能力，包括 TRACE 功能。  
+Diagnostic information, on the other hand, is intended for field engineers, service personnel, and system integrators. Diagnostic messages provide operational visibility into system behavior without exposing low-level implementation details. They focus on answering operational questions such as system state, equipment status, current mode, active recipe, communication status, and error context.   
+Diagnostic（DIAG）則是提供現場工程師、維護人員及系統整合人員使用。DIAG 著重於設備目前的運作狀態，而非程式如何實作。它回答的是設備目前處於什麼狀態、正在執行什麼工作、連線是否正常、是否發生異常等問題。   
 
-Production builds shall remove TRACE at compile time while preserving operational diagnostics.   
-正式產品版本則建議於編譯階段移除 TRACE，同時保留必要的診斷能力。   
+For long-life industrial products, TRACE and DIAG should not be considered equivalent and should be managed independently.    
+對於生命週期長達十年以上的工業設備產品而言，TRACE 與 DIAG 不應視為相同功能，而應分別管理。   
 
-| Log Level | Engineering Build | Production Build | 
-| --- | --- | --- | 
-| FATAL | ✅|✅ |
-| ERROR | ✅| ✅|
-| WARNING | ✅| ✅|
-| INFO | ✅| ✅|
-| DIAG | ✅| ✅|
-| TRACE | ✅| ❌ |
+### TRACE Layer | TRACE 層   
 
-TRACE is intended exclusively for engineering builds and shall not be included in production firmware.   
-其中 TRACE 僅供研發版本（Engineering Build）使用，不建議納入正式產品韌體。  
+TRACE is a developer-oriented instrumentation layer. Its primary purpose is to reconstruct software execution paths and analyze timing behavior.  
+TRACE 屬於開發人員使用的程式追蹤層（Instrumentation Layer），主要用於還原程式執行路徑及分析執行時序。   
+
+Typical TRACE information includes:  
+典型 TRACE 內容包含：   
+
+```
+Function Entry | 函式進入
+Function Exit | 函式離開 
+Task Scheduling | Task 排程
+State Machine Transition | State Machine 狀態切換
+Execution Duration | 執行時間量測
+Protocol Parsing Detail | 通訊協定解析過程
+```
+
+TRACE data is usually generated at a very high frequency and may significantly affect CPU utilization, memory consumption, communication bandwidth, and storage usage.   
+TRACE 通常具有極高的產生頻率，因此可能大幅增加 CPU 使用率、記憶體消耗、通訊頻寬負載以及儲存空間需求。    
+
+For this reason, TRACE should be enabled only in engineering builds and should not be included in production firmware.   
+因此建議 TRACE 僅存在於 Engineering Build，不應納入 Release Build。   
+
+**Example | 範例**   
+
+```
+Enter MoveTask() 
+Send PLC Signal 
+Wait PLC ACK 
+Received PLC ACK 
+Exit MoveTask()
+```
+
+### DIAG Layer | DIAG 層  
+
+DIAG is an operational diagnostic layer designed for production systems. Its primary purpose is to provide enough visibility for troubleshooting while maintaining low resource consumption.   
+DIAG 屬於產品運行期間的診斷層，其目標是在不消耗過多資源的情況下提供足夠的問題分析能力。   
+
+Unlike TRACE, DIAG should describe system conditions rather than execution details.   
+與 TRACE 不同，DIAG 應描述設備目前的運作狀態，而非程式內部執行細節。   
+
+Typical DIAG information includes:   
+典型 DIAG 資訊包括：   
+
+```
+Current Robot State | 目前 Robot 狀態
+Current Recipe | 目前 Recipe
+PLC Mode | 目前 PLC 模式
+Current Job | 目前 Job
+Connection Status | 目前連線狀態
+Alarm Context | 異常脈絡資訊
+```
+
+Well-designed DIAG information should remain useful even years after product deployment and should be understandable without access to the source code.   
+良好的 DIAG 設計即使在產品上市多年後，仍可提供現場工程師獨立分析問題，而不需要查看原始碼。   
+
+**Example | 範例**   
+
+```
+Robot State = MOVING 
+Current Recipe = PKG_001 
+Current Job = LOT12345 
+PLC State = READY
+```
+
+### Event Layer | Event 層   
+
+Events provide historical context and record significant system activities. Unlike TRACE and DIAG output, events are intended for long-term retention and post-failure analysis.   
+Event 層提供事件歷史紀錄與問題追溯能力。不同於 TRACE 與 DIAG，Event 屬於長期保存資料，主要用於故障分析及事件還原。   
+
+Events should be compact, structured, and suitable for storage in RAM buffers or Flash journals.   
+Event 應儘量採用結構化格式並降低儲存空間需求。   
+
+**Example | 範例**   
+
+```
+MOVE_BEGIN 
+MOVE_COMPLETE 
+PLC_TIMEOUT 
+ALARM_RAISED
+```
+
+### Alarm Layer | Alarm 層   
+
+Alarms represent actionable abnormal conditions requiring operator awareness or intervention.   
+Alarm 層代表需要立即被操作人員注意或介入處理的異常狀況。   
+
+Alarm records should always be persistent and survive system reboot.   
+Alarm 紀錄應永久保存，並於系統重新開機後仍可查閱。   
+
+
+Examples include:    
+例如：   
+
+```
+PLC Communication Lost 
+Robot Motion Timeout 
+Configuration Corrupted 
+Emergency Stop Triggered
+```
+
+### Recommended Layered Architecture | 建議分層架構   
+
+The recommended diagnostic hierarchy is shown below:   
+建議採用以下分層架構：   
+
+```
+TRACE
+Development Only | 開發追蹤
+ 
+DIAG
+Runtime Diagnostic | 執行中診斷
+ 
+EVENT
+System History | 系統歷程
+ 
+ALARM
+Persistent Failure Record | 異常紀錄
+```
+
+Each layer serves a different audience and retention requirement.   
+各層級服務不同對象與用途：  
+
+* TRACE targets developers.   
+TRACE 提供開發人員進行程式分析。   
+* DIAG targets field service engineers.  
+DIAG 提供現場工程師進行問題診斷。   
+* EVENT targets root-cause investigation.   
+EVENT 提供故障追溯與根因分析。   
+* ALARM targets operators and maintenance personnel.  
+ALARM 提供操作員及維護人員執行異常處置。    
+
+
+### Recommended Storage Strategy | 建議儲存策略   
+
+For resource-constrained MCU systems, the following storage policy is recommended:   
+針對 MCU 平台，建議採用以下儲存策略：   
+
+| Layer<br>層級 | ALARM | Event | DIAG | TRACE |
+| ---- | ---- | ---- | ---- | ---- |
+| [Severity<br>事件等級](#event-severity-architecture--事件等級架構) | WARNING+ | INFO+ | DIAG | TRACE |
+| Storage<br>儲存 | Persistent Flash Storage<br>永久保存於 Flash | RAM Ring Buffer<br>Flash Journal | Runtime Console<br> | Console Only<br>僅輸出 Console<br> | 
+| Note<br>備註 | -- | -- | Optional Event Generation<br>必要時轉換為 Event | Engineering Build Only<br>僅限 Engineering Build | 
+
+
+The proposed layered diagnostic architecture separates development instrumentation, operational diagnostics, historical event recording, and persistent alarm management into independent subsystems. This separation minimizes resource consumption while maintaining sufficient observability throughout the product lifecycle. By limiting TRACE functionality to engineering environments and relying on DIAG, EVENT, and ALARM mechanisms in production environments, the system achieves an optimal balance between diagnosability, reliability, flash endurance, and runtime performance.   
+本分層式診斷架構將開發追蹤（TRACE）、運行診斷（DIAG）、事件歷史（EVENT）與異常管理（ALARM）區分為獨立子系統。此設計可在有限的 MCU 資源下兼顧系統可觀測性與執行效能。透過將 TRACE 限制於研發環境使用，而於正式產品中採用 DIAG、EVENT 與 ALARM 機制，可在診斷能力、系統可靠度、Flash 壽命及即時性能之間取得最佳平衡，並提供完整的產品生命週期維護能力。   
 
 ## Event Architecture | 事件架構   
 
@@ -108,7 +245,49 @@ typedef struct
 } event_t;
 ```
 
-固定長度結構有助於 Ring Buffer 管理、Flash 儲存與 CRC 驗證。
+固定長度結構有助於 [Ring Buffer 管理](#ring-buffer-design--ring-buffer-設計)、[Flash 儲存](#flash-journal--flash-journal-設計)與 [CRC 驗證](#crc-protection--crc-保護機制)。
+
+
+### Dump Format | Dump 格式   
+
+**Human Readable**  
+```
+Time      : 10:00:01.123
+Module    : ROBOT
+Event     : MOVE_BEGIN
+Severity  : INFO
+Arg1      : Slot=5
+Arg2      : Port=2
+```
+
+**CSV**  
+```
+timestamp,module,event,severity,arg1,arg2 
+1000,ROBOT,MOVE_BEGIN,INFO,5,2 
+1200,PLC,TIMEOUT,ERROR,3000,0
+```
+
+### Event Dictionary | 事件字典設計   
+
+Events are stored as numeric identifiers rather than text strings.   
+系統內部僅儲存 Event ID，不直接儲存文字訊息。   
+
+例如：  
+
+```
+EVT_SYS_START = 1000
+EVT_PLC_TIMEOUT = 2001
+EVT_MOVE_BEGIN = 3000
+EVT_ALARM_RAISED = 4000
+```
+
+透過 Translation Table 轉換為可讀文字。   
+
+### Event Severity Architecture | 事件等級架構   
+
+Please refer to the [Priority](../Priority.md) for details.    
+詳細內容請參考 [重要性權重](../Priority.md) 。   
+
 
 ### Event Source Definition | 事件來源定義  
 
@@ -123,43 +302,6 @@ SRC_SYSTEM
 ```
 
 藉此可快速區分事件來自 ISR、Task 或底層 Driver。
-
-## Ring Buffer Design | Ring Buffer 設計  
-
-The framework utilizes RAM-based ring buffers to preserve the most recent system history. When the buffer becomes full, the oldest events shall be overwritten.   
-系統使用 RAM Ring Buffer 保留最近一段時間的事件紀錄。當 Buffer 滿載時，新事件將覆蓋最舊事件。   
-
-This ensures that the latest events surrounding a failure are always preserved.   
-此設計可確保故障發生時能夠保留最近的關鍵事件資訊。   
-
-### ISR and Task Safety Design | ISR 與 Task 安全設計   
-
-Direct sharing of a single ring buffer among multiple ISRs and tasks introduces synchronization complexity and timing uncertainty.   
-若 ISR 與多個 Task 共用同一個 Ring Buffer，將增加同步複雜度與即時性風險。  
-
-The recommended architecture separates ISR producers from task producers.   
-建議採用分層架構：  
-
-```
-ISR Ring Buffer
-        ↓
-Event Dispatcher
-        ↓
-Task Ring Buffer
-        ↓
-Flash Journal
-```
-
-This design eliminates contention and minimizes ISR execution time.  
-ISR 僅負責快速寫入事件，而後續整合與儲存工作由背景 Task 處理，以降低中斷延遲。  
-
-## Lock-Free Buffer Strategy | 無鎖定 Buffer 策略   
-
-The framework prefers lock-free communication mechanisms over mutex-based synchronization.   
-本架構優先採用 Lock-Free 設計，而非 Mutex 或 Semaphore 同步。  
-
-Single Producer Single Consumer (SPSC) ring buffers should be used whenever possible to eliminate locking overhead and reduce real-time jitter.   
-若符合 Single Producer Single Consumer 條件，建議直接使用 SPSC Ring Buffer，以降低控制迴圈抖動（Jitter）並提升即時性能。   
 
 ## Runtime Dynamic Log Control | 執行階段動態日誌控制
 
@@ -190,8 +332,8 @@ All modules immediately switch to INFO mode.
 robot_cli log set DIAG robot
 ```
 
-Only the Robot module enters DIAG mode.   
-只有 Robot 模組進入 DIAG 模式，其餘模組維持原設定。   
+Only the Robot module enters DIAG (Diagnostic) mode.   
+只有 Robot 模組進入 DIAG（暫時性診斷）模式，其餘模組維持原設定。   
 
 ### Temporary Diagnostic Session | 暫時性診斷模式   
 
@@ -206,7 +348,7 @@ robot_cli log set DIAG robot 600
 ```
 
 The setting remains active for 600 seconds before automatically reverting.   
-表示 Robot 模組進入 DIAG 模式 600 秒，之後自動恢復原設定。   
+表示 Robot 模組進入 DIAG（暫時性診斷）模式 600 秒，之後自動恢復原設定。   
 
 ### Event Recording of Log Changes | 日誌變更事件記錄   
 
@@ -224,6 +366,43 @@ NewLevel = DIAG
 ```
 
 如此可完整追蹤系統診斷行為。   
+
+## Ring Buffer Design | Ring Buffer 設計  
+
+The framework utilizes RAM-based ring buffers to preserve the most recent system history. When the buffer becomes full, the oldest events shall be overwritten.   
+系統使用 RAM Ring Buffer 保留最近一段時間的事件紀錄。當 Buffer 滿載時，新事件將覆蓋最舊事件。   
+
+This ensures that the latest events surrounding a failure are always preserved.   
+此設計可確保故障發生時能夠保留最近的關鍵事件資訊。   
+
+### ISR and Task Safety Design | ISR 與 Task 安全設計   
+
+Direct sharing of a single ring buffer among multiple ISRs and tasks introduces synchronization complexity and timing uncertainty.   
+若 ISR 與多個 Task 共用同一個 Ring Buffer，將增加同步複雜度與即時性風險。  
+
+The recommended architecture separates ISR producers from task producers.   
+建議採用分層架構：  
+
+```
+ISR Ring Buffer
+        ↓
+Event Dispatcher
+        ↓
+Task Ring Buffer
+        ↓
+Flash Journal
+```
+
+This design eliminates contention and minimizes ISR execution time.  
+ISR 僅負責快速寫入事件，而後續整合與儲存工作由背景 Task 處理，以降低中斷延遲。  
+
+### Lock-Free Buffer Strategy | 無鎖定 Buffer 策略   
+
+The framework prefers lock-free communication mechanisms over mutex-based synchronization.   
+本架構優先採用 Lock-Free 設計，而非 Mutex 或 Semaphore 同步。  
+
+Single Producer Single Consumer (SPSC) ring buffers should be used whenever possible to eliminate locking overhead and reduce real-time jitter.   
+若符合 Single Producer Single Consumer 條件，建議直接使用 SPSC Ring Buffer，以降低控制迴圈抖動（Jitter）並提升即時性能。   
 
 ## Flash Journal | Flash Journal 設計   
 
@@ -253,17 +432,16 @@ typedef struct
 ### CRC Protection | CRC 保護機制  
 
 Two layers of CRC protection are recommended.   
-Event-level CRC16 protects individual records while page-level CRC32 protects entire storage pages.   
+Event-level CRC16 protects [individual records](#event-structure--事件資料結構) while page-level CRC32 protects entire storage pages.   
 
 建議採用雙層 CRC 保護機制。  
-第一層使用 CRC16 保護單筆 Event。  
+第一層使用 CRC16 保護[單筆 Event](#event-structure--事件資料結構)。  
 第二層使用 CRC32 保護整個 Flash Page。  
 如此可同時偵測單筆事件損毀與整頁資料錯誤。   
 
 ### Power Loss Recovery | 掉電復原機制   
 
 Event pages shall be committed using a two-phase write procedure.   
-Only pages marked VALID shall be considered trustworthy after reboot.   
 系統應採用兩階段提交寫入流程。   
 
 **Step 1**  
@@ -284,6 +462,7 @@ Status = WRITING
 Status = VALID
 ```
 
+Only pages marked VALID shall be considered trustworthy after reboot.   
 只有 VALID 頁面可於開機後載入。  
 
 ### Boot Recovery | 開機復原流程   
@@ -305,73 +484,10 @@ Pages failing any validation check shall be discarded.
 Flash pages exhibiting erase failures, write failures, or ECC errors shall be marked `BAD` and removed from future allocation.   
 若頁面發生擦除失敗、寫入失敗或 ECC Error，應立即標記為 `BAD`，後續寫入流程不得再次使用該頁面。   
 
-### Wear Leveling Strategy | Wear Leveling 策略   
+### Wear Leveling Strategy | 磨損分級策略   
 
 Each page maintains an erase counter. The allocator should prefer pages with lower erase counts to distribute wear evenly.   
-每個頁面應維護擦寫次數統計。  
-系統應優先使用擦寫次數較低的頁面，以平均消耗 Flash 壽命。  
-
-## Event Dictionary | Event Dictionary 設計   
-
-Events are stored as numeric identifiers rather than text strings.   
-系統內部僅儲存 Event ID，不直接儲存文字訊息。   
-
-例如：  
-
-```
-EVT_SYS_START = 1000
-EVT_PLC_TIMEOUT = 2001
-EVT_MOVE_BEGIN = 3000
-EVT_ALARM_RAISED = 4000
-```
-
-透過 Translation Table 轉換為可讀文字。   
-
-## Dump Format | Dump 格式   
-
-**Human Readable**  
-```
-Time      : 10:00:01.123
-Module    : ROBOT
-Event     : MOVE_BEGIN
-Severity  : INFO
-Arg1      : Slot=5
-Arg2      : Port=2
-```
-
-**CSV**  
-```
-timestamp,module,event,severity,arg1,arg2 
-1000,ROBOT,MOVE_BEGIN,INFO,5,2 
-1200,PLC,TIMEOUT,ERROR,3000,0
-```
-
-## Recommended Production Configuration | 建議產品版配置   
-
-The following configuration is recommended for production controllers:  
-建議正式產品採用：  
-
-```
-Persistent Flash Log
-    WARNING+
-    
-Event Ring Buffer
-    INFO+
-
-Runtime Diagnostic
-    DIAG
-
-Engineering Build
-    TRACE
-```
-
-此配置可兼顧：  
-
-* Flash 壽命
-* RAM 使用量
-* 即時性能
-* 現場維護能力
-* 問題追蹤能力
+每個頁面應維護擦寫次數統計。系統應優先使用擦寫次數較低的頁面，以平均消耗 Flash 壽命。  
 
 ## Conclusion | 結論  
 

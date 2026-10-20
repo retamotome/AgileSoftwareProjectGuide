@@ -116,7 +116,7 @@ App → /var/log/app.log → Agent → Backend
 │   │
 │   ├── efem-service/
 │   │   ├── app.log
-│   │   └── debug.log
+│   │   └── diagnostic.log
 │
 ├── middleware/
 │   ├── kafka/
@@ -368,7 +368,7 @@ Logs should be centrally stored for querying and analysis.
 
 | Log Type<br>日誌類型    | Retention<br>保留期限 |
 | ----------- | --------- |
-| Debug<br>除錯       | 1–3 days  |
+| DIAG<br>診斷       | 1–3 days  |
 | Application<br>應用 | 7–30 days |
 | Audit<br>審查       | 90+ days  |
 
@@ -407,7 +407,7 @@ Provide fast log querying, filtering, correlation
 
 | Tool<br>工具                          | Notes<br>註釋                            |
 | ----------------------------- | -------------------------------- |
-| **Elasticsearch Query DSL**<br>**Elasticsearch 查詢 DSL**   | Powerful but complex<br>功能強大但較為複雜              |
+| Elasticsearch Query DSL<br>Elasticsearch 查詢 DSL   | Powerful but complex<br>功能強大但較為複雜              |
 | OpenSearch Dashboards<br>OpenSearch 儀表板         | Integrated experience<br>整合體驗            |
 | Grafana (Loki/Elastic plugin)<br>Grafana（Loki/Elastic 外掛程式） | Unified observability<br>統一可觀測性            |
 | Kibana                        | Classic ELK visualization/search<br>經典的 ELK 視覺化/搜尋 |
@@ -419,7 +419,7 @@ Provide fast log querying, filtering, correlation
 錯誤率隨時間的變化  
 * Service-specific logs  
 特定服務的日誌  
-* Trace-based debugging  
+* Diagnostic-based debugging  
 基於追蹤的調試  
 
 
@@ -494,8 +494,8 @@ Sensitive data must not be logged.
 
 * Non-blocking logging  
 非阻塞    
-* Avoid excessive DEBUG logs  
-控制 DEBUG log  
+* Avoid excessive DIAG logs  
+避免過多的 DIAG 日誌   
 * Batch transmissions  
 批次傳輸  
 

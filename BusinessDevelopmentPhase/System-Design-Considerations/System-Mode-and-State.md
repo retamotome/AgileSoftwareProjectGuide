@@ -40,20 +40,20 @@ Common modes include:
   優先考量穩定性、安全性與效能
   * Minimal logging (only errors or critical events).  
   最小化記錄（僅保留錯誤或關鍵事件）
-  * Debugging tools and test hooks are disabled.  
-  停用除錯工具與測試掛鉤
+  * diagnostic tools and test hooks are disabled.  
+  停用診斷工具與測試掛鉤
   * Optimized for high availability and monitoring.  
   針對高可用性與監控進行最佳化
-  * No debug overhead for maximum efficiency.  
-  無除錯額外負擔以確保最高效率
+  * No diagnostic overhead for maximum efficiency.  
+  無診斷額外負擔以確保最高效率
 
 ### Manual Mode (Operator Control) ｜ 手動模式（操作員控制）   
 
-  * Used primarily for diagnostics, troubleshooting, and validation.  
+  * Used primarily for diagnostic, troubleshooting, and validation.  
   主要用於診斷、故障排除與驗證
   * Lower performance is acceptable in favor of visibility and control.  
   為了提升可視性與控制性，可接受較低效能
-  * Enables additional logging, diagnostics, and sometimes step execution.  
+  * Enables additional logging, diagnostic, and sometimes step execution.  
   啟用更多記錄、診斷功能，並可能支援逐步執行
   * May expose features not available in production (e.g., breakpoints, verbose logs).  
   可能包含正式環境沒有的功能（如 breakpoint、詳細 log）
@@ -62,10 +62,10 @@ Common modes include:
 
     | Feature / Item  功能/項目         | Development  開發       | Production 產品 | 
     |-------------------------|---------------------|------------------------------| 
-    | Mode Name 模式名稱              | Debug Mode 偵錯模式         | Troubleshooting Mode 故障排除模式        | 
+    | Mode Name 模式名稱              | Debugging Mode 偵錯模式         | Troubleshooting Mode 故障排除模式        | 
     | Bug Reproduction 缺陷重現       | Off-site 異地           | On-site 現場                     | 
     | Logic Verification 邏輯驗證     | Off-site　異地            | On-site 現場                     | 
-    | Logging Level 日誌等級          | Debug 調試              | Trace 追蹤                       | 
+    | Logging Level 日誌等級          | Trace 追蹤              | Diagnostic 診斷                       | 
     | Breakpoints/Step Exec 斷點/單步執行  | Yes 可行                | No 不可行                          | 
     | Diagnostics 診斷            | Manual 手動             | Utilities with product 產品自備工具      | 
 
@@ -73,8 +73,8 @@ Common modes include:
     > Diagnostic utilities should be delivered with the product for field troubleshooting.  
     > 診斷工具應隨產品提供，以利現場問題排除。
     > 
-    > Debug features are typically disabled in production builds to improve performance and security.  
-    > 正式版本通常會關閉除錯功能，以提升效能與安全性。  
+    > Trace features are typically disabled in production builds to improve performance and security.  
+    > 正式版本通常會關閉追蹤功能，以提升效能與安全性。  
 
 
 ### Maintenance Mode ｜ 維護模式   
