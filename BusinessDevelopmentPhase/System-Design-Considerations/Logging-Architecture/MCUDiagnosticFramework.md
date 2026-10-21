@@ -43,10 +43,10 @@ Trace Log 雖然有助於開發階段除錯，但在正式產品中通常會造�
 Instead of recording every function call or variable update, the framework records significant operational events such as state transitions, alarms, communication failures, startup sequences, and operator actions.   
 因此，本架構不記錄每一次函式呼叫或變數變化，而是記錄具有診斷價值的重要事件，例如狀態切換、設備告警、通訊異常、系統啟動流程以及操作指令等。   
 
-## Trace and Diagnostic Architecture | Trace 與 Diagnostic 架構   
+## Trace and Diagnostic Architecture | 追蹤 與 診斷 架構   
 
 Although TRACE and DIAG (Diagnostic) messages are often grouped together in many software projects, they serve fundamentally different purposes and should be treated as separate diagnostic layers.   
-雖然許多軟體專案會將 TRACE 與 DEBUG 視為同一類資訊，但在工業控制系統中，兩者的用途其實完全不同，因此應視為不同層級的診斷資訊。   
+雖然許多軟體專案會將 TRACE (追蹤) 與 DEBUG (診斷) 視為同一類資訊，但在工業控制系統中，兩者的用途其實完全不同，因此應視為不同層級的診斷資訊。   
 
 TRACE information is intended primarily for software developers during design verification, algorithm validation, performance analysis, and low-level debugging. TRACE messages typically capture execution flow, function entry and exit, state transitions, timing measurements, and internal implementation details.   
 TRACE 主要提供軟體開發人員使用，適用於演算法驗證、系統分析、效能分析及程式除錯。TRACE 通常記錄程式執行流程、函式進出、狀態切換、執行時間以及其他內部實作細節。  
@@ -56,6 +56,25 @@ Diagnostic（DIAG）則是提供現場工程師、維護人員及系統整合人
 
 For long-life industrial products, TRACE and DIAG should not be considered equivalent and should be managed independently.    
 對於生命週期長達十年以上的工業設備產品而言，TRACE 與 DIAG 不應視為相同功能，而應分別管理。   
+
+
+**Diagnostic Architecture | 診斷架構**
+
+```
+Application Tasks
+        │
+        ▼
+Event API
+        │
+        ▼
+Event Ring Buffer
+        │
+        ▼
+Flash Journal
+        │
+        ▼
+Diagnostic Dump Tool
+```
 
 ### TRACE Layer | TRACE 層   
 
@@ -83,11 +102,11 @@ For this reason, TRACE should be enabled only in engineering builds and should n
 **Example | 範例**   
 
 ```
-Enter MoveTask() 
-Send PLC Signal 
-Wait PLC ACK 
-Received PLC ACK 
-Exit MoveTask()
+10:01:10.123 Enter RobotMove()
+10:01:10.125 Send PLC Signal
+10:01:10.130 Wait PLC ACK
+10:01:10.150 PLC ACK Received
+10:01:10.152 Exit RobotMove()
 ```
 
 ### DIAG Layer | DIAG 層  
@@ -122,6 +141,7 @@ Current Job = LOT12345 
 PLC State = READY
 ```
 
+
 ### Event Layer | Event 層   
 
 Events provide historical context and record significant system activities. Unlike TRACE and DIAG output, events are intended for long-term retention and post-failure analysis.   
@@ -130,14 +150,8 @@ Event 層提供事件歷史紀錄與問題追溯能力。不同於 TRACE 與 DIA
 Events should be compact, structured, and suitable for storage in RAM buffers or Flash journals.   
 Event 應儘量採用結構化格式並降低儲存空間需求。   
 
-**Example | 範例**   
-
-```
-MOVE_BEGIN 
-MOVE_COMPLETE 
-PLC_TIMEOUT 
-ALARM_RAISED
-```
+Please refer to the [Event Architecture](#event-architecture--事件架構) for details.    
+詳細內容請參考 [事件架構](#event-architecture--事件架構) 。   
 
 ### Alarm Layer | Alarm 層   
 
@@ -148,8 +162,7 @@ Alarm records should always be persistent and survive system reboot.
 Alarm 紀錄應永久保存，並於系統重新開機後仍可查閱。   
 
 
-Examples include:    
-例如：   
+**Example | 範例**   
 
 ```
 PLC Communication Lost 
@@ -198,7 +211,7 @@ For resource-constrained MCU systems, the following storage policy is recommende
 | Layer<br>層級 | ALARM | Event | DIAG | TRACE |
 | ---- | ---- | ---- | ---- | ---- |
 | [Severity<br>事件等級](#event-severity-architecture--事件等級架構) | WARNING+ | INFO+ | DIAG | TRACE |
-| Storage<br>儲存 | Persistent Flash Storage<br>永久保存於 Flash | RAM Ring Buffer<br>Flash Journal | Runtime Console<br> | Console Only<br>僅輸出 Console<br> | 
+| Storage<br>儲存 | Persistent Flash Storage<br>永久保存於 Flash | [RAM Ring Buffer](#ring-buffer-design--ring-buffer-設計)<br>[Flash Journal](#flash-journal--flash-journal-設計) | Runtime Console<br>e.g. UART. | Console Only<br>僅 Console 輸出<br>e.g. stdout. | 
 | Note<br>備註 | -- | -- | Optional Event Generation<br>必要時轉換為 Event | Engineering Build Only<br>僅限 Engineering Build | 
 
 
@@ -210,15 +223,13 @@ The proposed layered diagnostic architecture separates development instrumentati
 Events represent meaningful system activities. Events should describe what happened rather than how the code executed internally.   
 Event 是系統內最基本的診斷單位。Event 應描述「發生了什麼事情」，而非程式如何執行。這類事件具有長期保存價值。  
 
-Examples include:   
-例如：  
+**Example | 範例**   
 
 ```
-Robot Started
-Move Completed
-PLC Timeout
-Alarm Raised
-Recipe Loaded
+10:10:01 MOVE_BEGIN
+10:10:02 WAIT_PLC_ACK
+10:10:04 PLC_TIMEOUT
+10:10:04 ALARM_RAISED
 ```
 
 ### Event Structure | 事件資料結構   
@@ -285,9 +296,13 @@ EVT_ALARM_RAISED = 4000
 
 ### Event Severity Architecture | 事件等級架構   
 
+| Severity<br>等級 | FATAL | ERROR | WARNING | INFO | 
+| --- | --- | --- | --- | --- |
+| Define<br>定義 | The system must be stopped<br>系統必須停止 | Functionality failed<br>功能失敗 | Potential risks<br>可能有風險 | Important event<br>重要事件 | 
+| Example<br>範例 | Config Corrupted<br>Schema Mismatch | Robot Timeout<br>PLC Disconnected | Memory > 80%<br>Disk > 90% | Service Started<br>Recipe Loaded |
+
 Please refer to the [Priority](../Priority.md) for details.    
 詳細內容請參考 [重要性權重](../Priority.md) 。   
-
 
 ### Event Source Definition | 事件來源定義  
 
@@ -313,8 +328,7 @@ Field engineers can dynamically increase diagnostic verbosity during troubleshoo
 
 ### Global Log Control | 全域日誌控制
 
-**Example**:   
-範例：   
+**Example | 範例**   
 
 ```
 robot_cli log set INFO
@@ -325,9 +339,13 @@ All modules immediately switch to INFO mode.
 
 ### Module-Specific Log Control | 模組級別日誌控制   
 
-**Example**:   
-範例：   
+**Example | 範例**   
 
+```
+robot_cli log set TRACE motion
+robot_cli log set DEBUG plc
+robot_cli log set INFO vision
+```
 ```
 robot_cli log set DIAG robot
 ```
@@ -340,8 +358,7 @@ Only the Robot module enters DIAG (Diagnostic) mode.
 The framework may support automatic timeout and restoration.   
 系統建議支援自動恢復機制。   
 
-**Example**:   
-例如：   
+**Example | 範例**   
 
 ```
 robot_cli log set DIAG robot 600
@@ -355,7 +372,7 @@ The setting remains active for 600 seconds before automatically reverting.
 All log-level changes shall themselves be recorded as events.   
 所有日誌等級變更都應記錄至 Event Buffer。   
 
-例如：
+**Example | 範例**   
 
 ```
 LOG_LEVEL_CHANGED
@@ -377,32 +394,133 @@ This ensures that the latest events surrounding a failure are always preserved.
 
 ### ISR and Task Safety Design | ISR 與 Task 安全設計   
 
-Direct sharing of a single ring buffer among multiple ISRs and tasks introduces synchronization complexity and timing uncertainty.   
-若 ISR 與多個 Task 共用同一個 Ring Buffer，將增加同步複雜度與即時性風險。  
+In a typical MCU-based controller, events may originate from multiple execution contexts simultaneously. These contexts commonly include interrupt service routines (ISR), application tasks, communication stacks, device drivers, and background services.  
+在 MCU 控制器中，事件來源通常不只來自單一執行脈絡，而可能同時來自中斷服務程式（ISR）、應用程式 Task、通訊協定堆疊、裝置驅動程式以及背景服務。   
 
-The recommended architecture separates ISR producers from task producers.   
-建議採用分層架構：  
+A direct shared-access design may introduce race conditions, synchronization overhead, timing uncertainty, and increased interrupt latency. Such behavior is particularly undesirable in real-time control systems where deterministic execution is required.  
+若所有執行脈絡直接共用同一個 Event Buffer，容易產生競爭條件（Race Condition）、同步成本增加、執行時序不確定以及中斷延遲增加等問題。對於重視即時性的控制系統而言，這些問題都可能影響系統穩定性與控制精度。   
 
+To reduce complexity and improve system predictability, the diagnostic framework should separate ISR-generated events from task-generated events.  
+因此，本設計建議將 ISR 事件與 Task 事件分開管理。   
+
+The recommended architecture is shown below:  
+建議架構如下：   
+
+![Ring Buffer](../img/ring-buffer.svg)   
+
+Under this architecture, ISR routines only post lightweight event records into the ISR Ring Buffer and immediately return control to the processor. More expensive operations such as event formatting, event translation, flash writing, and diagnostic reporting are deferred to background tasks.   
+在此架構下，ISR 僅負責快速建立事件紀錄並寫入 ISR Ring Buffer，完成後立即離開中斷服務程序。事件格式化、事件轉換、Flash 寫入及診斷輸出等較耗費資源的工作，則由背景 Task 負責處理。
+
+This approach minimizes interrupt latency and helps maintain deterministic system behavior.   
+此設計可有效降低中斷執行時間，並確保系統維持可預測且穩定的即時行為。   
+
+**ISR Event Example | ISR Event 範例**  
 ```
-ISR Ring Buffer
-        ↓
-Event Dispatcher
-        ↓
-Task Ring Buffer
-        ↓
-Flash Journal
+event_post_isr(
+    MOD_PLC,
+    EVT_TIMEOUT,
+    timeout_ms,
+    0);
 ```
 
-This design eliminates contention and minimizes ISR execution time.  
-ISR 僅負責快速寫入事件，而後續整合與儲存工作由背景 Task 處理，以降低中斷延遲。  
+**Task Event Example | Task Event 範例**  
+```
+event_post(
+    MOD_ROBOT,
+    EVT_MOVE_BEGIN,
+    slot,
+    port);
+```
+
 
 ### Lock-Free Buffer Strategy | 無鎖定 Buffer 策略   
 
-The framework prefers lock-free communication mechanisms over mutex-based synchronization.   
-本架構優先採用 Lock-Free 設計，而非 Mutex 或 Semaphore 同步。  
+The diagnostic framework should avoid mutexes and semaphores whenever possible. Although traditional locking mechanisms provide thread safety, they may introduce blocking behavior, priority inversion, timing jitter, and unnecessary context switching.   
+本診斷框架建議盡可能避免使用 Mutex 或 Semaphore 等同步機制。  
+雖然傳統鎖定機制能夠提供執行緒安全保護，但同時也會帶來阻塞（Blocking）、優先權反轉（Priority Inversion）、執行時序抖動（Jitter）以及額外的 Context Switch 成本。   
 
-Single Producer Single Consumer (SPSC) ring buffers should be used whenever possible to eliminate locking overhead and reduce real-time jitter.   
-若符合 Single Producer Single Consumer 條件，建議直接使用 SPSC Ring Buffer，以降低控制迴圈抖動（Jitter）並提升即時性能。   
+For event recording, a lock-free design is generally preferred.   
+對於事件記錄系統而言，較建議採用 Lock-Free 設計。   
+
+The recommended implementation uses a Single Producer Single Consumer (SPSC) Ring Buffer whenever possible.   
+在大多數情況下，建議使用 Single Producer Single Consumer（SPSC）Ring Buffer。  
+
+Under the SPSC model:   
+在 SPSC 架構中：   
+
+* Producer updates only the head pointer.  
+Producer 只修改 Head Pointer。
+* Consumer updates only the tail pointer.  
+Consumer 只修改 Tail Pointer。
+* No shared ownership of indices exists.  
+雙方不會同時修改同一個索引值。  
+* No mutex is required.  
+不需要 Mutex 保護。  
+
+Conceptually:  
+概念如下：  
+
+![Lock-Free Buffer](../img/lock-free-buffer.svg)   
+
+
+Because each side modifies only one pointer, synchronization overhead is eliminated.  
+由於 Producer 與 Consumer 各自只負責維護單一指標，因此幾乎不需要同步成本。  
+
+**Ring Buffer Structure | Ring Buffer 結構**   
+```
+typedef struct
+{
+    volatile uint32_t head;
+    volatile uint32_t tail;
+
+    event_t events[EVENT_BUF_SIZE];
+
+} event_ring_t;
+```
+
+**Overwrite Strategy | 覆蓋模式**  
+
+For diagnostic systems, dropping new events is usually less desirable than discarding old events.  
+對診斷系統而言，通常較不希望遺失最新事件。   
+
+Therefore, overwrite mode is recommended.  
+因此建議採用覆蓋模式。   
+
+Example:      
+例如：   
+```
+if (next == rb->tail)
+{
+    rb->tail =
+        (rb->tail + 1) %
+        EVENT_BUF_SIZE;
+}
+```
+
+This ensures that the system always preserves the most recent events surrounding a fault condition.  
+當 Buffer 已滿時，自動移除最舊事件，以保留最新事件資訊。   
+此設計可以確保系統在異常發生時，仍保有最近一段時間的重要歷程。   
+
+**Why Lock-Free Design is Recommended | 為何建議採用 Lock-Free 設計**   
+
+Lock-free event buffers provide several advantages:  
+Lock-Free Event Buffer 可帶來以下優點：   
+
+* No mutex overhead.   
+不需要 Mutex。   
+* No semaphore latency.   
+不需要 Semaphore。   
+* Minimal ISR execution time.   
+降低 ISR 執行時間。   
+* Reduced scheduling jitter.   
+減少排程抖動。   
+* Improved real-time determinism.   
+提升系統即時性。   
+* Higher system scalability.   
+提升系統可擴充性。   
+
+These benefits are particularly valuable in robot controllers, motion controllers, PLC gateways, and equipment automation systems where predictable execution timing is critical.   
+對於 Robot Controller、Motion Controller、PLC Gateway 以及各類設備控制器而言，由於系統對執行時序穩定性有高度要求，因此 Lock-Free Ring Buffer 通常是較佳的實作方式。   
 
 ## Flash Journal | Flash Journal 設計   
 

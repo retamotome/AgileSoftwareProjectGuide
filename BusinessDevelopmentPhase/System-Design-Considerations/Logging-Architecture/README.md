@@ -420,7 +420,7 @@ Provide fast log querying, filtering, correlation
 * Service-specific logs  
 特定服務的日誌  
 * Diagnostic-based debugging  
-基於追蹤的調試  
+基於除錯的診斷    
 
 
 ## Dashboard Phase (Visualization & Monitoring) | 儀表板階段（視覺化與監控）  

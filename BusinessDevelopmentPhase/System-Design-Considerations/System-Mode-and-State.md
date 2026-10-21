@@ -65,7 +65,7 @@ Common modes include:
     | Mode Name 模式名稱              | Debugging Mode 偵錯模式         | Troubleshooting Mode 故障排除模式        | 
     | Bug Reproduction 缺陷重現       | Off-site 異地           | On-site 現場                     | 
     | Logic Verification 邏輯驗證     | Off-site　異地            | On-site 現場                     | 
-    | Logging Level 日誌等級          | Trace 追蹤              | Diagnostic 診斷                       | 
+    | Logging Level 日誌等級          | [Trace 追蹤](../System-Design-Considerations/Logging-Architecture/MCUDiagnosticFramework.md)              | [Diagnostic 診斷](../System-Design-Considerations/Logging-Architecture/MCUDiagnosticFramework.md)                       | 
     | Breakpoints/Step Exec 斷點/單步執行  | Yes 可行                | No 不可行                          | 
     | Diagnostics 診斷            | Manual 手動             | Utilities with product 產品自備工具      | 
 

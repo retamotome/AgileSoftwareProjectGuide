@@ -49,16 +49,13 @@ There is **no** universal system architecture that fits all scenarios. In realit
 Troubleshooting is never easy, often because "ease of troubleshooting" is rarely considered during the requirement analysis phase. Software engineering is not just about processes, procedures, management, and quality assurance—it also provides mechanisms and methods to build systems that are easier to troubleshoot, especially when issues occur and logs are missing.   
 除錯與排障向來不容易，常見原因是「排錯便利性」這類需求在需求分析階段往往未被充分列入考量。軟體工程除了流程、程序、管理與品質保證外，也應提供讓系統在遇到問題或缺乏日誌時仍能較容易排查的機制與作法。  
 
-### Logging Architecture | 日誌架構設計
-Please refer to the:  
-詳細內容請參考：  
+### Diagnostic Framework | 診斷框架設計
+Please refer to the [MCU Diagnostic Framework Design Specification](./Logging-Architecture/MCUDiagnosticFramework.md) for details.  
+詳細內容請參考 [MCU 診斷框架設計規格書](./Logging-Architecture/MCUDiagnosticFramework.md)。  
 
-* [Logging Architecture](./Logging-Architecture/README.md),   
- [日誌架構設計](./Logging-Architecture/README.md)，      
-* [Audit Log and System Log](./Logging-Architecture/AuditLog-SystemLog.md) and    
- [稽核日誌 與 系統日誌](./Logging-Architecture/AuditLog-SystemLog.md) 以及    
-* [MCU Diagnostic Framework Design Specification](./Logging-Architecture/MCUDiagnosticFramework.md) for details.   
-[MCU 診斷框架設計規格書](./Logging-Architecture/MCUDiagnosticFramework.md)。  
+### Logging Architecture | 日誌架構設計
+Please refer to the [Logging Architecture](./Logging-Architecture/README.md) and [Audit Log and System Log](./Logging-Architecture/AuditLog-SystemLog.md) for details.   
+詳細內容請參考 [日誌架構設計](./Logging-Architecture/README.md) 以及 [稽核日誌 與 系統日誌](./Logging-Architecture/AuditLog-SystemLog.md)。     
 
 ### Resource Usage | 資源使用  
 
