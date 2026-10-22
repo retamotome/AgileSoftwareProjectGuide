@@ -8,14 +8,14 @@
 
 
 This guide defines a **multi-layer health monitoring architecture** for non-containerized systems, ensuring reliability across **process, logic, and system levels**.  
-本指南定義一個**多層式健康監控架構**，適用於非容器化系統，確保在**程序、邏輯與系統層級**的可靠性。
+本指南定義一個**多層式健康監控架構**，適用於非容器化系統，確保在**行程、邏輯與系統層級**的可靠性。
 
 
 
 **Key Concepts｜關鍵概念**
 
 * Monitoring must go beyond “process alive”  
-  監控必須超越「程序仍在執行」
+  監控必須超越「行程仍在執行」
 
 * Coverage includes｜監控範圍包含：
 
@@ -49,7 +49,7 @@ This guide defines a **multi-layer health monitoring architecture** for non-cont
 **Example｜範例**
 
 A robot controller process：  
-機器人控制程序：
+機器人控制行程：
 
 * Running → OK at Layer 1  
   運行中 → 第1層判定正常
@@ -62,10 +62,10 @@ A robot controller process：
 
 
 ## Recommended Monitoring Layers｜建議監控層級
-### Layer 1 – Process Supervision｜第1層 – 程序監控
+### Layer 1 – Process Supervision｜第1層 – 行程監控
 
 Ensures **process availability** through automatic restart and crash detection.  
-透過自動重啟與崩潰偵測，確保**程序可用性**。
+透過自動重啟與崩潰偵測，確保**行程可用性**。
 
 
 
@@ -74,11 +74,11 @@ Ensures **process availability** through automatic restart and crash detection.
 * Tools｜工具
 
   * `systemd`
-  * Custom supervisor｜自訂監控程序
+  * Custom supervisor｜自訂監控行程
 
 * Detectable failures｜可偵測的錯誤
 
-  * Process exit｜程序結束
+  * Process exit｜行程結束
   * Segmentation fault｜記憶體錯誤
   * Watchdog timeout｜看門狗逾時
 
@@ -105,7 +105,7 @@ WatchdogSec=10
 
 ```
 IF process exits → restart
-程序結束 → 重啟
+行程結束 → 重啟
 
 IF watchdog timeout → force restart
 Watchdog 逾時 → 強制重啟
@@ -118,7 +118,7 @@ Watchdog 逾時 → 強制重啟
 * This is the **first line of defense**  
   這是**第一道防線**
 * Covers **process-level failures only**  
-  僅涵蓋**程序層級錯誤**
+  僅涵蓋**行程層級錯誤**
 
 
 
@@ -306,7 +306,7 @@ Acts as the **decision-making core**, coordinating all monitoring layers.
 
 * Aggregates｜聚合
 
-  * Process state｜程序狀態
+  * Process state｜行程狀態
   * Heartbeat｜心跳
   * Functional health｜功能檢查
   * Resource metrics｜資源指標
@@ -341,7 +341,7 @@ IF overload → degrade_service
 
 | Layer<br>層級   | Tool<br>工具             |
 | ------------ |  -------------- |
-| Supervisor<br>程序監控 | systemd|
+| Supervisor<br>行程監控 | systemd|
 | Monitoring<br>資源監控 | netdata  |
 | Health check<br>健康檢查 | custom API / IPC<br>自訂 API / IPC   |
 | Watchdog<br>中央監控 | systemd / daemon<br>systemd / 自訂服務 |
@@ -360,7 +360,7 @@ Each layer is responsible for a specific failure class, ensuring **no blind spot
 
 | Failure<br>故障 | Layer<br>層級   | Action<br>動作   |
 | --- | --- | ---|
-| Process crash<br>程序崩潰        | → L1 | → Restart<br>重啟 |  
+| Process crash<br>行程崩潰        | → L1 | → Restart<br>重啟 |  
 | Deadlock<br>死鎖            | → L2 | → Restart<br>重啟 |
 | Functional failure<br>功能異常 |  → L3 | → Restart / isolate<br>重啟 / 隔離 |
 | Resource exhaustion<br>資源耗盡 |  → L4 | → Throttle / restart<br>降載 / 重啟 |

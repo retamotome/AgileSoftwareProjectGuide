@@ -11,14 +11,14 @@
 
 ### Audit Log Overview | 稽核日誌概述
 Audit logs are not just for developer debugging—they primarily ensure traceability, accountability, and help users troubleshoot issues efficiently. Clear and user-friendly logs improve both user experience and system maintainability.  
-稽核日誌不僅用於開發者除錯，其核心目的在於確保可追溯性與責任歸屬，並協助使用者有效排除問題。清晰且易於理解的日誌能提升使用者體驗與系統可維護性。  
+稽核日誌不僅用於開發者除錯，其核心目的在於確保可追溯性與責任歸屬，並協助使用者有效排除問題。清晰且易於瞭解的日誌能提升使用者體驗與系統可維護性。  
 
 ### Event Content | 日誌內容
 Each log entry must clearly describe who did what, when, where, and the result. A standardized structure (e.g., actor, action, target, status, timestamp, source, correlation ID) ensures effective traceability and root cause analysis.  
 每筆日誌需清楚記錄「誰、在何時何地、執行了什麼操作，以及結果為何」。透過標準化欄位（如使用者、操作、目標、狀態、時間、來源與關聯識別碼），可有效支援追蹤與根因分析。   
 
 Logs should define severity levels (INFO, WARNING, ERROR, CRITICAL) and use clear, human-readable language. Avoid excessive technical jargon and provide actionable guidance when possible.  
-日誌應定義嚴重等級（資訊、警告、錯誤、嚴重），並使用易於理解的文字，避免過多技術術語，並在可能時提供可行的解決建議。   
+日誌應定義嚴重等級（資訊、警告、錯誤、嚴重），並使用易於瞭解的文字，避免過多技術術語，並在可能時提供可行的解決建議。   
 
 #### Timestamp | 時間戳記
 Accurate timestamps are essential and should be synchronized using trusted sources such as NTP. For offline systems, solutions like RTC, GPS, local NTP servers, or hybrid logging help ensure long-term reliability of time data.  

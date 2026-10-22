@@ -309,6 +309,8 @@ Please refer to the [Priority](../Priority.md) for details.
 The source field records the origin of an event.  
 Source 用於記錄事件來源。   
 
+**Example | 範例**   
+
 ```
 SRC_ISR
 SRC_TASK
@@ -409,7 +411,7 @@ The recommended architecture is shown below:
 ![Ring Buffer](../img/ring-buffer.svg)   
 
 Under this architecture, ISR routines only post lightweight event records into the ISR Ring Buffer and immediately return control to the processor. More expensive operations such as event formatting, event translation, flash writing, and diagnostic reporting are deferred to background tasks.   
-在此架構下，ISR 僅負責快速建立事件紀錄並寫入 ISR Ring Buffer，完成後立即離開中斷服務程序。事件格式化、事件轉換、Flash 寫入及診斷輸出等較耗費資源的工作，則由背景 Task 負責處理。
+在此架構下，ISR 僅負責快速建立事件紀錄並寫入 ISR Ring Buffer，完成後立即離開中斷服務行程。事件格式化、事件轉換、Flash 寫入及診斷輸出等較耗費資源的工作，則由背景 Task 負責處理。
 
 This approach minimizes interrupt latency and helps maintain deterministic system behavior.   
 此設計可有效降低中斷執行時間，並確保系統維持可預測且穩定的即時行為。   
@@ -486,8 +488,8 @@ For diagnostic systems, dropping new events is usually less desirable than disca
 Therefore, overwrite mode is recommended.  
 因此建議採用覆蓋模式。   
 
-Example:      
-例如：   
+**Example | 範例**   
+
 ```
 if (next == rb->tail)
 {
@@ -524,28 +526,279 @@ These benefits are particularly valuable in robot controllers, motion controller
 
 ## Flash Journal | Flash Journal 設計   
 
-Events requiring long-term retention shall be periodically flushed into Flash Journal storage.   
-需要長期保存的事件應由背景 Task 定期寫入 Flash Journal。   
+The Flash Journal subsystem provides persistent storage for diagnostic events and alarms that must survive system restart, firmware update, or unexpected power loss.  
+Flash Journal 子系統負責保存需要跨越重新開機、韌體更新及非預期斷電後仍可保留的重要事件與異常紀錄。    
 
-The Flash Journal shall implement append-only behavior.   
-Flash Journal 建議採用 Append-Only 模式，以降低 Flash 磨損。   
+Unlike RAM-based Event Ring Buffers, which only preserve recent runtime activities, Flash Journal provides long-term event retention and historical diagnostics. The journal stores event records in a sequential append-only format and serves as the primary source for post-failure analysis, field troubleshooting, and maintenance investigations.   
+與僅保存近期執行紀錄的 Event Ring Buffer 不同，Flash Journal 提供長期事件保存能力，並作為故障分析、現場維護、異常追溯及產品診斷的主要資料來源。   
 
-### Page Structure | Flash 頁面結構   
+To maximize Flash lifetime and system reliability, the Flash Journal subsystem shall support:  
+為提升系統可靠度並延長 Flash 使用壽命，Flash Journal 應支援：  
+
+* Append-only storage   
+Append-Only 寫入模式   
+* Page-level CRC protection   
+頁面 CRC 保護   
+* Event-level CRC protection   
+Event CRC 保護   
+* Power-loss recovery   
+掉電復原機制   
+* Bad page management   
+壞頁管理   
+* Wear leveling
+* Boot-time journal reconstruction   
+開機重建機制   
+* Event export and diagnostic dump   
+Event 匯出與診斷分析   
+
+The Flash Journal shall never be accessed directly by application modules. All access shall be managed through the Event Manager to ensure data consistency and recovery integrity.   
+所有 Flash Journal 存取皆應透過 Event Manager 統一管理，應用程式模組不得直接存取 Flash Journal，以避免資料一致性問題與復原機制失效。   
+
+### Design Objectives | 設計目標   
+
+The Flash Journal subsystem is designed to satisfy the following requirements:   
+Flash Journal 的主要設計目標如下：   
+
+* Preserve critical event history across power cycles.   
+保存跨越重新開機後仍需保留的重要事件。   
+* Minimize Flash wear caused by high-frequency logging.   
+降低高頻事件造成的 Flash 磨損。   
+* Maintain data integrity during unexpected power interruption.   
+確保非預期掉電時資料仍具完整性。   
+* Support diagnostics over the entire product lifecycle.   
+支援產品生命週期內的故障分析需求。   
+* Provide efficient retrieval of historical event records.   
+提供高效率的歷史事件查詢與匯出能力。   
+
+### Flash Memory Layout | Flash 記憶體分配   
+
+The Flash Journal area shall be divided into multiple fixed-size pages.   
+Flash Journal 區域應切分為多個固定大小頁面（Page）。   
+
+**Example | 範例**   
+
+```
+Flash Journal Area
+
++--------+
+| Page 0 |
++--------+
++--------+
+| Page 1 |
++--------+
++--------+
+| Page 2 |
++--------+
+...
++---------+
+| Page 63 |
++---------+
+```
+Pages are managed as a logical circular journal.   
+所有頁面共同組成一個循環式 Journal。   
+
+### Append-Only Strategy | Append-Only 策略   
+
+The Flash Journal shall use an append-only design.   
+Flash Journal 應採用 Append-Only 寫入方式。   
+
+New event records are always appended to the current active page. Existing records shall never be modified in place.   
+所有新事件皆附加於目前使用中的頁面尾端，不允許直接修改既有資料。   
+
+When the current page becomes full, a new page is allocated and subsequent events are written into the newly selected page.   
+當目前頁面已滿時，系統分配新的頁面繼續寫入。   
+
+**Example | 範例**   
+```
+Page0
+  ↓
+Page1
+  ↓
+Page2
+  ↓
+Page3
+```
+
+This design simplifies recovery and significantly reduces Flash wear.  
+此設計可大幅簡化復原流程，並降低 Flash 磨損風險。   
+
+### Journal Capacity Management | Journal 容量管理   
+
+The Flash Journal has finite storage capacity. When all available pages have been consumed, the system shall apply a predefined retention policy to determine how new events are stored.   
+Flash Journal 的儲存空間有限。當所有可用頁面皆已寫滿時，系統必須依據預先定義的資料保留策略（Retention Policy）決定後續事件的儲存方式。   
+
+The selected policy shall balance diagnostic value, storage availability, and flash endurance requirements.   
+選擇何種策略需考量：   
+
+* 診斷價值  
+* 可用儲存空間  
+* Flash 壽命  
+* 產品維護需求  
+
+When journal capacity is exhausted, the Event Journal shall operate in circular mode by reclaiming the oldest valid pages. Critical records such as FATAL events and safety-related alarms should be stored in a separate protected journal area to prevent accidental overwriting. This approach ensures continuous event recording while preserving the most valuable diagnostic information.   
+當 Journal 容量耗盡時，Event Journal 應採用循環式管理機制，自動回收最舊的有效頁面並重新使用。對於 FATAL 事件及安全相關 Alarm，則建議儲存於獨立的保護區域，避免被循環覆蓋。透過此設計，可同時兼顧持續記錄能力、Flash 使用效率及關鍵故障資訊保存需求。   
+
+### Page Header | 頁面標頭
+
+Each page shall begin with a page header.   
+每個 Flash Page 開頭皆應包含 Page Header。   
 
 ```
 typedef struct
 {
-    uint32_t magic;
-    uint32_t sequence;
-    uint32_t timestamp;
-
+    uint32_t magic;          // "EVNT"
+    uint32_t sequence;       // Page Sequence
+    uint32_t timestamp;      // First Event Timestamp
     uint16_t event_count;
-    uint16_t status;  // WRITING | VALID | BAD
-
+    uint16_t status;         // WRITING/VALID/BAD
+    uint32_t erase_count;    // Wear Leveling
     uint32_t crc32;
 
 } page_header_t;
 ```
+
+**Field Definitions | 欄位定義**   
+
+**magic**   
+
+The `magic` field identifies the page format and serves as the first validation mechanism during journal scanning and recovery operations. It allows the system to determine whether a Flash page contains a valid Event Journal record or uninitialized, corrupted, or unrelated data.  
+`magic` 欄位用於識別頁面格式，並作為 Journal 掃描與復原流程中的第一道驗證機制。透過 Magic Number，系統可判斷目前頁面是否屬於有效的 Event Journal 資料，或是尚未初始化、已損毀、或屬於其他用途的資料區塊。   
+
+During system startup, the Event Manager shall verify the magic value before processing any page content. If the magic value does not match the expected signature, the page shall be treated as invalid and excluded from journal reconstruction.  
+系統開機時，Event Manager 應優先驗證 Magic 值，只有符合預期格式的頁面才允許進一步解析。若 Magic 值不符，則該頁面應視為無效頁面並排除於 Journal 重建流程之外。   
+
+The magic value also provides an additional safeguard against incomplete writes caused by unexpected power loss.  
+此外，Magic Number 亦可協助識別因非預期掉電、寫入中斷或記憶體損毀所產生的異常資料。  
+
+Example | 範例   
+
+```
+#define EVENT_PAGE_MAGIC 0x45564E54
+```
+
+**sequence**   
+
+The `sequence` field records the logical write order of journal pages and provides the primary mechanism for determining page chronology.   
+`sequence` 欄位用於記錄 Journal 頁面的邏輯寫入順序，並作為判斷頁面新舊的重要依據。   
+
+Whenever a new page is allocated, its sequence number shall be incremented from the most recently committed page. During startup recovery, the page with the highest valid sequence number is considered the newest page in the journal.   
+每當系統分配新頁面時，Sequence 值應由上一個有效頁面持續遞增。系統重新開機後，可透過比較所有有效頁面的 Sequence 值，快速找出最新頁面與下一個可寫入頁面。   
+
+Unlike timestamps, sequence numbers are monotonically increasing and are not dependent on RTC availability, time synchronization, or clock accuracy. Therefore, journal reconstruction and recovery procedures should rely primarily on sequence numbers rather than timestamps when determining page order.   
+相較於 Timestamp，Sequence 不依賴 RTC、時間同步機制或系統時鐘，因此不會受到時鐘重設、RTC 電池失效或時間校正錯誤的影響。   
+因此，Flash Journal 的 Recovery 流程應優先依據 Sequence，而非 Timestamp，作為頁面排序與重建依據。  
+
+Example | 範例   
+
+```
+Page0 Sequence = 100
+Page1 Sequence = 101
+Page2 Sequence = 102
+```
+
+Recovery：
+```
+Latest Page = Page2
+Next Write Page = Page3
+```
+
+**timestamp**   
+
+The `timestamp` field records the timestamp of the first event stored within the page.  
+`timestamp` 欄位記錄該頁面第一筆事件的時間資訊。   
+
+This information is primarily intended for human-readable diagnostics, event analysis, timeline reconstruction, and maintenance investigations. It enables service engineers to correlate journal data with external system events, alarms, production logs, or operator activities.   
+此欄位主要用於事件分析、時間軸重建、故障調查以及維護記錄顯示。透過 Timestamp，工程師可將 Journal 內容與設備告警、生產紀錄或操作紀錄進行時間關聯分析。   
+
+Timestamp information should not be used as the primary ordering mechanism during journal recovery.   
+由於 Timestamp 可能受到 RTC 重設或時間校正影響，因此不建議作為 Journal Recovery 的主要排序依據。   
+
+Example | 範例   
+
+```
+Timestamp = 2026-10-21 09:31:05
+```
+
+**event_count**   
+
+The `event_count` field records the total number of valid event records contained within the page.   
+`event_count` 欄位記錄該頁面所包含的有效事件數量。   
+
+This value allows the Event Manager to determine page utilization, validate journal consistency, and accelerate event traversal during journal reconstruction and data export operations.    
+系統可利用此資訊快速判斷頁面使用狀況、驗證 Journal 完整性，並在重建索引、事件搜尋或資料匯出時提升處理效率。   
+
+**status**   
+
+The `status` field indicates the lifecycle state of a journal page.   
+`status` 欄位用於描述目前頁面的生命週期狀態。   
+
+The status value is used during startup recovery, power-loss recovery, and bad-page management.   
+該欄位將被應用於開機復原、掉電保護及壞頁管理等機制。   
+
+Supported values are:   
+支援狀態如下：   
+
+```
+WRITING
+VALID
+BAD
+```
+
+Where:  
+說明如下：   
+
+`WRITING` indicates that page programming is currently in progress.   
+`WRITING`：表示頁面正在寫入中，尚未完成。   
+
+`VALID` indicates that the page has been completely written and CRC verification has passed.   
+`VALID`：表示頁面寫入完成，且已通過 CRC 驗證。   
+
+`BAD` indicates that the page is permanently unusable due to corruption or Flash failure.   
+`BAD`：表示頁面已損毀或 Flash 發生異常，不得再次使用。   
+
+**erase_count**   
+
+The `erase_count` field records the cumulative erase cycles experienced by the page.   
+`erase_count` 欄位記錄該頁面的累積擦除次數。   
+
+This information is used by the Wear Leveling subsystem to distribute write and erase operations evenly across all journal pages. By tracking erase counts, the system can avoid repeatedly using the same Flash blocks and significantly extend overall Flash lifetime.   
+此資訊主要由 Wear Leveling 機制使用，以平均分配寫入與擦除操作，避免少數 Flash 區塊過度磨損，進而延長整體 Flash 使用壽命。   
+系統分配新頁面時，應優先選擇擦寫次數較少的頁面，以降低局部區域老化的風險。   
+
+**crc32** 
+
+The `crc32` field protects the integrity of the entire page and serves as the final validation mechanism during recovery operations.   
+`crc32` 欄位用於保護整個頁面的資料完整性，並作為 Recovery 流程中的最後一道驗證機制。   
+
+The CRC shall be calculated over the page header and all event records contained within the page. Any page failing CRC verification shall be considered corrupted and excluded from recovery.   
+CRC32 應涵蓋整個 Page Header 與所有 Event 資料。若頁面 CRC 驗證失敗，則代表資料可能遭受毀損或寫入不完整，系統應將該頁面視為無效資料。   
+
+Page-level CRC protection complements Event-level CRC protection to provide multi-layer data integrity verification.   
+Page CRC 與 Event CRC 共同構成雙層保護機制，可同時偵測單筆事件錯誤與整頁資料錯誤。   
+
+### Event Flush Policy | Event Flush 策略
+
+Events should not be written directly to Flash whenever they are generated.   
+事件產生時不應立即寫入 Flash。   
+
+Instead, events are first stored in RAM buffers and periodically flushed to Flash.   
+建議先保存於 RAM Buffer，再由背景 Task 定期寫入 Flash。   
+
+Typical flush conditions include:   
+建議 Flush 條件如下：   
+
+* Buffer occupancy exceeds 75%  
+Buffer 使用率超過 75%  
+* Periodic timer expiration  
+固定時間週期到達   
+* ERROR event occurrence  
+發生 ERROR 事件   
+* FATAL event occurrence  
+發生 FATAL 事件   
+* Controlled system shutdown  
+系統正常關機   
+
+如此可大幅降低 Flash 寫入頻率。
 
 ### CRC Protection | CRC 保護機制  
 
@@ -557,45 +810,48 @@ Event-level CRC16 protects [individual records](#event-structure--事件資料�
 第二層使用 CRC32 保護整個 Flash Page。  
 如此可同時偵測單筆事件損毀與整頁資料錯誤。   
 
-### Power Loss Recovery | 掉電復原機制   
+### Power Loss Recovery | 掉電復原   
 
-Event pages shall be committed using a two-phase write procedure.   
-系統應採用兩階段提交寫入流程。   
+To prevent incomplete page corruption caused by sudden power loss, all page writes shall follow a two-phase commit procedure.   
+為避免寫入過程中因突然斷電導致頁面損毀，所有頁面寫入皆應採用兩階段commit （Two-Phase Commit）。   
 
-**Step 1**  
+Write sequence:   
+寫入流程：   
+
 ```
 Status = WRITING
-```
-
-**Step 2**  
-
-寫入事件資料。  
-
-**Step 3**  
-
-計算 CRC32。
-
-**Step 4**  
-```
+      ↓
+Write Events
+寫入 Event
+      ↓
+Compute CRC
+計算 CRC32
+      ↓
 Status = VALID
 ```
+Only pages marked VALID shall be considered recoverable.  
+只有狀態為 VALID 的頁面才能於開機後使用。   
 
-Only pages marked VALID shall be considered trustworthy after reboot.   
-只有 VALID 頁面可於開機後載入。  
+### Boot Recovery | 開機復原   
 
-### Boot Recovery | 開機復原流程   
+During startup, the Event Manager shall scan all Flash pages and rebuild journal state.   
+系統開機時，Event Manager 應重新掃描所有 Journal 頁面，並重建事件索引。   
 
-During startup, each page is validated using:  
-開機時系統應依序驗證：   
+Validation order:   
+驗證順序：   
 
 ```
-Magic
-Status
-CRC
+Magic Check
+   ↓
+Status Check
+   ↓
+CRC Check
+   ↓
+Sequence Check
 ```
 
-Pages failing any validation check shall be discarded.   
-任一項失敗即視為無效頁面並直接忽略。   
+Only pages passing all validation checks shall be restored.   
+只有全部驗證通過的頁面才允許載入。   
 
 ### Bad Page Management | 壞頁管理   
 
@@ -604,8 +860,29 @@ Flash pages exhibiting erase failures, write failures, or ECC errors shall be ma
 
 ### Wear Leveling Strategy | 磨損分級策略   
 
-Each page maintains an erase counter. The allocator should prefer pages with lower erase counts to distribute wear evenly.   
-每個頁面應維護擦寫次數統計。系統應優先使用擦寫次數較低的頁面，以平均消耗 Flash 壽命。  
+Each page maintains an erase counter. The allocator should prefer pages with lower `erase_count` to distribute wear evenly.   
+每個頁面應維護擦寫次數統計。系統應優先使用 `erase_count`（擦寫次數）較低的頁面，以平均消耗 Flash 壽命。  
+
+### Event Export and Diagnostics | Event 匯出與診斷   
+
+The Flash Journal shall support exporting events in both human-readable and machine-readable formats.   
+Flash Journal 應支援事件匯出功能，以利現場維護及故障分析。   
+
+Supported formats include:   
+建議支援：   
+
+```
+Human Readable
+CSV
+Binary Dump
+```
+
+This capability enables field diagnostics and long-term failure analysis.  
+透過事件匯出機制，工程師可重建故障前後的完整事件歷程，並作為問題分析與改善依據。   
+
+Please refer to the [Dump Format](#dump-format--dump-格式) for details.    
+詳細內容請參考 [Dump 格式](#dump-format--dump-格式) 。   
+
 
 ## Conclusion | 結論  
 

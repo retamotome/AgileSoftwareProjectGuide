@@ -207,13 +207,13 @@ API 行為需：
 
 ## Database Security ｜ 資料庫安全  
 
-### Use Stored Procedures ｜ 使用預存程序
+### Use Stored Procedures ｜ 使用預存流程
 
 Use **stored procedures** for all database operations instead of embedding raw SQL queries or data access logic directly in application code.  
-所有資料庫操作應使用 **預存程序（Stored Procedures）** ，而非將原始 SQL 查詢或資料存取邏輯直接寫在應用程式中。  
+所有資料庫操作應使用 **預存流程（Stored Procedures）** ，而非將原始 SQL 查詢或資料存取邏輯直接寫在應用程式中。  
 
 Stored procedures help to:  
-預存程序有助於：  
+預存流程有助於：  
 
 * Enforce consistent access control  
   強制一致的存取控制機制  

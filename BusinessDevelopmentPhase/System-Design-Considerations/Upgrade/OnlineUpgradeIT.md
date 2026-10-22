@@ -6,7 +6,7 @@ Target Systems: Enterprise Applications, Cloud Services, SaaS Platforms, ERP, CR
 ## Purpose | 目的  
 
 This specification defines the standard requirements, validation procedures, deployment strategies, and rollback mechanisms for online software upgrades within enterprise IT environments.   
-本規格書定義企業 IT 系統於線上升級（Online Upgrade）期間之標準需求、驗證程序、部署策略及回復機制。   
+本規格書定義企業 IT 系統於線上升級（Online Upgrade）期間之標準需求、驗證流程、部署策略及回復機制。   
 
 The primary objective is to ensure continuous service availability while introducing software changes into production environments. Upgrade activities shall minimize business impact, avoid service interruption, preserve data integrity, and provide rapid recovery capabilities in the event of deployment failures.   
 線上升級的主要目標是在不中斷服務的前提下完成軟體更新，並將對業務運作的影響降至最低。升級過程必須確保系統持續提供服務、維持資料完整性，並於發生異常時能快速恢復正常運作。   
@@ -96,7 +96,7 @@ Backup mechanisms shall support:
 * Application version restoration | 應用程式版本還原
 
 Recovery procedures shall be regularly tested and documented.   
-所有復原程序均應定期驗證並建立文件。   
+所有復原流程均應定期驗證並建立文件。   
 
 ## Database Migration Strategy | 資料庫 Migration 策略   
 
@@ -151,7 +151,7 @@ Each service instance shall complete startup validation before receiving product
 Validation shall include:   
 驗證內容包括：   
 
-* Process startup verification | 程序啟動驗證   
+* Process startup verification | 行程啟動驗證   
 * Dependency connectivity verification | 相依服務連線驗證   
 * Health endpoint verification | Health Endpoint 驗證   
 * Configuration loading verification | 設定檔載入驗證   
@@ -289,7 +289,7 @@ The online upgrade shall be considered successful only when:
 未觸發任何回復條件。   
 
 If any acceptance criterion is not satisfied, the deployment shall be considered unsuccessful, and rollback procedures shall be initiated immediately.    
-若任一驗收標準未達成，則此次部署應判定為失敗，系統必須立即執行回復程序並切換回已驗證之穩定版本。    
+若任一驗收標準未達成，則此次部署應判定為失敗，系統必須立即執行回復流程並切換回已驗證之穩定版本。    
 
 ## Recommended Enterprise Deployment Flow | 建議企業級部署流程   
 

@@ -6,7 +6,7 @@ Target System: Industrial Automation Software / EFEM / Robot Controller / Equipm
 ## Purpose | 目的   
 
 This specification defines the standard validation process for offline software upgrades and patch deployments. The purpose of the validation process is to ensure that customer data, configuration files, software binaries, runtime dependencies, and hardware communication functions remain intact and operational after the upgrade.   
-本規格書定義離線軟體升級（Offline Upgrade）與修補程式（Patch）部署後的標準驗證程序。本驗證流程的目的在於確保系統升級後：
+本規格書定義離線軟體升級（Offline Upgrade）與修補程式（Patch）部署後的標準驗證流程。本驗證流程的目的在於確保系統升級後：
 
 * 客戶資料保持完整  
 * 設定檔保持正確  
@@ -303,7 +303,7 @@ After startup, the system shall perform health monitoring before proceeding to p
 Validation items include:   
 檢查項目包括：   
 
-* Process running status | 程序執行狀態   
+* Process running status | 行程執行狀態   
 * Heartbeat status | Heartbeat 狀態   
 * Communication status | 通訊狀態   
 * Memory usage | 記憶體使用量   
@@ -401,7 +401,7 @@ Offline Upgrade Validation Specification © 2026 by Jen Yuan Pan is licensed und
 離線升級驗證技術規格書 © 2026 作者 潘貞元（Reta Pan），採用 `Creative Commons 姓名標示－非商業性－相同方式分享 4.0 國際版` 授權。  
 
 For the complete license terms, rights and obligations, restrictions on use, and other applicable conditions, please refer to the [Full License Terms](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md). By using this work, you acknowledge that you have read, understood, and agree to comply with such terms.  
-詳細授權內容、權利義務、使用限制及其他相關條件，請參閱《[完整授權條款](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md)》。使用本文件即表示您已閱讀、理解並同意遵守該等條款。 
+詳細授權內容、權利義務、使用限制及其他相關條件，請參閱《[完整授權條款](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md)》。您使用本作品，即表示已充分閱讀、確已知悉並同意遵守該等條款與規定，並承認其具有法律約束力。 
 
 
 ---

@@ -66,7 +66,7 @@ When encountering uncertainties:
 - Avoid redundant inquiries, as it may be perceived as inefficiency.  
   避免重複提問，以免被視為效率不佳。  
 - Independently analyze the situation using methods like 5W1H. Focus on understanding the reasons behind decisions and non-decisions.  
-  請先以 5W1H 等方法獨立分析情境，重點理解「為何做／為何不做」的決策脈絡。  
+  請先以 5W1H 等方法獨立分析情境，重點瞭解「為何做／為何不做」的決策脈絡。  
 - Validate your conclusions by seeking insights from seasoned professionals only after thorough deliberation.  
   在充分思考後，再向資深同仁請益以驗證您的結論。  
 - When queried by leaders or supervisors, take the initiative to respond promptly, providing rationale for your answers and any counterpoints.  
@@ -75,7 +75,7 @@ When encountering uncertainties:
 #### Being Mindful of Your Assignments｜審慎看待您的指派工作  
   
 - Validate the accuracy of your code through unit testing. Avoid claiming readiness only to encounter multiple errors immediately after committing. Such actions can negatively impact your credibility.  
-  請以單元測試驗證程式碼正確性。避免宣稱已可上線，卻在提交後立即出現多項錯誤；此類情況將損及您的可信度。  
+  請以單元測試驗證程式碼正確性。避免宣稱已可上線，卻在commit 後立即出現多項錯誤；此類情況將損及您的可信度。  
 - Pay attention to pop-up notifications highlighting your invalid operations; they serve a purpose and should not be disregarded.  
   請留意系統對無效操作的跳出提醒；這些提醒有其目的，不應忽略。  
   
@@ -98,7 +98,7 @@ We assume you are already familiar with the essential duties and responsibilitie
 ### Baseline of Task Management｜任務管理基準  
 
 It is essential to understand that your tasks are your responsibility, and you are expected to manage them independently. While leaders or managers may provide reminders, they are not obligated to repeat instructions continuously.  
-請務必理解：您的任務由您負責，並應自主完成管理。雖然主管可能會提醒，但沒有義務持續重複交辦內容。  
+請務必瞭解：您的任務由您負責，並應自主完成管理。雖然主管可能會提醒，但沒有義務持續重複交辦內容。  
 
 #### Task Review｜任務檢視  
 
@@ -116,7 +116,7 @@ It is essential to understand that your tasks are your responsibility, and you a
 - Use Chinese language unless your English proficiency is precise and effective for all team members.  
   除非您的英文表達對所有團隊成員皆精準且有效，否則請使用中文。  
     - This applies to tasks, notes, source code submissions, and any other communication-related matters.  
-      此原則適用於 任務、紀錄、原始碼提交 與 其他所有溝通相關之事項。  
+      此原則適用於 任務、紀錄、原始碼commit  與 其他所有溝通相關之事項。  
 - When communicating with North American colleagues, it is essential to use English and utilize online utilities or AI tools to ensure the accuracy and clarity of your communication.  
   與北美同事溝通時，務必使用英文，並善用線上工具或 AI 工具確保訊息正確且清楚。  
   

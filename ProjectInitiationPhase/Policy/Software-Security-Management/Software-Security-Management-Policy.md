@@ -53,7 +53,7 @@ This policy applies to all activities related to software development, testing, 
   Software in use must provide security policies and privacy statements.
 * 優先選用具備國際資安認證之產品（如 ISO 27001、SOC 2）  
   Prefer products with international security certifications (e.g., ISO 27001, SOC 2).
-* 未列入核准清單之軟體，須完成正式審查與風險評估程序  
+* 未列入核准清單之軟體，須完成正式審查與風險評估流程  
   Software not on the approved list must undergo formal review and risk assessment.
 
 **ISO 控制對應（ISO Control Mapping）** 

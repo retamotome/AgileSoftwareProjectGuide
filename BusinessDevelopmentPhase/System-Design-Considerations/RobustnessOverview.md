@@ -1,5 +1,5 @@
 # From Error Handling to Robustness: Understanding Fault Tolerance, Resilience, and Graceful Degradation  
-從 Error Handling 到 Robustness：理解 Fault Tolerance、Resilience 與 Graceful Degradation   
+從 Error Handling 到 Robustness：瞭解 Fault Tolerance、Resilience 與 Graceful Degradation   
 
 ## Introduction | 前言   
 
@@ -15,7 +15,7 @@ Error Handling is the foundational mechanism by which a system detects, reports,
 Error Handling 是系統面對異常情況時最基礎的防護機制，其目的在於偵測錯誤、回報錯誤，並採取適當措施處理錯誤。透過良好的錯誤處理機制，系統可以避免因單一異常事件而產生不可預期的崩潰行為。    
 
 In a software application, examples of such errors include invalid input data, unavailable files, network disconnections, database timeouts, and communication failures with external services. The typical response involves logging the error, notifying operators or users, retrying the operation, or terminating the affected process in a controlled manner.    
-在軟體系統中，常見的錯誤包括資料格式不符、檔案不存在、資料庫超時、網路連線中斷，以及外部服務無法回應等情況。系統通常會透過記錄日誌、顯示錯誤訊息、重新嘗試執行或安全終止程序等方式來處理這些問題。    
+在軟體系統中，常見的錯誤包括資料格式不符、檔案不存在、資料庫超時、網路連線中斷，以及外部服務無法回應等情況。系統通常會透過記錄日誌、顯示錯誤訊息、重新嘗試執行或安全終止流程等方式來處理這些問題。    
 
 The essential characteristic of Error Handling is that the system is aware that something has gone wrong. However, Error Handling alone does not imply that the system can continue operating. In many cases, successful error handling still results in service interruption.    
 Error Handling 的核心特徵在於系統「知道自己出了問題」。然而，它並不保證系統能夠繼續運作。即使錯誤被正確捕捉與處理，服務仍可能因此中斷或停止。    
@@ -40,10 +40,10 @@ Whereas Fault Tolerance focuses on preventing interruptions, Resilience focuses 
 Fault Tolerance 著重於避免服務中斷，而 Resilience 則著重於系統的恢復能力。   
 
 A resilient system acknowledges that some failures are unavoidable and that not all failures can be masked through redundancy. Instead, the system is designed to detect failures, recover from them, rebuild state if necessary, and eventually return to normal operation.    
-具有韌性的系統承認故障無法完全避免，也承認並非所有故障都能透過備援機制隱藏起來。因此其設計重點在於故障發生後，系統能夠自動偵測問題、執行恢復程序、重新建立必要狀態，並最終回到正常運作狀態。    
+具有韌性的系統承認故障無法完全避免，也承認並非所有故障都能透過備援機制隱藏起來。因此其設計重點在於故障發生後，系統能夠自動偵測問題、執行恢復流程、重新建立必要狀態，並最終回到正常運作狀態。    
 
 In cloud-native architectures, a container crash may trigger an automatic restart. In industrial automation, a robot collision may require recovery procedures, operator intervention, recalibration, and state reconstruction before production can resume.    
-在雲端系統中，容器崩潰後可能由平台自動重新建立執行環境；在工業自動化環境中，機器人撞機後則可能需要經過復歸、重新校正以及狀態同步等程序，才能恢復生產。    
+在雲端系統中，容器崩潰後可能由平台自動重新建立執行環境；在工業自動化環境中，機器人撞機後則可能需要經過復歸、重新校正以及狀態同步等流程，才能恢復生產。    
 
 Unlike fault tolerance, resilience allows temporary disruption. Its success criterion is not uninterrupted operation but successful recovery.    
 與 Fault Tolerance 不同的是，Resilience 允許短暫中斷。其評估標準並非「是否完全不停機」，而是「是否能夠有效恢復」。    

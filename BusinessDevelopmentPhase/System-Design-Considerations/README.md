@@ -47,7 +47,7 @@ There is **no** universal system architecture that fits all scenarios. In realit
 ## Build a Trouble-Shootable System | 建置可排障的系統  
 
 Troubleshooting is never easy, often because "ease of troubleshooting" is rarely considered during the requirement analysis phase. Software engineering is not just about processes, procedures, management, and quality assurance—it also provides mechanisms and methods to build systems that are easier to troubleshoot, especially when issues occur and logs are missing.   
-除錯與排障向來不容易，常見原因是「排錯便利性」這類需求在需求分析階段往往未被充分列入考量。軟體工程除了流程、程序、管理與品質保證外，也應提供讓系統在遇到問題或缺乏日誌時仍能較容易排查的機制與作法。  
+除錯與排障向來不容易，常見原因是「排錯便利性」這類需求在需求分析階段往往未被充分列入考量。軟體工程除了流程、行程、管理與品質保證外，也應提供讓系統在遇到問題或缺乏日誌時仍能較容易排查的機制與作法。  
 
 ### Diagnostic Framework | 診斷框架設計
 Please refer to the [MCU Diagnostic Framework Design Specification](./Logging-Architecture/MCUDiagnosticFramework.md) for details.  
@@ -63,7 +63,7 @@ Do **not** assume logs will always be saved when errors occur—especially durin
 切勿假設在錯誤發生時日誌一定會被保存——尤其是在發生崩潰、斷電、段錯（segfault）或突然重啟等關鍵故障時。  
 
 Fortunately, Linux provides several mechanisms to capture system state (e.g., kernel dumps, memory dumps, process dumps) when a crash or segfault happens and there is no time to write logs.   
-幸運的是，Linux 提供多種機制在系統崩潰或段錯且無法即時寫入日誌時擷取系統狀態（例如核心傾印、記憶體傾印、程序傾印等）。  
+幸運的是，Linux 提供多種機制在系統崩潰或段錯且無法即時寫入日誌時擷取系統狀態（例如核心傾印、記憶體傾印、行程傾印等）。  
 
 Always ensure that **at least 30% of system resources** (CPU, memory, disk, etc.) **remain available**, and **implement timely dumps** when sudden failures occur.   
 務必確保至少保留 **30% 的系統資源**（CPU、記憶體、磁碟等）可用，並在突發故障時觸發及時的傾印機制。  
@@ -103,7 +103,7 @@ Please refer to the [System Health Monitoring](./Healthy-Monitoring/README.md) f
 
 ### Overview | 概述  
 Please refer to the [From Error Handling to Robustness: Understanding Fault Tolerance, Resilience, and Graceful Degradation](RobustnessOverview.md) for details.  
-詳細內容請參考 [從 Error Handling 到 Robustness：理解 Fault Tolerance、Resilience 與 Graceful Degradation](RobustnessOverview.md)。
+詳細內容請參考 [從 Error Handling 到 Robustness：瞭解 Fault Tolerance、Resilience 與 Graceful Degradation](RobustnessOverview.md)。
 
 ### Redundancy and Failover | 冗餘與故障切換  
 
@@ -156,14 +156,14 @@ Please refer to the [Android Virtual A/B Overview](https://source.android.com/do
 ### CPU Affinity | CPU 親和性  
 
 To prevent heavy processes from overwhelming shared CPU resources and starving other critical services, **CPU affinity should be carefully designed and enforced**.  
-為了避免高負載程序壓垮共享 CPU 資源並使其他關鍵服務資源不足，必須 **謹慎設計並強制執行 CPU 親和性**。  
+為了避免高負載行程壓垮共享 CPU 資源並使其他關鍵服務資源不足，必須 **謹慎設計並強制執行 CPU 親和性**。  
 
 * Assign CPU cores explicitly to high-load or real-time processes to ensure predictable performance.  
-  明確分配 CPU 核心給高負載或即時程序，以確保可預測的效能。  
+  明確分配 CPU 核心給高負載或即時行程，以確保可預測的效能。  
 * Isolate critical services from non-critical workloads to avoid resource contention.  
   將關鍵服務與非關鍵工作負載隔離，以避免資源競爭。  
 * Avoid unrestricted process scheduling, which may lead to CPU saturation, increased latency, or system stalls.  
-  避免不受限制的程序排程，因為這可能導致 CPU 飽和、延遲增加或系統停滯。  
+  避免不受限制的行程排程，因為這可能導致 CPU 飽和、延遲增加或系統停滯。  
 * Consider NUMA awareness (if applicable) to further optimize performance on multi-socket systems.  
   在多插槽系統中，若適用，應考慮 NUMA 感知以進一步最佳化效能。  
 

@@ -49,7 +49,7 @@ Please refer to the [Containerized System Health Monitoring Design Guide](./Cont
 
 | Aspect<br>面向   | Native System<br>原生系統         | Container System<br>容器化系統                 |
 | ---------------- | --------------------- | ------------------- |
-| Process control<br>程序控制 | systemd| runtime / orchestrator<br>執行環境 / 編排器            |
+| Process control<br>行程控制 | systemd| runtime / orchestrator<br>執行環境 / 編排器            |
 | Health detection<br>健康偵測 | internal + watchdog<br>內部監測 + 看門狗   | probe + API<br>探針 + API              |
 | Restart<br>重啟機制 | systemd | restart policy<br>重啟策略                  |
 | Monitoring<br>監控方式 | netdata / custom<br>netdata / 自訂 | cAdvisor / Prometheus|

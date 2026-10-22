@@ -28,7 +28,7 @@ An offline upgrade strategy assumes that the target module is completely stopped
 離線升級策略假設目標模組於升級前完全停止運作。在升級期間，系統不允許資料庫更新、設定檔修改或使用者操作，因此可建立一個受到完整控制的驗證環境。  
 
 Because the data is expected to remain unchanged during the upgrade window, file integrity verification becomes highly effective. Techniques such as manifest comparison, checksum validation, configuration boundary verification, dry-run execution, and health checks are well suited to this model. Any unexpected modification to user data, configuration files, calibration data, or teaching data can be immediately detected and corrected through rollback procedures.   
-由於系統資料於升級期間理論上不會發生變化，因此檔案完整性驗證具有很高的可信度。Manifest 比對、Checksum 驗證、設定值邊界檢查、Dry Run 測試以及 Health Check 等技術，都非常適合應用於此類情境。任何未預期的資料變更、Recipe 異動、校正資料改變或設定檔損毀，都能夠立即被偵測並透過 Rollback 程序恢復。   
+由於系統資料於升級期間理論上不會發生變化，因此檔案完整性驗證具有很高的可信度。Manifest 比對、Checksum 驗證、設定值邊界檢查、Dry Run 測試以及 Health Check 等技術，都非常適合應用於此類情境。任何未預期的資料變更、Recipe 異動、校正資料改變或設定檔損毀，都能夠立即被偵測並透過 Rollback 流程恢復。   
 
 Offline upgrades prioritize predictability and safety over deployment speed. This approach is commonly adopted for robot motion controllers, PLC communication modules, safety-related services, machine control systems, and semiconductor equipment controllers.  
 離線升級的核心目標是確保系統行為可預測且安全可靠，而非追求最快速的部署效率。因此，機器人控制器、PLC 通訊模組、安全控制模組、設備控制核心以及半導體設備控制系統，通常都採用此類策略。   

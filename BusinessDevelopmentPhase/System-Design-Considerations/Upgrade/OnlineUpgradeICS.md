@@ -6,7 +6,7 @@ Target System: Industrial Automation Software / EFEM / Robot Controller / Equipm
 ## Purpose | 目的   
 
 This specification defines the validation requirements and operational procedures for online upgrade deployments. The primary objective is to ensure service continuity, data integrity, system availability, and safe rollback capability while software upgrades are performed without shutting down the entire system.   
-本規格書定義系統於線上升級（Online Upgrade）期間之驗證需求與作業程序。  
+本規格書定義系統於線上升級（Online Upgrade）期間之驗證需求與作業流程。  
 其主要目的在於確保系統在不完全停機的情況下執行升級作業時，仍能維持：  
 
 * 服務持續運作  
@@ -374,7 +374,7 @@ The online upgrade shall be considered successful only when:
 未觸發任何回復條件。    
 
 Failure to satisfy any acceptance criterion shall result in an immediate rollback or traffic switchback to the previously validated version. The system shall restore normal service while preserving data consistency and operational continuity.    
-若任一驗收標準未通過，系統應立即執行回復程序或流量切換（Traffic Switchback），將服務切換回先前已驗證通過之版本，並確保資料一致性與系統持續可運作。   
+若任一驗收標準未通過，系統應立即執行回復流程或流量切換（Traffic Switchback），將服務切換回先前已驗證通過之版本，並確保資料一致性與系統持續可運作。   
 
 ---
 
@@ -385,7 +385,7 @@ Online Upgrade Validation Specification © 2026 by Jen Yuan Pan is licensed unde
 線上升級驗證技術規格書 © 2026 作者 潘貞元（Reta Pan），採用 `Creative Commons 姓名標示－非商業性－相同方式分享 4.0 國際版` 授權。  
 
 For the complete license terms, rights and obligations, restrictions on use, and other applicable conditions, please refer to the [Full License Terms](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md). By using this work, you acknowledge that you have read, understood, and agree to comply with such terms.  
-詳細授權內容、權利義務、使用限制及其他相關條件，請參閱《[完整授權條款](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md)》。使用本文件即表示您已閱讀、理解並同意遵守該等條款。 
+詳細授權內容、權利義務、使用限制及其他相關條件，請參閱《[完整授權條款](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md)》。您使用本作品，即表示已充分閱讀、確已知悉並同意遵守該等條款與規定，並承認其具有法律約束力。 
 
 
 ---

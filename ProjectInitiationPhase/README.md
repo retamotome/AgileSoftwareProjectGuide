@@ -61,7 +61,7 @@ This video introduces:
 * **ARCI(RACI) Models** — clarifying roles and responsibilities across different team maturity stages.  
   **ARCI（或 RACI）模型** — 釐清不同成熟度階段的角色與責任。
 * **Cynefin Framework** — five situational domains to help managers understand complexity, assign tasks effectively, and match team capabilities to context.  
-  **Cynefin 架構** — 五種情境領域，協助管理者理解複雜度、有效分派任務並匹配團隊能力。
+  **Cynefin 架構** — 五種情境領域，協助管理者瞭解複雜度、有效分派任務並匹配團隊能力。
 
 
 ### Agile Team Maturity｜敏捷團隊成熟度
