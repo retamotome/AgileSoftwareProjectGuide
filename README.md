@@ -20,7 +20,7 @@ A concise, phase-based guide for planning and executing Agile software projects.
 
 ## Video｜教學影片  
 
-| Video | Description | 
+| Video 影片 | Description 說明 | 
 |:-----|:-------|
 | <a href="https://github.com/retamotome/SelfDirectedTraining" target="_blank"><image src="https://github.com/retamotome/SelfDirectedTraining/raw/main/img/SelfDirectedTraining.png" width="200"></a> | [Reta's Self-Directed Learning Guide｜Reta 的自主學習指南](https://github.com/retamotome/SelfDirectedTraining) <br>This repository contains resources and guidance for self-directed learning, focusing on practical applications and real-world scenarios.<br>本儲存庫包含自主學習的資源與指南，專注於實務應用與現實情境。<br> ☑️ English ☑️ Chinese  |
 
@@ -43,7 +43,7 @@ For an introductory presentation, see:
 * Objective: define the project vision, roles, and a high-level roadmap.  
   目標：定義專案願景、角色分工及高階發展藍圖。
 
-| Guidance | Description | 
+| Guidance 指南 | Description 說明 | 
 |:-----|:-------|
 | <a href="./ProjectInitiationPhase/README.md" target="_blank"><image src="./img/ProjectInitiationPhase.png" width="200"></a> | [Project Initiation Phase｜專案啟動階段](./ProjectInitiationPhase/README.md) <br>TThe initiation phase establishes the foundation for a successful Agile software project. Key activities include defining the project vision, assembling the team, and setting up initial plans and practices.<br>啟動階段為成功的敏捷軟體專案奠定基礎。主要活動包括定義專案願景、組建團隊，以及建立初始計畫與實務運作方式。 |
 
@@ -61,7 +61,7 @@ For an introductory presentation, see:
 * This phase intentionally **excludes implementation-level technical details**.  
   此階段刻意**不包含實作層級的技術細節**。
 
-| Guidance | Description | 
+| Guidance 指南 | Description 說明 | 
 |:-----|:-------|
 | <a href="./BusinessDevelopmentPhase/README.md" target="_blank"><image src="./img/BusinessDevelopmentPhase.png" width="200"></a> | [Business Development Phase｜商業(需求)發展階段](./BusinessDevelopmentPhase/README.md) <br>This phase focuses on defining clear, testable business requirements and preparing a foundation for behavior-driven validation.<br>本階段著重於定義清楚且可測試的商業需求，並建立行為驅動驗證（Behavior-Driven Validation）的基礎。 |
 
@@ -70,9 +70,13 @@ For an introductory presentation, see:
 * Iterative design, implementation, testing, and integration to deliver working software.  
   透過反覆迭代進行設計、實作、測試與整合，交付可運作的軟體。
 
-| Guidance | Description | 
+| Guidance 指南 | Description 說明 | 
 |:-----|:-------|
 | <a href="./BusinessDevelopmentPhase/System-Design-Considerations/README.md" target="_blank"><image src="./BusinessDevelopmentPhase/img/PracticalSystemDesignConsiderations.png" width="200"></a> | [Practical System Design Considerations｜系統設計實務考量](./BusinessDevelopmentPhase/System-Design-Considerations/README.md) <br>This section provides a concise overview of key reliability strategies and general considerations essential during the Requirement Analysis phase of software engineering and project management, along with practical tips based on my real-world experience.<br>本章節提供在軟體工程與專案管理的需求分析階段中，關鍵可靠性策略與一般考量的簡要概述，並附上我在實務經驗中的一些實用建議。 |
+
+| Video 影片 | Description 說明 | 
+|:-----|:-------|
+| <a href="https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesign.md" target="_blank"><image src="https://github.com/retamotome/retamotome/raw/main/open-courseware/img/SystemDesignPhilosophy.png" width="200"></a> | [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesign.md)<br>This course explores system design through systems thinking, software engineering principles, and interdisciplinary perspectives. By challenging conventional assumptions, analyzing trade-offs, and understanding the interactions between components, learners will develop the ability to identify root causes, simplify complexity, and discover effective solutions that optimize the system as a whole.<br>本課程結合系統思維、軟體工程原則與跨領域觀點，探索系統設計的核心。透過挑戰既有假設、分析取捨，以及理解系統元件之間的交互作用，培養學習者洞察問題根源、化繁為簡，並尋找能夠優化整體系統的有效解決方案之能力。<br> ☑️ Chinese  |  
 
 ### Maintenance｜維護階段
 
