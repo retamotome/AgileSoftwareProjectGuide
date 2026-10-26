@@ -1,5 +1,7 @@
 # System Upgrade Strategy | 系統升級策略
 
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+
 ## Introduction | 前言   
 
 Software upgrade strategies are often discussed from an Information Technology (IT) perspective, where the primary objectives are service availability, deployment speed, scalability, and user experience. Common examples include cloud services, enterprise resource planning (ERP) systems, customer relationship management (CRM) platforms, e-commerce websites, and Software-as-a-Service (SaaS) applications.   

@@ -1,5 +1,8 @@
 # Offline Upgrade Validation Specification | 離線升級驗證技術規格書  
 
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+
+
 Target System: Industrial Automation Software / EFEM / Robot Controller / Equipment Control System   
 適用系統： 工業自動化軟體、EFEM、機器人控制器、設備控制系統  
 

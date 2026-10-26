@@ -1,5 +1,7 @@
 # MCU Diagnostic Framework Design Specification | MCU 診斷框架設計規格書   
 
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+
 **Target Platform**: MCU / RTOS-Based Embedded System  
 **Applicable Systems**: EFEM Controller、Robot Controller、PLC Gateway、Equipment Controller、Industrial Automation System   
 
@@ -296,13 +298,8 @@ EVT_ALARM_RAISED = 4000
 
 ### Event Severity Architecture | 事件等級架構   
 
-| Severity<br>等級 | FATAL | ERROR | WARNING | INFO | 
-| --- | --- | --- | --- | --- |
-| Define<br>定義 | The system must be stopped<br>系統必須停止 | Functionality failed<br>功能失敗 | Potential risks<br>可能有風險 | Important event<br>重要事件 | 
-| Example<br>範例 | Config Corrupted<br>Schema Mismatch | Robot Timeout<br>PLC Disconnected | Memory > 80%<br>Disk > 90% | Service Started<br>Recipe Loaded |
-
-Please refer to the [Priority](../Priority.md) for details.    
-詳細內容請參考 [重要性權重](../Priority.md) 。   
+Please refer to the [Damage Potential](../Priority.md#damage-potential--%E6%90%8D%E5%AE%B3%E5%BD%B1%E9%9F%BF) for details.    
+詳細內容請參考 [損害影響](../Priority.md#damage-potential--%E6%90%8D%E5%AE%B3%E5%BD%B1%E9%9F%BF) 。   
 
 ### Event Source Definition | 事件來源定義  
 

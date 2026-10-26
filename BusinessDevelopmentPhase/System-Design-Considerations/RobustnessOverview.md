@@ -1,6 +1,8 @@
 # From Error Handling to Robustness: Understanding Fault Tolerance, Resilience, and Graceful Degradation  
 從 Error Handling 到 Robustness：瞭解 Fault Tolerance、Resilience 與 Graceful Degradation   
 
+![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+
 ## Introduction | 前言   
 
 In software engineering, robotics, industrial automation, and distributed systems, reliability is not determined solely by whether a system functions correctly under ideal conditions. More importantly, reliability is determined by how a system behaves when confronted with failures, uncertainties, environmental changes, and unexpected operating conditions. As systems become increasingly complex and interconnected, engineers must design not only for normal operation but also for abnormal situations.   

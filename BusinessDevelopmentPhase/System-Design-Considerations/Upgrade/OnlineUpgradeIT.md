@@ -1,5 +1,7 @@
 # Online Upgrade Specification for Enterprise IT Systems | 企業 IT 系統線上升級技術規格書
 
+![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+
 Target Systems: Enterprise Applications, Cloud Services, SaaS Platforms, ERP, CRM, Web Applications, API Services, Microservices   
 適用系統： 企業應用系統、雲端服務、SaaS 平台、ERP、CRM、網站系統、API 服務、微服務架構   
 
