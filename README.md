@@ -19,8 +19,10 @@ A concise, phase-based guide for planning and executing Agile software projects.
   強化團隊協作與敏捷流程運作。
 
 ## Video｜教學影片  
-Videos are available in the [Self-Directed Learning Guide](https://github.com/retamotome/SelfDirectedTraining).  
-教學影片請參考 [自主學習指南](https://github.com/retamotome/SelfDirectedTraining) 。  
+
+| Video | Description | 
+|:-----|:-------|
+| <a href="https://github.com/retamotome/SelfDirectedTraining" target="_blank"><image src="https://github.com/retamotome/SelfDirectedTraining/raw/main/img/SelfDirectedTraining.png" width="200"></a> | [Reta's Self-Directed Learning Guide｜Reta 的自主學習指南](https://github.com/retamotome/SelfDirectedTraining) <br>This repository contains resources and guidance for self-directed learning, focusing on practical applications and real-world scenarios.<br>本儲存庫包含自主學習的資源與指南，專注於實務應用與現實情境。<br> ☑️ English ☑️ Chinese  |
 
 ## Tutorial Overview｜指南總覽
 
