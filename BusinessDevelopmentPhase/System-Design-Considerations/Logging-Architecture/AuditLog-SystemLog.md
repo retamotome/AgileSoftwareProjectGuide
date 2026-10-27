@@ -174,8 +174,8 @@ System logs are high-volume and typically use short-term rotation.
 系統日誌量大，通常採短期保存與輪替策略。  
 
 ### Severity & Diagnostic Levels | 嚴重性與除錯等級
-Please refer to the [Priority](../Priority.md) and [MCU Diagnostic Framework Design Specification](MCUDiagnosticFramework.md) for details.  
-詳細內容請參考 [重要性權重](../Priority.md) 以及 [MCU 診斷框架設計規格書](MCUDiagnosticFramework.md)。   
+Please refer to the [Priority and Severity](../Priority.md) and [MCU Diagnostic Framework Design Specification](MCUDiagnosticFramework.md) for details.  
+詳細內容請參考 [重要性權重 與 事件等級](../Priority.md) 以及 [MCU 診斷框架設計規格書](MCUDiagnosticFramework.md)。   
 
 ## Comparison Table | 比較表
 

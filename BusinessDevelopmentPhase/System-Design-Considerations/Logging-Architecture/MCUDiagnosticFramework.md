@@ -298,8 +298,8 @@ EVT_ALARM_RAISED = 4000
 
 ### Event Severity Architecture | 事件等級架構   
 
-Please refer to the [Damage Potential](../Priority.md#damage-potential--%E6%90%8D%E5%AE%B3%E5%BD%B1%E9%9F%BF) for details.    
-詳細內容請參考 [損害影響](../Priority.md#damage-potential--%E6%90%8D%E5%AE%B3%E5%BD%B1%E9%9F%BF) 。   
+Please refer to the [Priority and Severity](../Priority.md) for details.    
+詳細內容請參考 [重要性權重 與 事件等級](../Priority.md) 。   
 
 ### Event Source Definition | 事件來源定義  
 

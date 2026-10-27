@@ -45,7 +45,7 @@ For an introductory presentation, see:
 
 | Guidance 指南 | Description 說明 | 
 |:-----|:-------|
-| <a href="./ProjectInitiationPhase/README.md" target="_blank"><image src="./img/ProjectInitiationPhase.png" width="200"></a> | [Project Initiation Phase｜專案啟動階段](./ProjectInitiationPhase/README.md) <br>TThe initiation phase establishes the foundation for a successful Agile software project. Key activities include defining the project vision, assembling the team, and setting up initial plans and practices.<br>啟動階段為成功的敏捷軟體專案奠定基礎。主要活動包括定義專案願景、組建團隊，以及建立初始計畫與實務運作方式。 |
+| <a href="./ProjectInitiationPhase/README.md" target="_blank"><image src="./img/ProjectInitiationPhase.png" width="200"></a> | [Project Initiation Phase｜專案啟動階段](./ProjectInitiationPhase/README.md) <br>TThe initiation phase establishes the foundation for a successful Agile software project. Key activities include defining the project vision, assembling the team, and setting up initial plans and practices.<br>啟動階段為成功的敏捷軟體專案奠定基礎。主要活動包括定義專案願景、組建團隊，以及建立初始計畫與實務運作方式。<br> ☑️ English ☑️ Chinese |
 
 ### Business Development｜商業(需求)發展階段  
 
@@ -63,16 +63,18 @@ For an introductory presentation, see:
 
 | Guidance 指南 | Description 說明 | 
 |:-----|:-------|
-| <a href="./BusinessDevelopmentPhase/README.md" target="_blank"><image src="./img/BusinessDevelopmentPhase.png" width="200"></a> | [Business Development Phase｜商業(需求)發展階段](./BusinessDevelopmentPhase/README.md) <br>This phase focuses on defining clear, testable business requirements and preparing a foundation for behavior-driven validation.<br>本階段著重於定義清楚且可測試的商業需求，並建立行為驅動驗證（Behavior-Driven Validation）的基礎。 |
+| <a href="./BusinessDevelopmentPhase/README.md" target="_blank"><image src="./img/BusinessDevelopmentPhase.png" width="200"></a> | [Business Development Phase｜商業(需求)發展階段](./BusinessDevelopmentPhase/README.md) <br>This phase focuses on defining clear, testable business requirements and preparing a foundation for behavior-driven validation.<br>本階段著重於定義清楚且可測試的商業需求，並建立行為驅動驗證（Behavior-Driven Validation）的基礎。<br> ☑️ English ☑️ Chinese |
 
 ### Software Development｜軟體發展階段
 
 * Iterative design, implementation, testing, and integration to deliver working software.  
   透過反覆迭代進行設計、實作、測試與整合，交付可運作的軟體。
 
+#### System Design | 系統設計   
+
 | Guidance 指南 | Description 說明 | 
 |:-----|:-------|
-| <a href="./BusinessDevelopmentPhase/System-Design-Considerations/README.md" target="_blank"><image src="./BusinessDevelopmentPhase/img/PracticalSystemDesignConsiderations.png" width="200"></a> | [Practical System Design Considerations｜系統設計實務考量](./BusinessDevelopmentPhase/System-Design-Considerations/README.md) <br>This section provides a concise overview of key reliability strategies and general considerations essential during the Requirement Analysis phase of software engineering and project management, along with practical tips based on my real-world experience.<br>本章節提供在軟體工程與專案管理的需求分析階段中，關鍵可靠性策略與一般考量的簡要概述，並附上我在實務經驗中的一些實用建議。 |
+| <a href="./BusinessDevelopmentPhase/System-Design-Considerations/README.md" target="_blank"><image src="./BusinessDevelopmentPhase/img/PracticalSystemDesignConsiderations.png" width="200"></a> | [Practical System Design Considerations｜系統設計實務考量](./BusinessDevelopmentPhase/System-Design-Considerations/README.md) <br>This section provides a concise overview of key reliability strategies and general considerations essential during the Requirement Analysis phase of software engineering and project management, along with practical tips based on my real-world experience.<br>本章節提供在軟體工程與專案管理的需求分析階段中，關鍵可靠性策略與一般考量的簡要概述，並附上我在實務經驗中的一些實用建議。<br> ☑️ English ☑️ Chinese |
 
 | Video 影片 | Description 說明 | 
 |:-----|:-------|
