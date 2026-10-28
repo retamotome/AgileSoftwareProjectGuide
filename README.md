@@ -45,7 +45,7 @@ For an introductory presentation, see:
 
 | Guidance 指南 | Description 說明 | 
 |:-----|:-------|
-| <a href="./ProjectInitiationPhase/README.md" target="_blank"><image src="./img/ProjectInitiationPhase.png" width="200"></a> | [Project Initiation Phase｜專案啟動階段](./ProjectInitiationPhase/README.md) <br>TThe initiation phase establishes the foundation for a successful Agile software project. Key activities include defining the project vision, assembling the team, and setting up initial plans and practices.<br>啟動階段為成功的敏捷軟體專案奠定基礎。主要活動包括定義專案願景、組建團隊，以及建立初始計畫與實務運作方式。<br> ☑️ English ☑️ Chinese |
+| <a href="./ProjectInitiationPhase/README.md" target="_blank"><image src="./ProjectInitiationPhase/img/ProjectInitiationPhase.png" width="200"></a> | [Project Initiation Phase｜專案啟動階段](./ProjectInitiationPhase/README.md) <br>TThe initiation phase establishes the foundation for a successful Agile software project. Key activities include defining the project vision, assembling the team, and setting up initial plans and practices.<br>啟動階段為成功的敏捷軟體專案奠定基礎。主要活動包括定義專案願景、組建團隊，以及建立初始計畫與實務運作方式。<br> ☑️ English ☑️ Chinese |
 
 ### Business Development｜商業(需求)發展階段  
 
