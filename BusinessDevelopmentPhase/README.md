@@ -36,7 +36,7 @@ For more background, see:
 ## Guidance ｜ 指引
 
 + [Writing Business Requirements Effectively 撰寫商業需求的高效方法](./BusinessRequirementDefinition/Writing-Requirements-Effectively.md).  
-+ [Practical System Design Considerations 系統設計實務考量](./System-Design-Considerations/README.md).    
+ 
 
 ### Test Engineering in the Business Development Phase | 商業開發階段的測試工程  
 **Test Engineering in the Business Development phase** focuses on validating and refining **business requirements** through **Behavior-Driven Development (BDD)** practices. At this stage, the primary objective is not to verify technical implementation details, but to ensure that the proposed solution accurately reflects the customer's business needs, expectations, and workflows.  

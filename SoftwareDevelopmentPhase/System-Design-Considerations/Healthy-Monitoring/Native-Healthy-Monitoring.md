@@ -334,7 +334,7 @@ IF overload → degrade_service
 
 ## Data Flow Architecture｜資料流架構
 
-![Data Flow Architecture](../img/Healthy-Monitoring_Native.svg)
+![Data Flow Architecture](./../img/Healthy-Monitoring_Native.svg)
 
 
 ## Recommended Stack｜建議技術組合

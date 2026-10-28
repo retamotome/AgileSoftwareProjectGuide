@@ -1,5 +1,7 @@
 # Writing Business Requirements Effectively ｜ 撰寫商業需求的高效方法
 
+![Business Development Phase](../../img/BusinessDevelopmentPhase.png)  
+
 ## Overview ｜ 概述
 
 The core of the **Agile mindset** is: **identify what truly matters, do the right things, in the right way, and deliver value**.  

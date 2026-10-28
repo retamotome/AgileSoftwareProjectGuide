@@ -1,6 +1,10 @@
-# GitLab Container Registry Quick Setup
+# GitLab Container Registry Quick Setup  
 
-This guide helps you enable the GitLab Container Registry with a self-signed certificate and connect Docker clients. It is written for clarity and quick reference.
+![Project Initiation Phase](../../img/ProjectInitiationPhase.png)  
+
+## Overview   
+
+This guide helps you enable the GitLab Container Registry with a self-signed certificate and connect Docker clients. It is written for clarity and quick reference.    
 
 ## About GitLab Container Registry
 
@@ -118,7 +122,7 @@ docker login <your-container-domain.example.com>
 
 # License
 
-![BY NC SA](../../img/Cc-by-nc-sa.png)  
+![BY NC SA](../../../img/Cc-by-nc-sa.png)  
 GitLab Container Registry Quick Setup © 2026 by Jen Yuan Pan is licensed under the `Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International`.  
 
 For the complete license terms, rights and obligations, restrictions on use, and other applicable conditions, please refer to the [Full License Terms](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md). By using this work, you acknowledge that you have read, understood, and agree to comply with such terms.  

@@ -289,7 +289,11 @@ more timeouts → more logs → meltdown loop
 逾時次數增多 → 記錄增多 → 崩潰循環
 ```
 
-![Youtube](../../../img/YouTube_icon.png) 請參考說明影片：[碧海潮生曲的系統架構學 -- 從《射鵰英雄傳》看《易經》、五音、五行到狀態機](https://youtu.be/bK8FlP9ZoeA)
+請參考說明影片：   
+| Video 影片 | Description 說明 |
+|:----|:----------|
+| <a href="https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/2026-07-30.md" target="_blank"><image src="https://github.com/retamotome/retamotome/raw/main/open-courseware/SystemDesignPhilosophy/img/2026-07-30.png" width="200"></a> | [碧海潮生曲的系統架構學 -- 從《射鵰英雄傳》看《易經》、五音、五行到狀態機](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/2026-07-30.md) |
+
 
 
 | Issue<br>問題          | Without agent<br>不使用代理    | With agent<br>使用代理    |

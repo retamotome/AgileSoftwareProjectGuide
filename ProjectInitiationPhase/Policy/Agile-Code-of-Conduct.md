@@ -1,5 +1,7 @@
 # Agile Code of Conduct｜敏捷準則  
 
+![Project Initiation Phase](../img/ProjectInitiationPhase.png)  
+
 ## Statement for Employees｜晉用聲明
 
 In a for-profit organization, there exists a clear distinction from a charity or an educational institution. Employees are expected to showcase their individual value for retention, rather than depending on others to validate their worth.  

@@ -298,8 +298,8 @@ EVT_ALARM_RAISED = 4000
 
 ### Event Severity Architecture | 事件等級架構   
 
-Please refer to the [Priority and Severity](../Priority.md) for details.    
-詳細內容請參考 [重要性權重 與 事件等級](../Priority.md) 。   
+Please refer to the [Priority and Severity](./../Priority.md) for details.    
+詳細內容請參考 [重要性權重 與 事件等級](./../Priority.md) 。   
 
 ### Event Source Definition | 事件來源定義  
 
@@ -405,7 +405,7 @@ To reduce complexity and improve system predictability, the diagnostic framework
 The recommended architecture is shown below:  
 建議架構如下：   
 
-![Ring Buffer](../img/ring-buffer.svg)   
+![Ring Buffer](./../img/ring-buffer.svg)   
 
 Under this architecture, ISR routines only post lightweight event records into the ISR Ring Buffer and immediately return control to the processor. More expensive operations such as event formatting, event translation, flash writing, and diagnostic reporting are deferred to background tasks.   
 在此架構下，ISR 僅負責快速建立事件紀錄並寫入 ISR Ring Buffer，完成後立即離開中斷服務行程。事件格式化、事件轉換、Flash 寫入及診斷輸出等較耗費資源的工作，則由背景 Task 負責處理。
@@ -459,7 +459,7 @@ Consumer 只修改 Tail Pointer。
 Conceptually:  
 概念如下：  
 
-![Lock-Free Buffer](../img/lock-free-buffer.svg)   
+![Lock-Free Buffer](./../img/lock-free-buffer.svg)   
 
 
 Because each side modifies only one pointer, synchronization overhead is eliminated.  

@@ -1,6 +1,7 @@
 # Business Requirement Example ｜ 商業需求範例
-
 ## BR-001: Secure User Login ｜ BR-001：強化使用者登入安全
+
+![Business Development Phase](../../../img/BusinessDevelopmentPhase.png)  
 
 ### Document Information ｜ 文件資訊
 

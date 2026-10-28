@@ -340,7 +340,7 @@ Container → Metrics Exporter → Prometheus → Monitor
 Shows how **health signals propagate and trigger actions**.  
 呈現健康訊號如何傳遞與觸發行動
 
-![Data Flow Architecture](../img/Healthy-Monitoring_Containerized.svg)
+![Data Flow Architecture](./../img/Healthy-Monitoring_Containerized.svg)
 
 
 ## Failure Coverage Mapping｜故障覆蓋對應

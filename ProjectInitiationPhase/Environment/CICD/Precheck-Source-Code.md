@@ -1,4 +1,7 @@
-# Automated Precheck Source Code
+# Automated Precheck Source Code  
+
+![Project Initiation Phase](../../img/ProjectInitiationPhase.png)  
+
 ## 1. Overall Architecture (Recommended)
 
     Developer (VS Code)
@@ -236,5 +239,12 @@ Important clarification:
      ↓
     Merge Request blocked until CI passes
 
-***
 
+---
+
+# License
+
+![BY NC SA](../../../img/Cc-by-nc-sa.png)  
+Automated Precheck Source Code © 2026 by Jen Yuan Pan is licensed under the `Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International`.  
+
+For the complete license terms, rights and obligations, restrictions on use, and other applicable conditions, please refer to the [Full License Terms](https://github.com/retamotome/AgileSoftwareProjectGuide/blob/main/LICENSE.md). By using this work, you acknowledge that you have read, understood, and agree to comply with such terms.  

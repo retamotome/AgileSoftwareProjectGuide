@@ -73,13 +73,13 @@ Prior to deployment, the system shall undergo a readiness assessment.
 The assessment shall verify:  
 評估內容應包括：   
 
-* [System health status](../Healthy-Monitoring/README.md) | [系統健康狀態](../Healthy-Monitoring/README.md)   
+* [System health status](./../Healthy-Monitoring/README.md) | [系統健康狀態](./../Healthy-Monitoring/README.md)   
 * Cluster health status | 叢集健康狀態   
 * Database health status | 資料庫健康狀態   
 * Available infrastructure capacity | 基礎設施容量  
 * Backup availability | 備份可用性   
 * Monitoring readiness | 監控系統可用性   
-* [Rollback readiness](../README.md#failure-tolerance-strategy--失效容忍策略) | [回復機制就緒狀態](../README.md#failure-tolerance-strategy--失效容忍策略)   
+* [Rollback readiness](./../README.md#failure-tolerance-strategy--失效容忍策略) | [回復機制就緒狀態](./../README.md#failure-tolerance-strategy--失效容忍策略)   
 
 The deployment shall not proceed until all prerequisite checks are successful.   
 所有前置檢查皆通過後，方可執行升級作業。   

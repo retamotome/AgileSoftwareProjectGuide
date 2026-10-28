@@ -1,6 +1,6 @@
 # Practical System Design Considerations | 系統設計實務考量  
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+![Practical System Design Considerations](./../img/PracticalSystemDesignConsiderations.png)  
 
 ## Overview | 概要  
 
@@ -9,9 +9,9 @@ This section provides a concise overview of key reliability strategies and gener
 
 ### Open Resources | 開放資源  
 
-#### Open Courseware | 開放式課程  
-* [Lesson 02: Business Requirement Definition | 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)
-* [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesign.md)   
+| Video 影片 | Description 說明 | 
+|:-----|:-------|
+| <a href="https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/SystemDesign.md" target="_blank"><image src="https://github.com/retamotome/retamotome/raw/main/open-courseware/SystemDesignPhilosophy/img/SystemDesignPhilosophy.png" width="200"></a> | [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/SystemDesign.md)<br> ☑️ Chinese Only<br>This course explores system design through systems thinking, software engineering principles, and interdisciplinary perspectives. By challenging conventional assumptions, analyzing trade-offs, learners will develop the ability to identify root causes, simplify complexity, and discover effective solutions that optimize the system as a whole. <br>本課程結合系統思維、軟體工程原則與跨領域觀點，探索系統設計的核心。透過挑戰既有假設、分析取捨，培養學習者洞察問題根源、化繁為簡，並尋找能夠最佳化整體系統的有效解決方案之能力。  |  
 
 
 ## Prerequisites ｜ 前置條件
@@ -19,8 +19,8 @@ This section provides a concise overview of key reliability strategies and gener
 Effective system design is built upon a solid understanding of business requirements. Prior to entering the system architecture and functional design phases, business requirements should be clearly elicited, analyzed, and documented. A well-defined set of business requirements provides a consistent foundation for decision-making throughout the design process and helps reduce project risks, rework efforts, and long-term maintenance costs. For detailed concepts, processes, and practical techniques related to business requirement definition, please refer to [Lesson 02: Business Requirement Definition](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).   
 系統設計的品質高度依賴需求分析的完整性。在進入系統架構與功能設計階段之前，應先充分釐清並定義商業需求，以建立一致且明確的設計基礎，降低後續開發與維護成本。關於商業需求定義的概念、流程與實務方法，請參考《[Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)》。   
 
-For guidance on writing requirements, see [Writing Requirements Effectively](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
-關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。 
+For guidance on writing requirements, see [Writing Requirements Effectively](../../BusinessDevelopmentPhase/BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
+關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../../BusinessDevelopmentPhase/BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。 
 
 
 ## System Architecture | 系統架構  

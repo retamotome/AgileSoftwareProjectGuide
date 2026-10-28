@@ -1,6 +1,6 @@
 # Project Initiation Phase｜專案啟動階段
 
-![Project Initiation Phase](../img/ProjectInitiationPhase.png)  
+![Project Initiation Phase](./img/ProjectInitiationPhase.png)  
 
 ## Overview｜概述
 
@@ -33,6 +33,11 @@ The initiation phase establishes the foundation for a successful Agile software 
 
 </details>
 
+## 管理政策 | Management Policy
+
+* [Agile Code of Conduct｜敏捷準則](./Policy/Agile-Code-of-Conduct.md)   
+* [Software Security Management Policy | 軟體安全管理政策](./Policy/Software-Security-Management/Software-Security-Management-Policy.md)   
+  * [Software Security Management Implementation Guidelines | 軟體安全管理施行細則](./Policy/Software-Security-Management/Software-Security-Management-Action.md)   
 
 ## Environment Setup｜環境建置
 
@@ -41,7 +46,13 @@ The initiation phase establishes the foundation for a successful Agile software 
 * When possible, provide a virtual environment so developers can implement and validate solutions without relying on physical hardware.  
   在可行情況下提供虛擬環境，使開發人員能在不依賴實體硬體的情況下進行實作與驗證。
 
+**Tutorials | 教學**
 
+* GitLab 
+  * [Draw.io Integration with GitLab](./Environment/GitLab/drawio-Integration.md)   
+  * [GitLab Container Registry Quick Setup](./Environment/GitLab/Enable-Container-Registry.md)    
+* CI/CD  
+  * [Automated Precheck Source Code](./Environment/CICD/Precheck-Source-Code.md)    
 
 ## Team formation and roles｜團隊組成與角色
 
