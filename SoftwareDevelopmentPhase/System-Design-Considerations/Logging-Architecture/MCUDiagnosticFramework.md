@@ -18,7 +18,7 @@ This document defines an event-based diagnostic framework that combines Event Ri
 
 > [!important]  
 > Please note that the Diagnostic Framework is intended for use in [Manual Mode](../System-Mode-and-State.md#manual-mode-operator-control--手動模式操作員控制) only. It should not be enabled in [Running Mode](../System-Mode-and-State.md#running-mode-auto-operation--運行模式自動運轉), as [logging](README.md) is active during operation and may lead to unexpected behavior, performance impact, or conflicts with the diagnostic mechanism.   
-> 請注意，Diagnostic Framework 通常僅適用於 [Manual Mode（手動模式）](../System-Mode-and-State.md#manual-mode-operator-control--手動模式操作員控制) 。在 [Running Mode（運行模式）](../System-Mode-and-State.md#running-mode-auto-operation--運行模式自動運轉) 下，由於系統的 [Logging（記錄功能）](README.md) 處於啟用狀態，因此不應啟用 Diagnostic Framework，以避免造成非預期行為、效能影響或與診斷機制產生衝突。   
+> 請注意，Diagnostic Framework 通常僅適用於 [Manual Mode（手動模式）](../System-Mode-and-State.md#manual-mode-operator-control--手動模式操作員控制) 。在 [Running Mode（運行模式）](../System-Mode-and-State.md#running-mode-auto-operation--運行模式自動運轉) 下，由於系統的 [Logging（日誌功能）](README.md) 處於啟用狀態，因此不應啟用 Diagnostic Framework，以避免造成非預期行為、效能影響或與診斷機制產生衝突。   
 
 ## Design Objectives | 設計目標   
 
