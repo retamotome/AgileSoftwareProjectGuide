@@ -1,4 +1,4 @@
-# Data Processing Strategy<br>資料處理策略  
+# Data Processing Strategy  <br>資料處理策略   
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 

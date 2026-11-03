@@ -1,5 +1,5 @@
-# Feature Requirement Example<br>功能需求範例
-## FR-001: User Authentication<br>FR-001: 使用者驗證   
+# Feature Requirement Example  <br>功能需求範例  
+## FR-001: User Authentication  <br>FR-001: 使用者驗證     
 
 ![Business Development Phase](../../../img/BusinessDevelopmentPhase.png)  
 

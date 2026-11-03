@@ -1,4 +1,4 @@
-# 軟體安全管理政策<br>Software Security Management Policy   
+# 軟體安全管理政策  <br>Software Security Management Policy     
 
 ![Project Initiation Phase](../../img/ProjectInitiationPhase.png)  
 

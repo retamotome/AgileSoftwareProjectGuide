@@ -1,4 +1,4 @@
-# Online Upgrade Specification for Enterprise IT Systems<br>企業 IT 系統線上升級技術規格書
+# Online Upgrade Specification for Enterprise IT Systems  <br>企業 IT 系統線上升級技術規格書  
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

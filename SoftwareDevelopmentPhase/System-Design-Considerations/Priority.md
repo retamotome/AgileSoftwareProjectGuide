@@ -1,4 +1,4 @@
-# Priority and Severity<br>重要性權重 與 事件等級
+# Priority and Severity  <br>重要性權重 與 事件等級  
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 

@@ -1,4 +1,4 @@
-# System Mode and State<br>系統模式與狀態  
+# System Mode and State  <br>系統模式與狀態  
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 

@@ -1,4 +1,4 @@
-# From Error Handling to Robustness: Understanding Fault Tolerance, Resilience, and Graceful Degradation<br>從 Error Handling 到 Robustness：瞭解 Fault Tolerance、Resilience 與 Graceful Degradation   
+# From Error Handling to Robustness: Understanding Fault Tolerance, Resilience, and Graceful Degradation  <br>從 Error Handling 到 Robustness：瞭解 Fault Tolerance、Resilience 與 Graceful Degradation   
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 

@@ -1,4 +1,4 @@
-# Writing Business Requirements Effectively<br>撰寫商業需求的高效方法
+# Writing Business Requirements Effectively  <br>撰寫商業需求的高效方法  
 
 ![Business Development Phase](../../img/BusinessDevelopmentPhase.png)  
 

@@ -1,4 +1,4 @@
-# Reta's Agile Software Project Guide<br>Reta 的敏捷軟體專案指南  
+# Reta's Agile Software Project Guide  <br>Reta 的敏捷軟體專案指南  
 
 ![Agile Software Project Guide](./img/AgileSoftwareProjectGuide.png)
 

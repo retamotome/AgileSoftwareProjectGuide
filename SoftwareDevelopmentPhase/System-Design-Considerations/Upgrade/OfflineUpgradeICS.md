@@ -1,4 +1,4 @@
-# Offline Upgrade Validation Specification<br>離線升級驗證技術規格書  
+# Offline Upgrade Validation Specification  <br>離線升級驗證技術規格書  
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

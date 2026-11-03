@@ -1,4 +1,4 @@
-# 軟體安全管理施行細則<br>Software Security Management Implementation Guidelines    
+# 軟體安全管理施行細則  <br>Software Security Management Implementation Guidelines      
 
 ![Project Initiation Phase](../../img/ProjectInitiationPhase.png)  
 
