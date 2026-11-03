@@ -1,4 +1,4 @@
-# System Health Monitoring Design Guide｜系統健康監控設計指南
+# System Health Monitoring Design Guide<br>系統健康監控設計指南
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

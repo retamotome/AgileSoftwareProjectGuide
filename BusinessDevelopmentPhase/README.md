@@ -1,4 +1,4 @@
-# Business Development Phase ｜ 商業(需求)發展階段
+# Business Development Phase<br>商業(需求)發展階段
 
 ![Business Development Phase](../img/BusinessDevelopmentPhase.png)  
 

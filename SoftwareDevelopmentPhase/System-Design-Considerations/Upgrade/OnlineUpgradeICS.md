@@ -1,4 +1,4 @@
-# Online Upgrade Validation Specification | 線上升級驗證技術規格書   
+# Online Upgrade Validation Specification<br>線上升級驗證技術規格書   
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

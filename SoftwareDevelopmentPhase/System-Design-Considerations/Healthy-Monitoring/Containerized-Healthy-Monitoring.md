@@ -1,4 +1,4 @@
-# Containerized System Health Monitoring Design Guide｜容器化系統健康監控設計指南
+# Containerized System Health Monitoring Design Guide<br>容器化系統健康監控設計指南
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

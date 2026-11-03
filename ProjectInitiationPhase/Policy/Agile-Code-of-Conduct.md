@@ -1,4 +1,4 @@
-# Agile Code of Conduct｜敏捷準則  
+# Agile Code of Conduct<br>敏捷準則  
 
 ![Project Initiation Phase](../img/ProjectInitiationPhase.png)  
 

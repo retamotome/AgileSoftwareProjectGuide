@@ -1,4 +1,4 @@
-# Practical System Design Considerations | 系統設計實務考量  
+# Practical System Design Considerations<br>系統設計實務考量  
 
 ![Practical System Design Considerations](./../img/PracticalSystemDesignConsiderations.png)  
 

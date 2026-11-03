@@ -1,4 +1,4 @@
-# Logging vs Relational DB in a Logging Pipeline | 日誌管線中的 Logging vs 關聯式資料庫
+# Logging vs Relational DB in a Logging Pipeline<br>日誌管線中的 Logging vs 關聯式資料庫
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

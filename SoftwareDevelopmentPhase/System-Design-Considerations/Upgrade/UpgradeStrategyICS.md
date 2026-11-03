@@ -1,4 +1,4 @@
-# System Upgrade Strategy | 系統升級策略
+# System Upgrade Strategy<br>系統升級策略
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

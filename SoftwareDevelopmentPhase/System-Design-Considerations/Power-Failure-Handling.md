@@ -1,4 +1,4 @@
-# Power Failure Handling | 電力故障處理  
+# Power Failure Handling<br>電力故障處理  
 
 ![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
 

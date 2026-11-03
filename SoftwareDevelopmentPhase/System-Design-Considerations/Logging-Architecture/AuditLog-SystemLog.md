@@ -1,4 +1,4 @@
-# Audit Log and System Log | 稽核日誌 與 系統日誌
+# Audit Log and System Log<br>稽核日誌 與 系統日誌
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

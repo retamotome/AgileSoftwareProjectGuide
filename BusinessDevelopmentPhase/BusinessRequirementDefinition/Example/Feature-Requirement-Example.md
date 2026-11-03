@@ -1,10 +1,10 @@
-# Feature Requirement Example ｜ 功能需求範例
-## FR-001: 使用者驗證 | User Authentication
+# Feature Requirement Example<br>功能需求範例
+## FR-001: User Authentication<br>FR-001: 使用者驗證   
 
 ![Business Development Phase](../../../img/BusinessDevelopmentPhase.png)  
 
 
-### 功能概述 | Feature Overview
+### Feature Overview | 功能概述   
 
 | Field (欄位) | Value (值) |
 | ----------- | ------------------------------------------ |

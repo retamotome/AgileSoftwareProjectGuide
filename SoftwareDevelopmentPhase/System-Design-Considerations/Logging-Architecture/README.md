@@ -1,4 +1,4 @@
-# Logging Architecture | 日誌架構設計
+# Logging Architecture<br>日誌架構設計
 
 ![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
 

@@ -1,4 +1,4 @@
-#  Full License Terms | 完整授權條款  
+#  Full License Terms<br>完整授權條款  
 
 ## Copyright Notice | 著作權聲明
 
