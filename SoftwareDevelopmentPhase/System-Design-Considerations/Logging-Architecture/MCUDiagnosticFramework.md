@@ -16,6 +16,10 @@ For equipment control systems such as EFEM controllers, robot controllers, PLC g
 This document defines an event-based diagnostic framework that combines Event Ring Buffers, Flash Journaling, Runtime Diagnostic Control, CRC protection, power-failure recovery, and wear-leveling mechanisms to provide a reliable and maintainable diagnostic infrastructure.   
 本文件定義一套以 Event 為核心的診斷框架，整合 Event Ring Buffer、Flash Journal、動態診斷控制、CRC 保護、掉電復原以及 Wear Leveling 等機制，以建立高可靠度且適合長期維運的 MCU 診斷系統。   
 
+> [!important]  
+> Please note that the Diagnostic Framework is intended for use in [Manual Mode](../System-Mode-and-State.md#manual-mode--手動模式) only. It should not be enabled in [Running Mode](../System-Mode-and-State.md#running-mode--運行模式), as [logging](../Logging-Architecture/README.md) is active during operation and may lead to unexpected behavior, performance impact, or conflicts with the diagnostic mechanism.   
+> 請注意，Diagnostic Framework 通常僅適用於 [Manual Mode（手動模式）](../System-Mode-and-State.md#manual-mode--手動模式) 。在 [Running Mode（運行模式）](../System-Mode-and-State.md#running-mode--運行模式) 下，由於系統的 [Logging（記錄功能）](../Logging-Architecture/README.md) 處於啟用狀態，因此不應啟用 Diagnostic Framework，以避免造成非預期行為、效能影響或與診斷機制產生衝突。   
+
 ## Design Objectives | 設計目標   
 
 The framework shall satisfy the following objectives:  
@@ -36,11 +40,11 @@ The framework shall satisfy the following objectives:
 * Provide sufficient information for root cause analysis.  
 提供足夠資訊進行根因分析。   
 
-## Logging Philosophy | 記錄策略   
+## Recording Philosophy | 記錄策略   
 
 This framework adopts an event-oriented approach rather than a trace-oriented approach. Continuous trace messages are useful during development but are generally unsuitable for production systems due to resource constraints and performance impact.   
 本框架採用 Event-Oriented Design，而非 Trace-Oriented Design。   
-Trace Log 雖然有助於開發階段除錯，但在正式產品中通常會造成過多資源消耗與效能負擔。   
+Trace 資訊雖然有助於開發階段除錯，但在正式產品中通常會造成過多資源消耗與效能負擔。   
 
 Instead of recording every function call or variable update, the framework records significant operational events such as state transitions, alarms, communication failures, startup sequences, and operator actions.   
 因此，本架構不記錄每一次函式呼叫或變數變化，而是記錄具有診斷價值的重要事件，例如狀態切換、設備告警、通訊異常、系統啟動流程以及操作指令等。   
@@ -298,8 +302,8 @@ EVT_ALARM_RAISED = 4000
 
 ### Event Severity Architecture | 事件等級架構   
 
-Please refer to the [Priority and Severity](./../Priority.md) for details.    
-詳細內容請參考 [重要性權重 與 事件等級](./../Priority.md) 。   
+Please refer to the [Priority and Severity](../Priority.md) for details.    
+詳細內容請參考 [重要性權重 與 事件等級](../Priority.md) 。   
 
 ### Event Source Definition | 事件來源定義  
 
@@ -317,15 +321,15 @@ SRC_SYSTEM
 
 藉此可快速區分事件來自 ISR、Task 或底層 Driver。
 
-## Runtime Dynamic Log Control | 執行階段動態日誌控制
+## Runtime Dynamic Recording Control | 執行階段動態記錄控制
 
-The framework shall support runtime log configuration without requiring firmware updates or device restarts.   
-系統應支援執行期間動態調整日誌等級，而不需要重新燒錄韌體或重新啟動設備。   
+The framework shall support runtime [severity](./../Priority.md) configuration without requiring firmware updates or device restarts.   
+系統應支援執行期間動態調整[記錄等級](./../Priority.md)，而不需要重新燒錄韌體或重新啟動設備。   
 
 Field engineers can dynamically increase diagnostic verbosity during troubleshooting and restore normal operation afterward.   
 現場工程師可於故障分析期間提高診斷資訊輸出量，待問題排除後再恢復正常設定。  
 
-### Global Log Control | 全域日誌控制
+### Global Recording Control | 全域記錄等級控制
 
 **Example | 範例**   
 
@@ -336,7 +340,7 @@ robot_cli log set INFO
 All modules immediately switch to INFO mode.   
 執行後所有模組立即切換至 INFO 等級。   
 
-### Module-Specific Log Control | 模組級別日誌控制   
+### Module-Specific Recording Control | 模組級別記錄控制   
 
 **Example | 範例**   
 
@@ -366,10 +370,10 @@ robot_cli log set DIAG robot 600
 The setting remains active for 600 seconds before automatically reverting.   
 表示 Robot 模組進入 DIAG（暫時性診斷）模式 600 秒，之後自動恢復原設定。   
 
-### Event Recording of Log Changes | 日誌變更事件記錄   
+### Event Recording of Severity Changes | 事件等級變更記錄   
 
-All log-level changes shall themselves be recorded as events.   
-所有日誌等級變更都應記錄至 Event Buffer。   
+All severity changes shall themselves be recorded as events.   
+所有事件等級變更都應記錄至 Event Buffer。   
 
 **Example | 範例**   
 
@@ -558,7 +562,7 @@ Flash Journal 的主要設計目標如下：
 
 * Preserve critical event history across power cycles.   
 保存跨越重新開機後仍需保留的重要事件。   
-* Minimize Flash wear caused by high-frequency logging.   
+* Minimize Flash wear caused by high-frequency recording.   
 降低高頻事件造成的 Flash 磨損。   
 * Maintain data integrity during unexpected power interruption.   
 確保非預期掉電時資料仍具完整性。   
@@ -883,9 +887,9 @@ Please refer to the [Dump Format](#dump-format--dump-格式) for details.
 
 ## Conclusion | 結論  
 
-For MCU-based industrial controllers, a traditional high-volume logging system is neither efficient nor sustainable. An event-driven diagnostic framework combined with lock-free buffering, flash journaling, runtime diagnostic control, CRC protection, power-loss recovery, and wear-leveling provides a significantly more reliable and maintainable solution.   
+For MCU-based industrial controllers, a traditional high-volume recording system is neither efficient nor sustainable. An event-driven diagnostic framework combined with lock-free buffering, flash journaling, runtime diagnostic control, CRC protection, power-loss recovery, and wear-leveling provides a significantly more reliable and maintainable solution.   
 
-對 MCU 型工業控制器而言，大量 Trace Log 並非最佳選擇。以 Event 為核心的診斷架構，搭配 Lock-Free Ring Buffer、Flash Journal、Runtime Diagnostic Control、CRC 保護、掉電復原以及 Wear Leveling 機制，能以更低的資源消耗提供更高價值的故障分析能力。  
+對 MCU 型工業控制器而言，大量 Trace 紀錄並非最佳選擇。以 Event 為核心的診斷架構，搭配 Lock-Free Ring Buffer、Flash Journal、Runtime Diagnostic Control、CRC 保護、掉電復原以及 Wear Leveling 機制，能以更低的資源消耗提供更高價值的故障分析能力。  
 此架構特別適合 EFEM Controller、Robot Controller、PLC Gateway 與各類工業設備控制系統，可作為產品級診斷框架的設計基礎。  
 
 ---

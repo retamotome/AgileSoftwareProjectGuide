@@ -13,8 +13,8 @@ Damage Potential and Probability shall be defined based on objective and measura
 ### Bug and Customer Issue types | 「缺失」、「客戶問題」類型  
 ![Bug](./img/PriorityEvaluation-Bug.svg)   
 
-### Log type | 日誌類型  
-![Bug](./img/PriorityEvaluation-Log.svg)   
+### Log and Event types | 日誌、事件類型  
+![Log and event](./img/PriorityEvaluation-Log.svg)   
 
 ## Probability | 發生機率
 
