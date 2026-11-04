@@ -1,6 +1,6 @@
 # 軟體安全管理政策  <br>Software Security Management Policy     
 
-![Project Initiation Phase](../../img/ProjectInitiationPhase.png)  
+[![Academy of Management](https://github.com/retamotome/SelfDirectedTraining/raw/main/Management/img/mgt_cover.png)](https://github.com/retamotome/SelfDirectedTraining/blob/main/Management/README.md)  
 
 **文件編號：** ISMS-SEC-DEV-001  
 **Document ID:** ISMS-SEC-DEV-001  

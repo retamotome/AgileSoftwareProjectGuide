@@ -1,6 +1,6 @@
 # Agile Code of Conduct  <br>敏捷準則    
 
-![Project Initiation Phase](../img/ProjectInitiationPhase.png)  
+[![Academy of Management](https://github.com/retamotome/SelfDirectedTraining/raw/main/Management/img/mgt_cover.png)](https://github.com/retamotome/SelfDirectedTraining/blob/main/Management/README.md)  
 
 ## Statement for Employees｜晉用聲明
 

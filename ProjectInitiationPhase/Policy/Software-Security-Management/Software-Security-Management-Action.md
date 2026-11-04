@@ -1,6 +1,6 @@
 # 軟體安全管理施行細則  <br>Software Security Management Implementation Guidelines      
 
-![Project Initiation Phase](../../img/ProjectInitiationPhase.png)  
+[![Academy of Management](https://github.com/retamotome/SelfDirectedTraining/raw/main/Management/img/mgt_cover.png)](https://github.com/retamotome/SelfDirectedTraining/blob/main/Management/README.md)  
 
 ***
 

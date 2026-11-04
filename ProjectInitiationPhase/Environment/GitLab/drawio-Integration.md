@@ -1,6 +1,6 @@
 # Draw.io Integration with GitLab  
 
-![Project Initiation Phase](../../img/ProjectInitiationPhase.png)  
+[![Software Engineering Research Center](https://github.com/retamotome/retamotome/raw/main/img/ResearchCenter.png)](https://github.com/retamotome)  
 
 ## Overview
 
