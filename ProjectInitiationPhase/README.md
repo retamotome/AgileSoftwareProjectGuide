@@ -65,7 +65,7 @@ The initiation phase establishes the foundation for a successful Agile software 
 
 | Video 影片 | Description 說明 |
 |:--|:----------|
-| <a href="https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2026-02-22_AgileTeam/README.md" target="_blank"><image src="https://github.com/retamotome/SelfDirectedTraining/raw/main/AgileSoftwareEngineering/2026-02-22_AgileTeam/img/Thumbnail.png" width="200"></a> | [Agile Team — Identification and Management 敏捷團隊：識別與管理](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2026-02-22_AgileTeam/README.md) <br>Four Team Types Mapped to Four ARCI Management Models, Applicable to Five Task Assignment Scenarios: Build and Manage Agile Teams Effectively!<br>４大團隊類型，對應４種 ARCI 管理模型，適用５大情境任務指派。正確地打造與管理敏捷團隊！<br> ☑️ English ☑️ Chinese   |
+| <a href="https://github.com/retamotome/SelfDirectedTraining/blob/main/Management/2026-02-22_AgileTeam/README.md" target="_blank"><image src="https://github.com/retamotome/SelfDirectedTraining/raw/main/Management/2026-02-22_AgileTeam/img/Thumbnail.png" width="200"></a> | [Agile Team — Identification and Management 敏捷團隊：識別與管理](https://github.com/retamotome/SelfDirectedTraining/blob/main/Management/2026-02-22_AgileTeam/README.md) <br>Four Team Types Mapped to Four ARCI Management Models, Applicable to Five Task Assignment Scenarios: Build and Manage Agile Teams Effectively!<br>４大團隊類型，對應４種 ARCI 管理模型，適用５大情境任務指派。正確地打造與管理敏捷團隊！<br> ☑️ English ☑️ Chinese   |
 
 This video introduces:  
 本影片介紹：
