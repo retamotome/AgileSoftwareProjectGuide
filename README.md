@@ -63,7 +63,7 @@ For an introductory presentation, see:
 
 | Guidance 指南 | Description 說明 | 
 |:-----|:-------|
-| <a href="./BusinessDevelopmentPhase/README.md" target="_blank"><image src="./img/BusinessDevelopmentPhase.png" width="200"></a> | [Business Development Phase｜商業(需求)發展階段](./BusinessDevelopmentPhase/README.md) <br>This phase focuses on defining clear, testable business requirements and preparing a foundation for behavior-driven validation.<br>本階段著重於定義清楚且可測試的商業需求，並建立行為驅動驗證（Behavior-Driven Validation）的基礎。<br> ☑️ English ☑️ Chinese |
+| <a href="./BusinessDevelopmentPhase/README.md" target="_blank"><image src="./BusinessDevelopmentPhase/img/BusinessDevelopmentPhase.png" width="200"></a> | [Business Development Phase｜商業(需求)發展階段](./BusinessDevelopmentPhase/README.md) <br>This phase focuses on defining clear, testable business requirements and preparing a foundation for behavior-driven validation.<br>本階段著重於定義清楚且可測試的商業需求，並建立行為驅動驗證（Behavior-Driven Validation）的基礎。<br> ☑️ English ☑️ Chinese |
 
 ### Software Development｜軟體發展階段
 
