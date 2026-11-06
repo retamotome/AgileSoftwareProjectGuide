@@ -85,7 +85,7 @@ Flash Journal
 Diagnostic Dump Tool
 ```
 
-### TRACE Layer | TRACE 層   
+### TRACE Layer | 追蹤層   
 
 TRACE is a developer-oriented instrumentation layer. Its primary purpose is to reconstruct software execution paths and analyze timing behavior.  
 TRACE 屬於開發人員使用的程式追蹤層（Instrumentation Layer），主要用於還原程式執行路徑及分析執行時序。   
@@ -118,7 +118,7 @@ For this reason, TRACE should be enabled only in engineering builds and should n
 10:01:10.152 Exit RobotMove()
 ```
 
-### DIAG Layer | DIAG 層  
+### DIAG Layer | 診斷層  
 
 DIAG is an operational diagnostic layer designed for production systems. Its primary purpose is to provide enough visibility for troubleshooting while maintaining low resource consumption.   
 DIAG 屬於產品運行期間的診斷層，其目標是在不消耗過多資源的情況下提供足夠的問題分析能力。   
@@ -139,7 +139,7 @@ Alarm Context | 異常脈絡資訊
 ```
 
 Well-designed DIAG information should remain useful even years after product deployment and should be understandable without access to the source code.   
-良好的 DIAG 設計即使在產品上市多年後，仍可提供現場工程師獨立分析問題，而不需要查看原始碼。   
+良好的 DIAG 設計即使在產品上市多年後，仍可提供現場工程師獨立分析問題，而不需要查閱原始碼。   
 
 **Example | 範例**   
 
@@ -151,7 +151,7 @@ PLC State = READY
 ```
 
 
-### Event Layer | Event 層   
+### Event Layer | 事件層   
 
 Events provide historical context and record significant system activities. Unlike TRACE and DIAG output, events are intended for long-term retention and post-failure analysis.   
 Event 層提供事件歷史紀錄與問題追溯能力。不同於 TRACE 與 DIAG，Event 屬於長期保存資料，主要用於故障分析及事件還原。   
@@ -162,7 +162,7 @@ Event 應儘量採用結構化格式並降低儲存空間需求。
 Please refer to the [Event Architecture](#event-architecture--事件架構) for details.    
 詳細內容請參考 [事件架構](#event-architecture--事件架構) 。   
 
-### Alarm Layer | Alarm 層   
+### Alarm Layer | 警報層   
 
 Alarms represent actionable abnormal conditions requiring operator awareness or intervention.   
 Alarm 層代表需要立即被操作人員注意或介入處理的異常狀況。   
