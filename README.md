@@ -1,6 +1,6 @@
 # Reta's Agile Software Project Guide  <br>Reta 的敏捷軟體專案指南  
 
-![Agile Software Project Guide](./img/AgileSoftwareProjectGuide.png)
+[![Agile Software Project Guide](./img/AgileSoftwareProjectGuide.png)](https://github.com/retamotome)  
 
 ## Overview | 概要  
 
@@ -75,10 +75,7 @@ For an introductory presentation, see:
 | Guidance 指南 | Description 說明 | 
 |:-----|:-------|
 | <a href="./SoftwareDevelopmentPhase/System-Design-Considerations/README.md" target="_blank"><image src="./SoftwareDevelopmentPhase/img/PracticalSystemDesignConsiderations.png" width="200"></a> | [Practical System Design Considerations｜系統設計實務考量](./SoftwareDevelopmentPhase/System-Design-Considerations/README.md) <br>This section provides a concise overview of key reliability strategies and general considerations essential during the Requirement Analysis phase of software engineering and project management, along with practical tips based on my real-world experience.<br>本章節提供在軟體工程與專案管理的需求分析階段中，關鍵可靠性策略與一般考量的簡要概述，並附上我在實務經驗中的一些實用建議。<br> ☑️ English ☑️ Chinese |
-
-| Video 影片 | Description 說明 | 
-|:-----|:-------|
-| <a href="https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/SystemDesign.md" target="_blank"><image src="https://github.com/retamotome/retamotome/raw/main/open-courseware/SystemDesignPhilosophy/img/SystemDesignPhilosophy.png" width="200"></a> | [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/SystemDesign.md)<br>本課程結合系統思維、軟體工程原則與跨領域觀點，探索系統設計的核心。透過挑戰既有假設、分析取捨，培養學習者洞察問題根源、化繁為簡，並尋找能夠最佳化整體系統的有效解決方案之能力。<br>This course explores system design through systems thinking, software engineering principles, and interdisciplinary perspectives. By challenging conventional assumptions, analyzing trade-offs, learners will develop the ability to identify root causes, simplify complexity, and discover effective solutions that optimize the system as a whole. <br> ☑️ Chinese  |  
+| <a href="https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/README.md" target="_blank"><image src="https://github.com/retamotome/SelfDirectedTraining/raw/main/OpenCourseware/SystemDesignPhilosophy/img/SystemDesignPhilosophy.png" width="200"></a> | [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/README.md)<br>本課程結合系統思維、軟體工程原則與跨領域觀點，探索系統設計的核心。透過挑戰既有假設、分析取捨，培養學習者洞察問題根源、化繁為簡，並尋找能夠最佳化整體系統的有效解決方案之能力。<br>This course explores system design through systems thinking, software engineering principles, and interdisciplinary perspectives. By challenging conventional assumptions, analyzing trade-offs, learners will develop the ability to identify root causes, simplify complexity, and discover effective solutions that optimize the system as a whole. <br> ☑️ Chinese  |  
 
 ### Maintenance｜維護階段
 

@@ -292,7 +292,7 @@ more timeouts → more logs → meltdown loop
 請參考說明影片：   
 | Video 影片 | Description 說明 |
 |:----|:----------|
-| <a href="https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/2026-07-30.md" target="_blank"><image src="https://github.com/retamotome/retamotome/raw/main/open-courseware/SystemDesignPhilosophy/img/2026-07-30.png" width="200"></a> | [碧海潮生曲的系統架構學 -- 從《射鵰英雄傳》看《易經》、五音、五行到狀態機](https://github.com/retamotome/retamotome/blob/main/open-courseware/SystemDesignPhilosophy/2026-07-30.md) |
+| <a href="https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/2026-07-30.md" target="_blank"><image src="https://github.com/retamotome/SelfDirectedTraining/raw/main/OpenCourseware/SystemDesignPhilosophy/img/2026-07-30.png" width="200"></a> | [碧海潮生曲的系統架構學 -- 從《射鵰英雄傳》看《易經》、五音、五行到狀態機](https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/2026-07-30.md) |
 
 
 
