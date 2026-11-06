@@ -1,6 +1,6 @@
 # System Mode and State  <br>系統模式與狀態  
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 ## Overview ｜ 概述
 

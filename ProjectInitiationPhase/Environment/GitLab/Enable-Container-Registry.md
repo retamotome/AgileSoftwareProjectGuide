@@ -1,6 +1,6 @@
 # GitLab Container Registry Quick Setup  
 
-[![Software Engineering Research Center](https://github.com/retamotome/retamotome/raw/main/img/ResearchCenter.png)](https://github.com/retamotome)  
+[![Software Engineering Research Center](https://github.com/retamotome/SelfDirectedTraining/raw/main/AgileSoftwareEngineering/img/sw_cover.png)](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/README.md)  
 
 ## Overview   
 

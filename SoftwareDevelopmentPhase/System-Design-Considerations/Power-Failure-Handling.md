@@ -1,6 +1,6 @@
 # Power Failure Handling  <br>電力故障處理  
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 ## Strategy | 策略
 

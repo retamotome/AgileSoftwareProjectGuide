@@ -1,6 +1,6 @@
 # System Upgrade Strategy  <br>系統升級策略  
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](../README.md)  
 
 ## Introduction | 前言   
 

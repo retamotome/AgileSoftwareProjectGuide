@@ -1,6 +1,6 @@
 # Native System Health Monitoring Design Guide  <br>原生系統健康監控設計指南  
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 
 ## Overview｜概述

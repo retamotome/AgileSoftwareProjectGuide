@@ -1,6 +1,6 @@
 # Data Processing Strategy  <br>資料處理策略   
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 
 ## Data Format ｜ 資料格式

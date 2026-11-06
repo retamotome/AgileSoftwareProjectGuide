@@ -1,6 +1,6 @@
 # Project Initiation Phase  <br>專案啟動階段  
 
-![Project Initiation Phase](./img/ProjectInitiationPhase.png)  
+[![Project Initiation Phase](./img/ProjectInitiationPhase.png)](../README.md)  
 
 ## Overview｜概述
 

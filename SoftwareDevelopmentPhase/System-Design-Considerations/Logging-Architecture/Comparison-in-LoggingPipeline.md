@@ -1,6 +1,6 @@
 # Logging vs Relational DB in a Logging Pipeline  <br>日誌管線中的 Logging vs 關聯式資料庫  
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 ## Purpose and Design Philosophy | 設計目的與核心理念
 

@@ -1,6 +1,6 @@
 # MCU Diagnostic Framework Design Specification  <br>MCU 診斷框架設計規格書   
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](../README.md)  
 
 **Target Platform**: MCU / RTOS-Based Embedded System  
 **Applicable Systems**: EFEM Controller、Robot Controller、PLC Gateway、Equipment Controller、Industrial Automation System   

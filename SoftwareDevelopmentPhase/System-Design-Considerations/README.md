@@ -1,6 +1,6 @@
 # Practical System Design Considerations  <br>系統設計實務考量  
 
-![Practical System Design Considerations](./../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](./../img/PracticalSystemDesignConsiderations.png)](../../README.md)  
 
 ## Overview | 概要  
 
@@ -9,7 +9,7 @@ This section provides a concise overview of key reliability strategies and gener
 
 ### Open Resources | 開放資源  
 
-| Video 影片 | Description 說明 | 
+| Course 課程 | Description 說明 | 
 |:-----|:-------|
 | <a href="https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/README.md" target="_blank"><image src="https://github.com/retamotome/SelfDirectedTraining/raw/main/OpenCourseware/SystemDesignPhilosophy/img/SystemDesignPhilosophy.png" width="200"></a> | [以四大關鍵思維看系統設計哲學](https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/README.md)<br> ☑️ Chinese Only<br>This course explores system design through systems thinking, software engineering principles, and interdisciplinary perspectives. By challenging conventional assumptions, analyzing trade-offs, learners will develop the ability to identify root causes, simplify complexity, and discover effective solutions that optimize the system as a whole. <br>本課程結合系統思維、軟體工程原則與跨領域觀點，探索系統設計的核心。透過挑戰既有假設、分析取捨，培養學習者洞察問題根源、化繁為簡，並尋找能夠最佳化整體系統的有效解決方案之能力。  |  
 

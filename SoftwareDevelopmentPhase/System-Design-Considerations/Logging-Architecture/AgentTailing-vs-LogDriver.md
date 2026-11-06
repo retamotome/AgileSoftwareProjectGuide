@@ -1,7 +1,7 @@
 # Agent-Based Collection vs Docker Log Driver  <br>代理式收集 vs Docker 記錄驅動  
 
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 ## Overview ｜ 概述
 

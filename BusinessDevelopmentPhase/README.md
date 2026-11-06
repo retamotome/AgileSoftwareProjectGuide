@@ -1,6 +1,6 @@
 # Business Development Phase  <br>商業(需求)發展階段  
 
-![Business Development Phase](./img/BusinessDevelopmentPhase.png)  
+[![Business Development Phase](./img/BusinessDevelopmentPhase.png)](../README.md)  
 
 
 ## Overview ｜ 概述

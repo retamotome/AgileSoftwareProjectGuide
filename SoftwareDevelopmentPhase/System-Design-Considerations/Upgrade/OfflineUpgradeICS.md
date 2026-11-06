@@ -1,6 +1,6 @@
 # Offline Upgrade Validation Specification  <br>離線升級驗證技術規格書  
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](UpgradeStrategyICS.md)  
 
 
 Target System: Industrial Automation Software / EFEM / Robot Controller / Equipment Control System   

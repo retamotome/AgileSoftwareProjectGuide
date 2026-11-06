@@ -1,7 +1,7 @@
 # Zero‑Log‑Loss Pipeline (Even During Crashes)  <br>日誌零遺失管線（即使發生當機）  
 
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 ## Overview ｜ 概述
 

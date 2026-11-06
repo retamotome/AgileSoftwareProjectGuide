@@ -1,6 +1,6 @@
 # Logging Architecture  <br>日誌架構設計  
 
-![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../../img/PracticalSystemDesignConsiderations.png)](../README.md)  
 
 ## Overview ｜ 概述
 

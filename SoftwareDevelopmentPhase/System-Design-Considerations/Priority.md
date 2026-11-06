@@ -1,6 +1,6 @@
 # Priority and Severity  <br>重要性權重 與 事件等級  
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 ## Evaluation | 評估
 

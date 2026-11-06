@@ -1,6 +1,6 @@
 # Security Consideration  <br>安全性考量   
 
-![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)  
+[![Practical System Design Considerations](../img/PracticalSystemDesignConsiderations.png)](README.md)  
 
 ## Connections ｜ 連線安全  
 
