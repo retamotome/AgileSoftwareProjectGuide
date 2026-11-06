@@ -103,7 +103,7 @@ Please refer to the [System Health Monitoring](./Healthy-Monitoring/README.md) f
 
 ### Overview | 概述  
 Please refer to the [From Error Handling to Robustness: Understanding Fault Tolerance, Resilience, and Graceful Degradation](RobustnessOverview.md) for details.  
-詳細內容請參考 [從 Error Handling 到 Robustness：瞭解 Fault Tolerance、Resilience 與 Graceful Degradation](RobustnessOverview.md)。
+詳細內容請參考 [從 錯誤處理 到 魯棒性：瞭解 容錯能力、韌性 與 優雅降級](RobustnessOverview.md)。
 
 ### Redundancy and Failover | 冗餘與故障切換  
 
