@@ -347,14 +347,6 @@ SBOM 應包含：
 
 ---
 
-# Open Resources | 開放資源  
-
-| Guidance 指南 | Description 說明 | 
-|:-----|:-------|
-| <a href="https://github.com/retamotome/SecurityGovernance" target="_blank"><image src="https://github.com/retamotome/SecurityGovernance/raw/main/img/cover01.png" width="200"></a> | [AUSPICIOUS SECURITY LAB](https://github.com/retamotome/SecurityGovernance) <br>This lab provides comprehensive coverage of cybersecurity, system security, information security, functional safety, and their governance frameworks. It introduces risk analysis methodologies, risk assessment techniques, and security management strategies to help participants understand and address security and safety challenges in modern systems and organizations.<br>本實驗室涵蓋網路安全（Cybersecurity）、系統安全（System Security）、資訊安全（Information Security）、功能安全（Functional Safety）及其治理架構（Governance Frameworks）等領域，並介紹風險分析方法、風險評估技術與安全管理策略，協助學員理解並有效因應現代系統與組織所面臨的安全與風險挑戰。<br> ☑️ English ☑️ Chinese  |
-
----
-
 # License｜授權條款
 
 ![BY NC SA](../../img/Cc-by-nc-sa.png)  
