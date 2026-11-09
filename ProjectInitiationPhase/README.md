@@ -21,15 +21,15 @@ The initiation phase establishes the foundation for a successful Agile software 
 <details>
 <summary>News and Reference｜參考資訊</summary>
 
-+ Here is an informative **manga** about project management: [マンガでわかるプロジェクトマネジメント](https://www.amazon.co.jp/%E3%83%9E%E3%83%B3%E3%82%AC%E3%81%A7%E3%82%8F%E3%81%8B%E3%82%8B%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88-%E5%BA%83%E5%85%BC%E4%BF%AE-ebook/dp/B00LAZPL6C). Although this edition is based on an older PMI PMBOK Guide **without** Agile concepts, its Project Management Knowledge Areas remain valuable references.  
-這是一部關於專案管理的實用**漫畫**：[マンガでわかるプロジェクトマネジメント](https://www.amazon.co.jp/%E3%83%9E%E3%83%B3%E3%82%AC%E3%81%A7%E3%82%8F%E3%81%8B%E3%82%8B%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88-%E5%BA%83%E5%85%BC%E4%BF%AE-ebook/dp/B00LAZPL6C). 雖然此版本基於較舊的PMI PMBOK指南，**未**包含敏捷概念，但其專案管理知識領域仍是寶貴的參考資料。   
-    + Chinese version 中文版: [世界第一簡單專案管理](https://www.books.com.tw/products/0010620993)   
-
-+ [Agile Product Management with Scrum: Creating Products that Customers Love](https://www.amazon.com/Agile-Product-Management-Scrum-Addison-Wesley/dp/0321605780)  
-    + Chinese version 中文版: [Scrum 敏捷產品管理：打造客戶喜愛的產品](https://www.tenlong.com.tw/products/9789864345601)  
-
-+ 2026-06-10 [前台積電主管親選！讀完這 6 本書，您也能帶出高績效團隊](https://www.managertoday.com.tw/columns/view/72320)  
-+ 2026-05-29 [「我們確實落後！」皮蔡的誠實告白：Google 在 AI 賽道上做了哪些取捨？](https://www.managertoday.com.tw/articles/view/72229)  
+> + Here is an informative **manga** about project management: [マンガでわかるプロジェクトマネジメント](https://www.amazon.co.jp/%E3%83%9E%E3%83%B3%E3%82%AC%E3%81%A7%E3%82%8F%E3%81%8B%E3%82%8B%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88-%E5%BA%83%E5%85%BC%E4%BF%AE-ebook/dp/B00LAZPL6C). Although this edition is based on an older PMI PMBOK Guide **without** Agile concepts, its Project Management Knowledge Areas remain valuable references.  
+> 這是一部關於專案管理的實用**漫畫**：[マンガでわかるプロジェクトマネジメント](https://www.amazon.co.jp/%E3%83%9E%E3%83%B3%E3%82%AC%E3%81%A7%E3%82%8F%E3%81%8B%E3%82%8B%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88-%E5%BA%83%E5%85%BC%E4%BF%AE-ebook/dp/B00LAZPL6C). 雖然此版本基於較舊的PMI PMBOK指南，**未**包含敏捷概念，但其專案管理知識領域仍是寶貴的參考資料。   
+>     + Chinese version 中文版: [世界第一簡單專案管理](https://www.books.com.tw/products/0010620993)   
+> 
+> + [Agile Product Management with Scrum: Creating Products that Customers Love](https://www.amazon.com/Agile-Product-Management-Scrum-Addison-Wesley/dp/0321605780)  
+>     + Chinese version 中文版: [Scrum 敏捷產品管理：打造客戶喜愛的產品](https://www.tenlong.com.tw/products/9789864345601)  
+> 
+> + 2026-06-10 [前台積電主管親選！讀完這 6 本書，您也能帶出高績效團隊](https://www.managertoday.com.tw/columns/view/72320)  
+> + 2026-05-29 [「我們確實落後！」皮蔡的誠實告白：Google 在 AI 賽道上做了哪些取捨？](https://www.managertoday.com.tw/articles/view/72229)  
 
 </details>
 
