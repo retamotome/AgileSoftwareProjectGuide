@@ -25,8 +25,8 @@ For guidance on writing requirements, see [Writing Requirements Effectively](../
 
 ## System Analysis | 系統分析  
 
-Both the [Business Development Phase](../../BusinessDevelopmentPhase/README.md) and the System Analysis Phase share the following three key activities:  
-[商業(需求)發展階段](../../BusinessDevelopmentPhase/README.md) 與 系統分析階段 皆包含以下三項核心活動：  
+Both the [Business Development Phase](../../BusinessDevelopmentPhase/README.md) and the System Analysis Phase share the following three key stages:  
+[商業(需求)發展階段](../../BusinessDevelopmentPhase/README.md) 與 系統分析階段 皆包含以下三項核心階段：  
 
 1. Gather direct functional requirements and expectations from customers and stakeholders.  
 蒐集來自客戶與利害關係人的直接功能需求與期望。  
@@ -41,7 +41,7 @@ System analysis is not merely a process of translating customer requests into te
 For practical examples and exercises related to Business Development and System Analysis, please refer to the following resources:   
 有關商業開發與系統分析的實務案例與演練，請參考以下資源：  
 
-| Activity Case<br>活動範例 | Activity 1 | Activity 2 | Activity 3 | 
+| Stage Case<br>階段範例 | Stage 1<br>階段 1 | Stage 2<br>階段 2 | Stage 3<br>階段 3 | 
 | :--- |:--- |:--- |:--- |
 | [Lesson 02: Business Requirement Definition<br>商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md) | Identification<br>識別 | General Considerations<br>通用考量項目 | Requirement Prioritization<br>需求優先排序 | 
 | [Peach Blossom Formation Case Study<br>從桃花陣到桃花海陣](https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/2026-08-26.md) | <a href="https://github.com/retamotome/retamotome/blob/main/reference/CharacterBible.md"><image src="https://github.com/retamotome/retamotome/raw/main/reference/img/Orion.png" width="50"></a><br>Presented by Orion<br>由 Orion 解說 | <a href="https://github.com/retamotome/retamotome/blob/main/reference/CharacterBible.md"><image src="https://github.com/retamotome/retamotome/raw/main/reference/img/August.png" width="50"></a><br>Presented by August<br>由 August 解說 | <a href="https://github.com/retamotome/retamotome/blob/main/reference/CharacterBible.md"><image src="https://github.com/retamotome/retamotome/raw/main/reference/img/Thomas.png" width="50"></a><br>Presented by Thomas<br>由 Thomas 解說 |
