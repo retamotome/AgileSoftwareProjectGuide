@@ -28,11 +28,11 @@ For guidance on writing requirements, see [Writing Requirements Effectively](../
 Both the [Business Development Phase](../../BusinessDevelopmentPhase/README.md) and the System Analysis Phase share the following three key activities:  
 [商業開發階段](../../BusinessDevelopmentPhase/README.md) 與 系統分析階段 皆包含以下三項核心活動：  
 
-+ Gather direct functional requirements and expectations from customers and stakeholders.  
+1. Gather direct functional requirements and expectations from customers and stakeholders.  
 蒐集來自客戶與利害關係人的直接功能需求與期望。  
-+ Collect and analyze considerations not only from customers and stakeholders, but also from our organization, competitors, partners, regulatory constraints, and market conditions.  
+2.  Collect and analyze considerations not only from customers and stakeholders, but also from our organization, competitors, partners, regulatory constraints, and market conditions.  
 蒐集並分析不僅來自客戶與利害關係人的考量，也包含組織本身、競爭對手、合作夥伴、法規限制以及市場環境等相關因素。  
-+ Integrate all identified considerations, evaluate business value against development and operational costs, and refine the solution scope to maximize return on investment (ROI) throughout the entire product lifecycle.  
+3.  Integrate all identified considerations, evaluate business value against development and operational costs, and refine the solution scope to maximize return on investment (ROI) throughout the entire product lifecycle.  
 整合所有已識別的考量因素，評估商業價值與開發、維運成本之間的平衡，並根據整體產品生命週期的投資報酬率（ROI）來調整與收斂產品範圍。  
 
 System analysis is not merely a process of translating customer requests into technical specifications. It requires balancing business objectives, stakeholder expectations, market competitiveness, technical feasibility, risks, and lifecycle costs to determine the most valuable and sustainable solution.  
@@ -41,8 +41,10 @@ System analysis is not merely a process of translating customer requests into te
 For practical examples and exercises related to Business Development and System Analysis, please refer to the following resources:   
 有關商業開發與系統分析的實務案例與演練，請參考以下資源：  
 
-+ [Lesson 02: Business Requirement Definition | 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)  
-+ [Peach Blossom Formation Case Study | 從桃花陣到桃花海陣](https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/2026-08-26.md)  
+| Activity Case<br>活動範例 | Activity 1 | Activity 2 | Activity 3 | 
+| :--- |:--- |:--- |:--- |
+| [Lesson 02: Business Requirement Definition<br>商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md) | Identification<br>識別 | General Considerations<br>通用考量項目 | Requirement Prioritization<br>需求優先排序 | 
+| [Peach Blossom Formation Case Study<br>從桃花陣到桃花海陣](https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/2026-08-26.md) | <image src="https://github.com/retamotome/retamotome/raw/main/reference/img/Orion.png" width="50"><br>Presented by Orion<br>由 Orion 呈現 | <image src="https://github.com/retamotome/retamotome/raw/main/reference/img/August.png" width="50"><br>Presented by August<br>由 August 呈現 | <image src="https://github.com/retamotome/retamotome/raw/main/reference/img/Thomas.png" width="50"><br>Presented by Thomas<br>由 Thomas 呈現 |
 
 
 ## System Architecture | 系統架構  
