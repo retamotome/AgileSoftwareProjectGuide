@@ -26,7 +26,7 @@ For guidance on writing requirements, see [Writing Requirements Effectively](../
 ## System Analysis | 系統分析  
 
 Both the [Business Development Phase](../../BusinessDevelopmentPhase/README.md) and the System Analysis Phase share the following three key activities:  
-[商業開發階段](../../BusinessDevelopmentPhase/README.md) 與 系統分析階段 皆包含以下三項核心活動：  
+[商業(需求)發展階段](../../BusinessDevelopmentPhase/README.md) 與 系統分析階段 皆包含以下三項核心活動：  
 
 1. Gather direct functional requirements and expectations from customers and stakeholders.  
 蒐集來自客戶與利害關係人的直接功能需求與期望。  
