@@ -29,7 +29,7 @@ Both the [Business Development Phase](../../BusinessDevelopmentPhase/README.md) 
 [商業開發階段](../../BusinessDevelopmentPhase/README.md) 與 系統分析階段 皆包含以下三項核心活動：  
 
 + Gather direct functional requirements and expectations from customers and stakeholders.  
-蒐集來自客戶與利害關係人（Stakeholders）的直接功能需求與期望。  
+蒐集來自客戶與利害關係人的直接功能需求與期望。  
 + Collect and analyze considerations not only from customers and stakeholders, but also from our organization, competitors, partners, regulatory constraints, and market conditions.  
 蒐集並分析不僅來自客戶與利害關係人的考量，也包含組織本身、競爭對手、合作夥伴、法規限制以及市場環境等相關因素。  
 + Integrate all identified considerations, evaluate business value against development and operational costs, and refine the solution scope to maximize return on investment (ROI) throughout the entire product lifecycle.  
