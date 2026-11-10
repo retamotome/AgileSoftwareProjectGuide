@@ -159,6 +159,8 @@ Please refer to the [Power Failure Handling](./Power-Failure-Handling.md) for de
 
 ## Upgrade Strategy | 系統升級策略
 
+### Overview | 概述  
+
 Please refer to the [System Upgrade Strategy](Upgrade/UpgradeStrategyICS.md) for details.  
 詳細內容請參考 [系統升級策略](Upgrade/UpgradeStrategyICS.md)。    
 
