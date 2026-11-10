@@ -17,10 +17,32 @@ This section provides a concise overview of key reliability strategies and gener
 ## Prerequisites ｜ 前置條件
 
 Effective system design is built upon a solid understanding of business requirements. Prior to entering the system architecture and functional design phases, business requirements should be clearly elicited, analyzed, and documented. A well-defined set of business requirements provides a consistent foundation for decision-making throughout the design process and helps reduce project risks, rework efforts, and long-term maintenance costs. For detailed concepts, processes, and practical techniques related to business requirement definition, please refer to [Lesson 02: Business Requirement Definition](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md).   
-系統設計的品質高度依賴需求分析的完整性。在進入系統架構與功能設計階段之前，應先充分釐清並定義商業需求，以建立一致且明確的設計基礎，降低後續開發與維護成本。關於商業需求定義的概念、流程與實務方法，請參考《[Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)》。   
+系統設計的品質高度依賴需求分析的完整性。在進入系統架構與功能設計階段之前，應先充分釐清並定義商業需求，以建立一致且明確的設計基礎，降低後續開發與維護成本。關於商業需求定義的概念、流程與實務方法，請參考 [Lesson 02: Business Requirement Definition 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)。   
 
 For guidance on writing requirements, see [Writing Requirements Effectively](../../BusinessDevelopmentPhase/BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
-關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../../BusinessDevelopmentPhase/BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。 
+關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](../../BusinessDevelopmentPhase/BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。   
+
+
+## System Analysis | 系統分析  
+
+Both the [Business Development Phase](../../BusinessDevelopmentPhase/README.md) and the System Analysis Phase share the following three key activities:  
+[商業開發階段](../../BusinessDevelopmentPhase/README.md) 與 系統分析階段 皆包含以下三項核心活動：  
+
++ Gather direct functional requirements and expectations from customers and stakeholders.  
+蒐集來自客戶與利害關係人（Stakeholders）的直接功能需求與期望。  
++ Collect and analyze considerations not only from customers and stakeholders, but also from our organization, competitors, partners, regulatory constraints, and market conditions.  
+蒐集並分析不僅來自客戶與利害關係人的考量，也包含組織本身、競爭對手、合作夥伴、法規限制以及市場環境等相關因素。  
++ Integrate all identified considerations, evaluate business value against development and operational costs, and refine the solution scope to maximize return on investment (ROI) throughout the entire product lifecycle.  
+整合所有已識別的考量因素，評估商業價值與開發、維運成本之間的平衡，並根據整體產品生命週期的投資報酬率（ROI）來調整與收斂產品範圍。  
+
+System analysis is not merely a process of translating customer requests into technical specifications. It requires balancing business objectives, stakeholder expectations, market competitiveness, technical feasibility, risks, and lifecycle costs to determine the most valuable and sustainable solution.  
+系統分析不只是將客戶需求轉換成技術規格的過程，更需要在商業目標、利害關係人期望、市場競爭力、技術可行性、風險以及生命週期成本之間進行權衡，以找出最具價值且可持續發展的解決方案。  
+
+For practical examples and exercises related to Business Development and System Analysis, please refer to the following resources:   
+有關商業開發與系統分析的實務案例與演練，請參考以下資源：  
+
++ [Lesson 02: Business Requirement Definition | 商業需求定義](https://github.com/retamotome/SelfDirectedTraining/blob/main/AgileSoftwareEngineering/2025-12-08_BusinessReqDef/README.md)  
++ [Peach Blossom Formation Case Study | 從桃花陣到桃花海陣](https://github.com/retamotome/SelfDirectedTraining/blob/main/OpenCourseware/SystemDesignPhilosophy/2026-08-26.md)  
 
 
 ## System Architecture | 系統架構  

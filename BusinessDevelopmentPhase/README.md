@@ -35,7 +35,10 @@ For more background, see:
 
 ## Guidance ｜ 指引
 
-+ [Writing Business Requirements Effectively 撰寫商業需求的高效方法](./BusinessRequirementDefinition/Writing-Requirements-Effectively.md).  
+### Writing Business Requirements ｜ 撰寫商業需求  
+
+For guidance on writing requirements, see [Writing Requirements Effectively](./BusinessRequirementDefinition/Writing-Requirements-Effectively.md).   
+關於撰寫需求的實作指引，請參閱 [撰寫需求的高效方法](./BusinessRequirementDefinition/Writing-Requirements-Effectively.md)。   
  
 
 ### Test Engineering in the Business Development Phase | 商業開發階段的測試工程  
@@ -104,10 +107,6 @@ BDD 能夠將商業需求轉化為清楚且可驗證的情境（Scenarios），�
         每個測試步驟皆以可重用單元形式維護於測試案例池中
     * The BDD workflow assembles test scripts by reusing steps from the Test Case Pool.  
         BDD 流程透過重用測試案例池中的步驟來組合測試腳本
-
-## Milestone ｜ 里程碑
-
-![Business Milestone](./img/BusinessDevMilestone.drawio.svg)  
 
 ---
 
