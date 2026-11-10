@@ -11,7 +11,7 @@ However, industrial automation systems operate under fundamentally different con
 然而，工業自動化系統所面對的環境與限制條件截然不同。EFEM（Equipment Front End Module）、機器人控制器、設備自動化系統、運動控制器以及工廠設備管理系統，直接與實體設備及生產流程互動。在這類環境中，一次升級失敗所造成的影響不僅僅是軟體停止服務，還可能導致設備異常、產品損壞、生產中斷，甚至產生安全風險。   
 
 As a result, industrial control systems require a different upgrade strategy from conventional IT systems. The focus shifts from service availability toward operational safety, deterministic behavior, equipment state consistency, and recoverability.   
-因此，工業控制系統必須採用與一般 IT 系統不同的升級策略。其核心關注點不再只是服務可用性，而是設備安全性、系統行為可預測性、設備狀態一致性與快速復原能力。   
+因此，工業控制系統必須採用與一般 IT 系統不同的升級策略。其核心重點不再只是服務可用性，而是設備安全性、系統行為可預測性、設備狀態一致性與快速復原能力。   
 
 ## Differences Between IT and Industrial Upgrade Strategies | IT 系統與工業控制系統升級策略差異
 

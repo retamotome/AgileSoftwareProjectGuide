@@ -25,7 +25,7 @@ The objective of this architecture is to guarantee **no log loss** under failure
 ```
 
 This pipeline separates concerns into distinct layers: log generation, local persistence, reliable forwarding, centralized buffering, and long-term storage. Each layer contributes to durability and failure isolation.  
-此管線將各項關注點拆分為不同層級：日誌產生、本地持久化、可靠傳輸、集中緩衝與長期儲存。每一層都強化了耐久性與錯誤隔離能力。
+此管線將各項重點拆分為不同層級：日誌產生、本地持久化、可靠傳輸、集中緩衝與長期儲存。每一層都強化了耐久性與錯誤隔離能力。
 
 
 
