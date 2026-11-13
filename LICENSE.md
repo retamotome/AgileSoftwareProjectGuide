@@ -100,7 +100,7 @@ Creative Commons license.
 下列智慧財產權內容 **不** 包含於 Creative Commons 授權範圍內：
 
 - 吉祥院軟體工程研究中心  
-- Auspicious Software Engineering Research Center  
+- Auspiciousness Software Engineering Research Center  
 - Reta  
 - Orion  
 - Jack  
@@ -152,7 +152,7 @@ Names, logos, and brands associated with:
 下列名稱、標誌與品牌：  
 
 - 吉祥院軟體工程研究中心   
-- Auspicious Software Engineering Research Center  
+- Auspiciousness Software Engineering Research Center  
 - Reta  
 - Orion  
 - Jack  
