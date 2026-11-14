@@ -3,7 +3,7 @@
 [![Academy of Management](https://github.com/retamotome/SelfDirectedTraining/raw/main/Management/img/mgt_cover.png)](https://github.com/retamotome/SelfDirectedTraining/blob/main/Management/README.md)  
 
 
-## 核心理念
+## Core Philosophy｜核心理念
 
 Build a team that values truth, efficiency, collaboration, accountability, and continuous improvement.  
 建立一個重視真實、效率、協作、當責與持續改善的團隊。  
