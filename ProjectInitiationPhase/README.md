@@ -36,6 +36,7 @@ The initiation phase establishes the foundation for a successful Agile software 
 ## 管理政策 | Management Policy
 
 * [Agile Code of Conduct｜敏捷準則](./Policy/Agile-Code-of-Conduct.md)   
+* [Team Collaboration Principles｜團隊協作原則](./Policy/Team-Collaboration-Principles.md)  
 * [Software Security Management Policy | 軟體安全管理政策](./Policy/Software-Security-Management/Software-Security-Management-Policy.md)   
   * [Software Security Management Implementation Guidelines | 軟體安全管理施行細則](./Policy/Software-Security-Management/Software-Security-Management-Action.md)   
 

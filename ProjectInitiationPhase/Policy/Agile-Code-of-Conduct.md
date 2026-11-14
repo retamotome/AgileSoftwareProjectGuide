@@ -72,7 +72,7 @@ When encountering uncertainties:
 - Validate your conclusions by seeking insights from seasoned professionals only after thorough deliberation.  
   在充分思考後，再向資深同仁請益以驗證您的結論。  
 - When queried by leaders or supervisors, take the initiative to respond promptly, providing rationale for your answers and any counterpoints.  
-  當主管或領導詢問時，請主動且即時回應，並清楚說明您的判斷依據與可能反向觀點。  
+  當經理或主管詢問時，請主動且即時回應，並清楚說明您的判斷依據與可能的反向觀點。  
 
 #### Being Mindful of Your Assignments｜審慎看待您的指派工作  
   
@@ -94,8 +94,8 @@ We assume you are already familiar with the essential duties and responsibilitie
   您的工作正確率必須高於 85%。  
 - No reckless or incorrect output is acceptable; you are expected to deliver valuable results before concluding your work.  
   不接受草率或錯誤的產出；在結束工作前，應交付具價值的成果。  
-- Adhere to task deadlines diligently and can NOT opinionated erase Due Day field for any task.  
-  請確實遵守任務截止時間，不可主觀刪除任何任務的 Due Day（到期日）欄位。  
+- Adhere to task deadlines diligently and can NOT opinionated change Due Day field for any task.  
+  請確實遵守任務截止時間，不可主觀變更任何任務的 Due Day（到期日）欄位。  
 
 ### Baseline of Task Management｜任務管理基準  
 
