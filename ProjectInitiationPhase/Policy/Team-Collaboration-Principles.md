@@ -1,6 +1,6 @@
 # Team Collaboration Principles  <br>團隊協作原則    
 
-[![Academy of Management](https://github.com/retamotome/SelfDirectedTraining/raw/main/Management/img/mgt_cover.png)](https://github.com/retamotome/SelfDirectedTraining/blob/main/Management/README.md)  
+[![Technical Fellow](https://github.com/retamotome/retamotome/raw/main/reference/img/team.png)](https://github.com/retamotome/retamotome/blob/main/reference/CharacterBible.md)  
 
 
 ## Core Philosophy｜核心理念
@@ -113,8 +113,8 @@ Build better processes and systems instead of relying on longer working hours.
 透過改善流程與系統解決問題，而不是依賴延長工作時間。  
 
 > [!WARNING]  
-> **Overtime** is **NOT** a demonstration of dedication or productivity. It is considered an indication of **poor performance, inefficient work management, or inadequate resource utilization**, resulting in **unnecessary waste of company resources**.  
-> 加班並 **不** 代表敬業或工作效率高。**加班** 將被視為 **績效不彰、工作管理效率不佳或資源運用不當** 的表現，亦代表 **公司資源遭到不必要的浪費**。  
+> **Overtime** is NOT a demonstration of dedication or productivity. It is considered an indication of **poor performance, inefficient work management, or inadequate resource utilization**, resulting in **unnecessary waste of company resources**.  
+> **加班** 並不代表敬業或工作效率高。加班將被視為 **績效不彰、工作管理效率不佳或資源運用不當** 的表現，亦代表 **公司資源遭到不必要的浪費**。  
 
 * No Routine Overtime.   
 禁止常態性加班。   
