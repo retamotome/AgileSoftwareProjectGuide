@@ -41,10 +41,11 @@ Meetings are intended to facilitate effective communication, factual discussions
 Make every meeting purposeful, factual, and action-oriented.  
 讓每一次會議都有明確目的，以事實為基礎，並產生具體行動。  
 
-* Speak the Truth, No Nonsense, No Acting.  
-講真話，不講廢話，不要演戲。  
-Communicate honestly and directly. Avoid meaningless discussions, unnecessary embellishments, political games, or performative behavior.  
-誠實且直接地表達，不要進行沒有意義的討論、不必要的包裝、政治操作或表演式溝通。  
+> [!IMPORTANT]  
+> Speak the Truth, No Nonsense, No Acting.  
+> 講真話，不講廢話，不要演戲。  
+> Communicate honestly and directly. Avoid meaningless discussions, > unnecessary embellishments, political games, or performative behavior.  
+> 誠實且直接地表達，不要進行沒有意義的討論、不必要的包裝、政治操作或表演式溝通。  
 
 * Record, Verify, and Report.  
 確實記錄、會後查證、下次回報。   
@@ -111,8 +112,9 @@ Every decision must have clear ownership, responsibilities, and follow-up action
 Build better processes and systems instead of relying on longer working hours.  
 透過改善流程與系統解決問題，而不是依賴延長工作時間。  
 
-Overtime is NOT a demonstration of dedication or productivity. It is considered an indication of poor performance, inefficient work management, or inadequate resource utilization, resulting in unnecessary waste of company resources.  
-加班並不代表敬業或工作效率高。加班將被視為績效不彰、工作管理效率不佳或資源運用不當的表現，亦代表公司資源遭到不必要的浪費。  
+> [!WARNING]  
+> **Overtime** is **NOT** a demonstration of dedication or productivity. It is considered an indication of **poor performance, inefficient work management, or inadequate resource utilization**, resulting in **unnecessary waste of company resources**.  
+> 加班並 **不** 代表敬業或工作效率高。**加班** 將被視為 **績效不彰、工作管理效率不佳或資源運用不當** 的表現，亦代表 **公司資源遭到不必要的浪費**。  
 
 * No Routine Overtime.   
 禁止常態性加班。   
