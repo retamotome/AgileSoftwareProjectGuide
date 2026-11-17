@@ -8,6 +8,32 @@
 Build a team that values truth, efficiency, collaboration, accountability, and continuous improvement.  
 建立一個重視真實、效率、協作、當責與持續改善的團隊。  
 
+
+## Respect, Courtesy & Sincerity｜尊重、禮貌與真誠
+
+> [!IMPORTANT]  
+> 尊重是修養，真誠是態度，專業是行為。  
+> Respect is character, sincerity is an attitude, and professionalism is demonstrated through action.  
+
+Build a collaborative environment based on mutual respect, basic courtesy, and sincere communication.  
+建立以相互尊重、基本禮貌及真誠溝通為基礎的協作環境。  
+
+* **Respect Is Mutual and Independent of Hierarchy.**  
+尊重是相互的，不分職級。  
+Respect every team member regardless of position, seniority, authority, or role. Respect is mutual and must never be determined by organizational hierarchy. It is a fundamental standard of human interaction and basic social etiquette.  
+尊重每一位團隊成員，不因職位、資歷、權限或角色而有所差異。尊重是雙向的，不應受到組織階級影響。這是人與人相處的基本原則，也是最基本的國民禮儀。  
+
+* **Maintain Basic Courtesy in All Interactions.**  
+所有互動都應保持基本禮貌。  
+Listen attentively when others are speaking or presenting. Avoid behaviors that interrupt, distract, or demonstrate disregard for others, regardless of whether the subject is familiar, repetitive, or personally interesting. Disagreement or lack of interest is never an excuse for disrespectful behavior.  
+當他人發言或簡報時，應保持基本專注與禮貌。避免任何干擾他人、影響溝通，或表現出輕慢與不尊重的行為。即使討論內容已經熟悉、重複，或個人不感興趣，也不應以此作為失禮的理由。  
+
+* **Be Sincere, Not Casual or Careless.**  
+真誠以待，而非隨便應付。  
+Communicate with sincerity and honesty. Express facts, opinions, and intentions as truthfully as possible. Sincerity does not mean being careless, inappropriate, or disregarding professional boundaries. When information cannot appropriately be disclosed, it is acceptable to politely decline to answer rather than provide misleading or fabricated information.  
+以真誠與誠實的態度溝通，盡可能如實表達事實、觀點與想法。真誠不代表隨便、失去分寸，或忽略專業界線。當資訊因保密、權限或其他合理原因而不方便表述時，可以禮貌地選擇不回答，而不是提供誤導或不實的資訊。  
+
+
 ## Communication Principles｜溝通原則
 
 Build trust through honesty, transparency, and effective information sharing.  
