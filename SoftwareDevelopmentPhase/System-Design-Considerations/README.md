@@ -61,10 +61,10 @@ There is **no** universal system architecture that fits all scenarios. In realit
 <details>
 <summary>News and Reference｜參考資訊</summary>
 
-+ [Fundamentals of Software Architecture: An Engineering Approach](https://www.amazon.com/Fundamentals-Software-Architecture-Comprehensive-Characteristics/dp/1492043451)  
-  + [軟體架構原理｜工程方法](https://www.tenlong.com.tw/products/9789865026615)  
-+ [Software Architecture Metrics: Case Studies to Improve the Quality of Your Architecture](https://www.amazon.com/Software-Architecture-Metrics-Studies-Improve/dp/1098112237)  
-  + [軟體架構指標｜改善架構品質的案例研究](https://www.tenlong.com.tw/products/9786263243583)  
++ [Fundamentals of Software Architecture: An Engineering Approach, 2020](https://www.amazon.com/Fundamentals-Software-Architecture-Comprehensive-Characteristics/dp/1492043451)  
+  + [軟體架構原理｜工程方法, 2021](https://www.tenlong.com.tw/products/9789865026615)  
++ [Software Architecture Metrics: Case Studies to Improve the Quality of Your Architecture, 2022](https://www.amazon.com/Software-Architecture-Metrics-Studies-Improve/dp/1098112237)  
+  + [軟體架構指標｜改善架構品質的案例研究, 2022](https://www.tenlong.com.tw/products/9786263243583)  
 + [Foundations of Scalable Systems, 2022](https://www.oreilly.com/library/view/foundations-of-scalable/9781098106058/)  
   + [建構可擴展系統｜設計分散式架構, 2025](https://www.books.com.tw/products/0011032670)   
 
