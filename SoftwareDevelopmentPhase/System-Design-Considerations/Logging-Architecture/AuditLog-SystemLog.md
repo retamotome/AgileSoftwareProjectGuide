@@ -21,8 +21,8 @@ Logs should define severity levels (INFO, WARNING, ERROR, CRITICAL) and use clea
 日誌應定義嚴重等級（資訊、警告、錯誤、嚴重），並使用易於瞭解的文字，避免過多技術術語，並在可能時提供可行的解決建議。   
 
 #### Timestamp | 時間戳記
-Accurate timestamps are essential and should be synchronized using trusted sources such as NTP. For offline systems, solutions like RTC, GPS, local NTP servers, or hybrid logging help ensure long-term reliability of time data.  
-精確的時間戳記至關重要，應透過 NTP 等可信來源進行同步。對於離線系統，可採用 RTC、GPS、本地 NTP 伺服器或混合式記錄方式，以確保時間的長期準確性。  
+Accurate timestamps are essential and should be synchronized using trusted sources such as [chrony](https://en.wikipedia.org/wiki/Chrony) or [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol). For offline systems, solutions like RTC, GPS, local NTP servers, or hybrid logging help ensure long-term reliability of time data.  
+精確的時間戳記至關重要，應透過 [chrony](https://en.wikipedia.org/wiki/Chrony) 或 [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol) 等可信來源進行同步。對於離線系統，可採用 RTC、GPS、本地 NTP 伺服器或混合式記錄方式，以確保時間的長期準確性。  
 
 ##### Timestamp Policy | 時間戳記政策
 System time must not be modified to maintain consistency and trustworthiness of logs. If needed, a separate custom timestamp should be introduced, with recorded time differences to preserve traceability and integrity.  
